@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bddc2ca6150023f449f593f9e757ff65
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 174068
+  packageName: URP 2D Water Shader With Buoyancy
+  packageVersion: 2.0
+  assetPath: Assets/Azerilo/URP 2D Water/URP 2D Renderer/Prefab/Water Sprite.prefab
+  uploadId: 530251

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 65304b7c9b6fb614084a8368d50fd5a4
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 174068
+  packageName: URP 2D Water Shader With Buoyancy
+  packageVersion: 2.0
+  assetPath: Assets/Azerilo/URP 2D Water/URP Universal Renderer/Demo Assets/Prefabs/bubbles/Bubbles02.prefab
+  uploadId: 530251

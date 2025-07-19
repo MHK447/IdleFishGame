@@ -261,15 +261,6 @@ public class PanAndZoom : MonoBehaviour
         }
     }
 
-    private float EvaluateAutoScrollDampCurve(float t)
-    {
-        if (autoScrollDampCurve == null || autoScrollDampCurve.length == 0)
-        {
-            return (1);
-        }
-        return autoScrollDampCurve.Evaluate(t);
-    }
-
 
 
     /// <summary> Checks if the the current input is over canvas UI </summary>
@@ -417,39 +408,39 @@ public class PanAndZoom : MonoBehaviour
     }
 
     // 카메라 줌 함수 (직접적인 줌 제어)
-    public void CameraZoom(Vector3 worldCenter, float zoomSize)
-    {
-        if (controlCamera && cameraControlEnabled)
-        {
-            if (cam == null) cam = Camera.main;
+    // public void CameraZoom(Vector3 worldCenter, float zoomSize)
+    // {
+    //     if (controlCamera && cameraControlEnabled)
+    //     {
+    //         if (cam == null) cam = Camera.main;
 
-            // 직교(Orthographic) 카메라인 경우
-            if (cam.orthographic)
-            {
-                var currentPinchPosition = worldCenter;
+    //         // 직교(Orthographic) 카메라인 경우
+    //         if (cam.orthographic)
+    //         {
+    //             var currentPinchPosition = worldCenter;
 
-                // 최소 줌 크기를 9f로 제한
-                var size = Mathf.Max(9f, zoomSize);
+    //             // 최소 줌 크기를 9f로 제한
+    //             var size = Mathf.Max(9f, zoomSize);
 
-                // 최대 줌아웃 크기 제한 체크
-                if (size < maxZoomOutSize)
-                {
-                    // 카메라의 orthographicSize 변경으로 줌 적용
-                    cam.orthographicSize = size;
+    //             // 최대 줌아웃 크기 제한 체크
+    //             if (size < maxZoomOutSize)
+    //             {
+    //                 // 카메라의 orthographicSize 변경으로 줌 적용
+    //                 cam.orthographicSize = size;
 
-                    var newPinchPosition = worldCenter;
+    //                 var newPinchPosition = worldCenter;
 
-                    // 줌 중심점 기준으로 카메라 위치 조정
-                    cam.transform.position -= newPinchPosition - currentPinchPosition;
-                }
-            }
-            else
-            {
-                // 원근(Perspective) 카메라인 경우 Field of View 조정
-                cam.fieldOfView = Mathf.Clamp(zoomSize, 0.1f, 179.9f);
-            }
+    //                 // 줌 중심점 기준으로 카메라 위치 조정
+    //                 cam.transform.position -= newPinchPosition - currentPinchPosition;
+    //             }
+    //         }
+    //         else
+    //         {
+    //             // 원근(Perspective) 카메라인 경우 Field of View 조정
+    //             cam.fieldOfView = Mathf.Clamp(zoomSize, 0.1f, 179.9f);
+    //         }
 
-        }
-    }
+    //     }
+    // }
 
 }

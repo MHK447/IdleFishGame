@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 80bdfa3411eaa7f47b61bf15da221046
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 174068
+  packageName: URP 2D Water Shader With Buoyancy
+  packageVersion: 2.0
+  assetPath: Assets/Azerilo/URP 2D Water/URP Universal Renderer/Prefabs/Water2D_Quad.prefab
+  uploadId: 530251

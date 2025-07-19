@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 364a751f7b9e9b242ae52de2bebae1c2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 174068
+  packageName: URP 2D Water Shader With Buoyancy
+  packageVersion: 2.0
+  assetPath: Assets/Azerilo/URP 2D Water/URP Universal Renderer/Scene/Universal DemoSettings.lighting
+  uploadId: 530251

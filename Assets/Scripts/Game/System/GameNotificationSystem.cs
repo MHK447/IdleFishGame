@@ -102,23 +102,6 @@ public class GameNotificationSystem
 
     }
 
-    public void AddNoti(NoticeComponent.NoticeType noti, Transform target)
-    {
-        var newdata = new NoticeData((int)noti, target);
-
-        GameRoot.Instance.UserData.CurMode.NoticeCollections.Add(newdata);
-    }
-
-    public void RemoveNoti(NoticeComponent.NoticeType noti, Transform target = null)
-    {
-        var finddata = target == null ? 
-         GameRoot.Instance.UserData.CurMode.NoticeCollections.ToList().Find(x => x.NotiIdx == (int)noti) 
-         : GameRoot.Instance.UserData.CurMode.NoticeCollections.ToList().Find(x => x.NotiIdx == (int)noti && x.Target == target);
-
-        if (finddata != null)
-            GameRoot.Instance.UserData.CurMode.NoticeCollections.Remove(finddata);
-    }
-    
     public void UpdateNotification(NotificationCategory category, int subIdx = -1)
     {
         switch (category)

@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Azerilo_URP 2D Water 2D Renderer
+  m_Shader: {fileID: 4800000, guid: 0882dcdb19fae974d8c669fc96f83936, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - Refraction_Noise: 70
+    - Refraction_Speed: 12.9
+    - Vector1_56BE0FD1: 0.84
+    - Vector1_5CB84537: 18
+    - Vector1_63384718: 10
+    - Vector1_73BD9798: 70
+    - Vector1_745B9376: 1
+    - Vector1_8DA20226: 1.51
+    - Vector1_AE30F744: 0.81
+    - Vector1_AF318A03: 1.87
+    - Vector1_D775EAAC: 0.7
+    - Water_Level: 0.74
+    - Water_Top_Width: 5
+    - Wave_Depth: 3.96
+    - Wave_Frequency: 5.64
+    - Wave_Speed: 2.76
+    m_Colors:
+    - Color_234C1B0B: {r: 1, g: 1, b: 1, a: 0}
+    - Color_D12BF231: {r: 0.31706125, g: 0.695, b: 0.8962264, a: 0}
+    - Water_Color: {r: 0.43867922, g: 0.8733303, b: 1, a: 0.7882353}
+    - Water_Top_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

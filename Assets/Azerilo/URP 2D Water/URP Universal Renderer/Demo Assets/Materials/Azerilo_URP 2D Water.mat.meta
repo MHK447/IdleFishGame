@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 79745d326ca5373458c72cab37f249bf
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 174068
+  packageName: URP 2D Water Shader With Buoyancy
+  packageVersion: 2.0
+  assetPath: Assets/Azerilo/URP 2D Water/URP Universal Renderer/Demo Assets/Materials/Azerilo_URP
+    2D Water.mat
+  uploadId: 530251
