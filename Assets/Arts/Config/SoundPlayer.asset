@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9bfa9e5110a14f4298b5295d67fb07e, type: 3}
+  m_Name: SoundPlayer
+  m_EditorClassIdentifier: 
+  soundDatas:
+  - soundKey: bgm
+    audioData: {fileID: 8300000, guid: f9a5b1b5d68f0444e91c9be777185a6c, type: 3}
+    Volume: 0.3
+  - soundKey: btn
+    audioData: {fileID: 8300000, guid: 3e3f161166ba72041a40891bd268001f, type: 3}
+    Volume: 1
+  - soundKey: popup
+    audioData: {fileID: 8300000, guid: 6bb1054c400394af1a024861c571eb04, type: 3}
+    Volume: 1
+  - soundKey: toast
+    audioData: {fileID: 8300000, guid: e9707d27f1a2745c8a70c2446f017e22, type: 3}
+    Volume: 1
+  - soundKey: counter
+    audioData: {fileID: 8300000, guid: 9b28684ec28e30c4c89989b5e59d6ea7, type: 3}
+    Volume: 1
+  - soundKey: fishing
+    audioData: {fileID: 8300000, guid: fbcd4bf7970efe8418b8e2cd63584a33, type: 3}
+    Volume: 1
+  - soundKey: putdown
+    audioData: {fileID: 8300000, guid: 634f0154421231542aa27022b9b12f78, type: 3}
+    Volume: 1
+  - soundKey: pickup
+    audioData: {fileID: 8300000, guid: 1e2616acedf37024f83bed413595d63e, type: 3}
+    Volume: 1
+  - soundKey: bgm01
+    audioData: {fileID: 8300000, guid: 1ad0982fea8911f4f8d5f0059ce3aa8e, type: 3}
+    Volume: 1
+  - soundKey: bgm02
+    audioData: {fileID: 8300000, guid: 37f39b2da0000204bb15fb8e082db34b, type: 3}
+    Volume: 1
+  - soundKey: repair
+    audioData: {fileID: 8300000, guid: 71ddf37c26b621145938a191a1398280, type: 3}
+    Volume: 1
+  - soundKey: cook_oven
+    audioData: {fileID: 8300000, guid: c0e6f104405a95a4e948330f73b7708a, type: 3}
+    Volume: 1
+  - soundKey: cook_pan
+    audioData: {fileID: 8300000, guid: 90a54afa9d68bf64ba175b4b0f5ebdb5, type: 3}
+    Volume: 1
+  - soundKey: cook_pot
+    audioData: {fileID: 8300000, guid: 889a441229cfdf54a8e92bcd012b2e8d, type: 3}
+    Volume: 1
+  - soundKey: otter00
+    audioData: {fileID: 8300000, guid: c61ec4f6f618aec4cbd24d0f5dea2000, type: 3}
+    Volume: 1
+  - soundKey: otter01
+    audioData: {fileID: 8300000, guid: b8d5656f003a39c479fa6edf7faa155a, type: 3}
+    Volume: 1
+  - soundKey: otter02
+    audioData: {fileID: 8300000, guid: fb2c2074e7bc0ce4990ed66b24014527, type: 3}
+    Volume: 1
+  - soundKey: shock_employee
+    audioData: {fileID: 8300000, guid: 3ac135a9fc0fa0b4dba7c1269bac7605, type: 3}
+    Volume: 1
+  - soundKey: angry_,anager
+    audioData: {fileID: 8300000, guid: 3ac135a9fc0fa0b4dba7c1269bac7605, type: 3}
+    Volume: 1
+  - soundKey: newcontents
+    audioData: {fileID: 8300000, guid: 97cc4d9d46617eb42a67d8d605e33105, type: 3}
+    Volume: 1
+  TestAudioClip: {fileID: 0}
+  TestEditorVolume: 1

@@ -1,0 +1,56 @@
+namespace BanpoFri.Data;
+
+
+///// 자동 클래스 생성 규칙 /////
+// @AutoCreate 주석 이후의 내용만 처리 (없으면 자동 처리 X)
+// @EndCreate 주석 이후의 내용은 자동 처리 X
+/* 예시)
+// @AutoCreate
+  data_1:int; // 자동 생성 O
+  data_2:int; // 자동 생성 O
+// @EndCreate
+  data_3:int; // 자동 생성 X
+  data_4:int; // 자동 생성 X
+// @AutoCreate
+  data_5:int; // 자동 생성 O
+*/
+// 기본 자료형의 경우 뒤에 // @ReactiveProperty 주석 값을 붙이면 ReactiveProperty 형으로 생성
+// ex) testdata:[int] = 0; // @ReactiveCollection
+// 뒤에 붙이는 자료형들
+// @ReactiveProperty : ReactiveProperty 형
+// @ReactiveCollection : ReactiveCollection 형
+// @Dictionary : Dictionary 형
+// [] 형태에서 뒤에 Dictionary 주석이 없으면 기본 List 형으로 생성됨
+////////////////////////////
+
+table UserData {
+// @AutoCreate
+  money:double; // @ReactiveProperty
+  cash:int = 0;// @ReactiveProperty
+  buyinappids:string;
+  tutorial:[string];
+  lastlogintime:long = 0;
+  optiondata:OptionData;
+  recordcount:[RecordCount];
+  gamestarttime:long = 0;
+  uuid:long = 0;
+  recordvalue:[RecordCount];
+}
+
+table OptionData {
+  language:string;
+  bgm:bool = false;
+  effect:bool = false;
+  slowgraphic:bool = false;
+  vibration:bool = true;
+  subscribeorder:bool = false;
+  autofelling:bool = false;
+}
+
+table RecordCount {
+  idx:string;
+  count:int = 0;
+}
+
+
+root_type UserData;

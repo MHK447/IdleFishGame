@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ce7ac6aed2c413c846c013ac0f0096, type: 3}
+  m_Name: ChapterInfo
+  m_EditorClassIdentifier: 
+  mFirstKey: []
+  mSecondKey: []
+  mDataList:
+  - _foodidx: 1
+    _food_img: 1;2;3
+  - _foodidx: 2
+    _food_img: 4;5;6
+  - _foodidx: 3
+    _food_img: 7;8;9
+  - _foodidx: 4
+    _food_img: 12;13;14;15;16
+  - _foodidx: 5
+    _food_img: 17;18;19;20;21
+  - _foodidx: 6
+    _food_img: 22;23;24;25;26
+  - _foodidx: 7
+    _food_img: 27;28;29;30;31
+  - _foodidx: 8
+    _food_img: 32;33;34;35;36
+  - _foodidx: 9
+    _food_img: 37;38;39;40;41

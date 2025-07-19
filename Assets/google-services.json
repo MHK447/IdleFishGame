@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "122843468852",
+    "project_id": "mergeartpuzzle",
+    "storage_bucket": "mergeartpuzzle.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:122843468852:android:f2371719d983fd261ee661",
+        "android_client_info": {
+          "package_name": "com.banpofri.mergepuzzlecom"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5GuJaNUMPG0kXk-O_QYFGQelBoyDF3Yo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

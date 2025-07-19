@@ -1,0 +1,177 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1efbd8d0fe74dcdb2bf5806ca18b55, type: 3}
+  m_Name: Localize
+  m_EditorClassIdentifier: 
+  mFirstKey:
+  - str_toastmsg_1
+  - str_toastmsg_2
+  - str_toastmsg_3
+  - str_time_hour
+  - str_time_minute
+  - str_time_second
+  - str_goal
+  - str_free
+  - str_get
+  - str_focus_ads
+  - str_focus_free_1
+  - str_focus_free_2
+  - str_focus_free_3
+  - str_desc_focus_collect
+  - str_desc_focus_progress
+  - str_desc_purchaselight
+  - str_btn_taptoclose
+  - str_stagemap_1
+  - str_stagemap_2
+  - str_stagemap_3
+  - str_stagemap_4
+  - str_stagemap_5
+  - str_title_noads
+  - str_desc_noads
+  - str_name_forever
+  - str_title_shop_package
+  - str_title_package_booster
+  - str_desc_package_booster
+  - str_title_shop_gems
+  - str_title_daily
+  - str_desc_loading
+  - str_max
+  mSecondKey: []
+  mDataList:
+  - _idx: str_toastmsg_1
+    _ko: Not enough space
+    _en: Not enough space
+    _ja: 
+  - _idx: str_toastmsg_2
+    _ko: Empty
+    _en: Empty
+    _ja: 
+  - _idx: str_toastmsg_3
+    _ko: Drag object to remove
+    _en: Drag object to remove
+    _ja: 
+  - _idx: str_time_hour
+    _ko: H
+    _en: H
+    _ja: "\u6642\u9593"
+  - _idx: str_time_minute
+    _ko: M
+    _en: M
+    _ja: "\u5206"
+  - _idx: str_time_second
+    _ko: S
+    _en: S
+    _ja: "\u79D2"
+  - _idx: str_goal
+    _ko: GOAL
+    _en: GOAL
+    _ja: 
+  - _idx: str_free
+    _ko: Free
+    _en: Free
+    _ja: 
+  - _idx: str_get
+    _ko: Collect
+    _en: Collect
+    _ja: 
+  - _idx: str_focus_ads
+    _ko: Ads
+    _en: Ads
+    _ja: 
+  - _idx: str_focus_free_1
+    _ko: Energy (Lv.1)
+    _en: Energy (Lv.1)
+    _ja: 
+  - _idx: str_focus_free_2
+    _ko: Energy (Lv.2)
+    _en: Energy (Lv.2)
+    _ja: 
+  - _idx: str_focus_free_3
+    _ko: Energy (Lv.3)
+    _en: Energy (Lv.3)
+    _ja: 
+  - _idx: str_desc_focus_collect
+    _ko: Locket item. Pop to unlock.
+    _en: Locket item. Pop to unlock.
+    _ja: 
+  - _idx: str_desc_focus_progress
+    _ko: Tap to collect energy!
+    _en: Tap to collect energy!
+    _ja: 
+  - _idx: str_desc_purchaselight
+    _ko: Get more energy
+    _en: Get more energy
+    _ja: 
+  - _idx: str_btn_taptoclose
+    _ko: Tap to close
+    _en: Tap to close
+    _ja: 
+  - _idx: str_stagemap_1
+    _ko: 1. Western US
+    _en: 1. Western US
+    _ja: 
+  - _idx: str_stagemap_2
+    _ko: 2. Southern France
+    _en: 2. Southern France
+    _ja: 
+  - _idx: str_stagemap_3
+    _ko: 3. Eastern US
+    _en: 3. Eastern US
+    _ja: 
+  - _idx: str_stagemap_4
+    _ko: 4. East Asia - 1
+    _en: 4. East Asia - 1
+    _ja: 
+  - _idx: str_stagemap_5
+    _ko: 5. Western US
+    _en: 5. Western US
+    _ja: 
+  - _idx: str_title_noads
+    _ko: No Ads
+    _en: No Ads
+    _ja: 
+  - _idx: str_desc_noads
+    _ko: Removes Banners & full screen ADS. Rewarded ads are not removed.
+    _en: Removes Banners & full screen ADS. Rewarded ads are not removed.
+    _ja: 
+  - _idx: str_name_forever
+    _ko: Forever
+    _en: Forever
+    _ja: 
+  - _idx: str_title_shop_package
+    _ko: Package
+    _en: Package
+    _ja: 
+  - _idx: str_title_package_booster
+    _ko: Booster Package
+    _en: Booster Package
+    _ja: 
+  - _idx: str_desc_package_booster
+    _ko: Choose the best Booster!
+    _en: Choose the best Booster!
+    _ja: 
+  - _idx: str_title_shop_gems
+    _ko: Gems
+    _en: Gems
+    _ja: 
+  - _idx: str_title_daily
+    _ko: Daily Shop
+    _en: Daily Shop
+    _ja: 
+  - _idx: str_desc_loading
+    _ko: Reloading....
+    _en: Reloading....
+    _ja: Reloading....
+  - _idx: str_max
+    _ko: MAX
+    _en: MAX
+    _ja: MAX

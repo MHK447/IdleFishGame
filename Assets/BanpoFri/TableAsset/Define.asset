@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae061b15c1474e4481773da0cbb384c, type: 3}
+  m_Name: Define
+  m_EditorClassIdentifier: 
+  mFirstKey:
+  - casher_move_speed
+  - carry_sleep_time
+  - player_start_carry_count
+  - carry_casher_count
+  - max_offline_time
+  - offline_value_time
+  - offline_reward_multiple
+  - offline_min_time
+  - ad_ride_time
+  - ride_cash_value
+  - ad_retimer_time
+  - default_player_speed
+  - ad_vehicle_time
+  - ad_vehicle_show_time
+  - default_fishing_time
+  - boost_time
+  - energy_add_time
+  - max_energy_count
+  - start_energy_coin
+  - max_food_size
+  - add_energy_buy_price
+  - merge_add_count
+  - ad_energy_time
+  - energy_add_count
+  - daily_reward_reset_time
+  - merge_add_cooltime_count
+  - merge_cooltime
+  - stage_energy_consume
+  mSecondKey: []
+  mDataList:
+  - _index: casher_move_speed
+    _value: 400
+  - _index: carry_sleep_time
+    _value: 180
+  - _index: player_start_carry_count
+    _value: 5
+  - _index: carry_casher_count
+    _value: 3
+  - _index: max_offline_time
+    _value: 14400
+  - _index: offline_value_time
+    _value: 10
+  - _index: offline_reward_multiple
+    _value: 2
+  - _index: offline_min_time
+    _value: 600
+  - _index: ad_ride_time
+    _value: 300
+  - _index: ride_cash_value
+    _value: 5
+  - _index: ad_retimer_time
+    _value: 500
+  - _index: default_player_speed
+    _value: 5
+  - _index: ad_vehicle_time
+    _value: 60
+  - _index: ad_vehicle_show_time
+    _value: 30
+  - _index: default_fishing_time
+    _value: 200
+  - _index: boost_time
+    _value: 300
+  - _index: energy_add_time
+    _value: 60
+  - _index: max_energy_count
+    _value: 150
+  - _index: start_energy_coin
+    _value: 150
+  - _index: max_food_size
+    _value: 48
+  - _index: add_energy_buy_price
+    _value: 50
+  - _index: merge_add_count
+    _value: 3
+  - _index: ad_energy_time
+    _value: 120
+  - _index: energy_add_count
+    _value: 15
+  - _index: daily_reward_reset_time
+    _value: 5000
+  - _index: merge_add_cooltime_count
+    _value: 50
+  - _index: merge_cooltime
+    _value: 20
+  - _index: stage_energy_consume
+    _value: 3
