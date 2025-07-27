@@ -11,7 +11,8 @@ public class InGameScrollSea : MonoBehaviour
 
     private float CameraMinY = -28.4f;
 
-    private float MaxCameraY = -70.1f;
+    private int currentSection = 0;        // 현재 카메라가 있는 구간
+    private int previousSection = 0;       // 이전 프레임의 구간
 
 
 
@@ -49,6 +50,22 @@ public class InGameScrollSea : MonoBehaviour
         {
             InitMappos.Add(sea.localPosition);
         }
+        
+        // 초기 구간을 실제 카메라 위치를 기준으로 계산
+        float initialCameraY = SubSeaCamera.transform.position.y;
+        if (initialCameraY >= CameraMinY)
+        {
+            currentSection = 0;
+        }
+        else
+        {
+            currentSection = Mathf.FloorToInt((CameraMinY - initialCameraY) / 27.21f) + 1;
+        }
+        
+        previousSection = currentSection;
+        
+        // rowcount도 초기화
+        rowcount = 0;
     }
 
     void Update()
@@ -65,61 +82,67 @@ public class InGameScrollSea : MonoBehaviour
 
         float currentCameraY = SubSeaCamera.transform.position.y;
 
-        // 카메라 이동 방향 감지
-        bool movingDown = currentCameraY < previousCameraY;
-        bool movingUp = currentCameraY > previousCameraY;
-
-        // 아래로 내려갈 때 (경계를 넘었고 아래로 이동 중일 때)
-        if (currentCameraY <= MaxCameraY && movingDown)
+        // 현재 카메라가 어떤 구간에 있는지 계산
+        if (currentCameraY >= CameraMinY)
         {
-            MaxCameraY -= 27.21f;
-
-            SeaTrList[rowcount].transform.localPosition = new Vector3(
-                SeaTrList[rowcount].transform.localPosition.x,
-                MaxCameraY - 5f,
-                SeaTrList[rowcount].transform.localPosition.z
-            );
-
-            rowcount += 1;
-            if (rowcount >= SeaTrList.Count)
-                rowcount = 0;
+            currentSection = 0;
         }
-        // 위로 올라갈 때 (경계를 넘었고 위로 이동 중일 때)
-        else if (currentCameraY >= MaxCameraY && movingUp)
+        else
         {
-            MaxCameraY += 27.21f;
-
-            // 현재 rowcount가 가리키는 오브젝트를 위쪽에 재배치
-            SeaTrList[rowcount].transform.localPosition = new Vector3(
-                SeaTrList[rowcount].transform.localPosition.x,
-                MaxCameraY + 5f,  // 새로운 경계보다 조금 위에 배치 (아래로 갈 때와 대칭)
-                SeaTrList[rowcount].transform.localPosition.z
-            );
-
-            // 다음 사이클을 위해 rowcount 조정
-            rowcount -= 1;
-            if (rowcount < 0)
-                rowcount = SeaTrList.Count - 1;
+            currentSection = Mathf.FloorToInt((CameraMinY - currentCameraY) / 27.21f) + 1;
         }
 
-        // 이전 프레임 위치 저장
-        previousCameraY = currentCameraY;
+        // 구간이 바뀌었을 때만 재배치
+        if (currentSection != previousSection)
+        {
+            // 아래로 내려갔을 때 (구간 번호 증가)
+            if (currentSection > previousSection)
+            {
+                // 현재 보이는 가장 위쪽 오브젝트를 아래쪽으로 이동
+                float newY = CameraMinY - (currentSection + 1) * 27.21f;
+                
+                SeaTrList[rowcount].transform.localPosition = new Vector3(
+                    SeaTrList[rowcount].transform.localPosition.x,
+                    newY,
+                    SeaTrList[rowcount].transform.localPosition.z
+                );
+
+                rowcount = (rowcount + 1) % SeaTrList.Count;
+            }
+            // 위로 올라갔을 때 (구간 번호 감소)
+            else if (currentSection < previousSection)
+            {
+                // rowcount를 먼저 조정
+                rowcount = (rowcount - 1 + SeaTrList.Count) % SeaTrList.Count;
+                
+                // 현재 구간 위쪽에 배치 (더 안전한 계산)
+                float newY = CameraMinY - Mathf.Max(0, currentSection - 1) * 27.21f;
+                
+                SeaTrList[rowcount].transform.localPosition = new Vector3(
+                    SeaTrList[rowcount].transform.localPosition.x,
+                    newY,
+                    SeaTrList[rowcount].transform.localPosition.z
+                );
+            }
+            
+            previousSection = currentSection;
+        }
 
         // 너무 아래로 내려가면 리셋
-        if (currentCameraY < -5000f)
-        {
-            SubSeaCamera.transform.position = InitCamPos;
-            HookCompoent.Init();
-            rowcount = 0;
-            MaxCameraY = -70.1f;
-            CameraMinY = -28.4f;
-            previousCameraY = InitCamPos.y;
+        // if (currentCameraY < -5000f)
+        // {
+        //     SubSeaCamera.transform.position = InitCamPos;
+        //     HookCompoent.Init();
+        //     rowcount = 0;
+        //     MaxCameraY = -70.1f;
+        //     CameraMinY = -28.4f;
+        //     previousCameraY = InitCamPos.y;
 
-            for (int i = 0; i < SeaTrList.Count; i++)
-            {
-                SeaTrList[i].transform.localPosition = InitMappos[i];
-            }
-        }
+        //     for (int i = 0; i < SeaTrList.Count; i++)
+        //     {
+        //         SeaTrList[i].transform.localPosition = InitMappos[i];
+        //     }
+        // }
     }
 
 
