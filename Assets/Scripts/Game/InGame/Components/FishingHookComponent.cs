@@ -17,6 +17,7 @@ public class FishingHookComponent : MonoBehaviour
     private Transform LineEndTr;
 
     private Vector3 StartPos;
+    private Vector3 HookStartPos; // FisshingHookObj의 초기 위치 저장
 
     private float accumulatedDepth = 0f;  // 누적 수심(m 단위)
     private float lastY;  // 이전 프레임의 y값 저장
@@ -26,6 +27,7 @@ public class FishingHookComponent : MonoBehaviour
     void Awake()
     {
         StartPos = transform.position;
+        HookStartPos = FisshingHookObj.position; // Hook 오브젝트의 초기 위치 저장
 
         accumulatedDepth = 0f;
         lastY = FisshingHookObj.position.y;
@@ -40,6 +42,15 @@ public class FishingHookComponent : MonoBehaviour
     public void Init()
     {
         this.transform.position = StartPos;
+        FisshingHookObj.position = HookStartPos; // Hook 오브젝트도 초기 위치로 리셋
+    }
+
+    // 깊이는 유지하면서 위치만 리셋하는 메서드
+    public void ResetPositionKeepDepth()
+    {
+        this.transform.position = StartPos;
+        FisshingHookObj.position = HookStartPos; // Hook 오브젝트도 초기 위치로 리셋
+        lastY = FisshingHookObj.position.y; // lastY를 리셋된 위치로 업데이트
     }
 
 

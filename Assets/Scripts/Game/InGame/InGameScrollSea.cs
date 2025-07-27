@@ -128,21 +128,25 @@ public class InGameScrollSea : MonoBehaviour
             previousSection = currentSection;
         }
 
-        // 너무 아래로 내려가면 리셋
-        // if (currentCameraY < -5000f)
-        // {
-        //     SubSeaCamera.transform.position = InitCamPos;
-        //     HookCompoent.Init();
-        //     rowcount = 0;
-        //     MaxCameraY = -70.1f;
-        //     CameraMinY = -28.4f;
-        //     previousCameraY = InitCamPos.y;
+        // Hook이 너무 아래로 내려가면 위치만 리셋 (깊이 값은 유지)
+        if (HookCompoent.FisshingHookTr.position.y < -100000f)
+        {
+            // Hook 위치만 리셋 (깊이는 유지)
+            HookCompoent.ResetPositionKeepDepth();
+            
+            // 카메라도 초기 위치로
+            SubSeaCamera.transform.position = InitCamPos;
 
-        //     for (int i = 0; i < SeaTrList.Count; i++)
-        //     {
-        //         SeaTrList[i].transform.localPosition = InitMappos[i];
-        //     }
-        // }
+            // Sea 오브젝트들의 위치만 초기화
+            for (int i = 0; i < SeaTrList.Count; i++)
+            {
+                SeaTrList[i].transform.localPosition = InitMappos[i];
+            }
+            
+            // 현재 섹션 정보만 초기화
+            currentSection = 0;
+            previousSection = 0;
+        }
     }
 
 
