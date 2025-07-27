@@ -38,6 +38,8 @@ public struct OptionData : IFlatbufferObject
   public bool MutateSubscribeorder(bool subscribeorder) { int o = __p.__offset(14); if (o != 0) { __p.bb.Put(o + __p.bb_pos, (byte)(subscribeorder ? 1 : 0)); return true; } else { return false; } }
   public bool Autofelling { get { int o = __p.__offset(16); return o != 0 ? 0!=__p.bb.Get(o + __p.bb_pos) : (bool)false; } }
   public bool MutateAutofelling(bool autofelling) { int o = __p.__offset(16); if (o != 0) { __p.bb.Put(o + __p.bb_pos, (byte)(autofelling ? 1 : 0)); return true; } else { return false; } }
+  public BanpoFri.Data.AquariumData? Aquariumdata { get { int o = __p.__offset(18); return o != 0 ? (BanpoFri.Data.AquariumData?)(new BanpoFri.Data.AquariumData()).__assign(__p.__indirect(o + __p.bb_pos), __p.bb) : null; } }
+  public BanpoFri.Data.UpgradeData? Upgradedata { get { int o = __p.__offset(20); return o != 0 ? (BanpoFri.Data.UpgradeData?)(new BanpoFri.Data.UpgradeData()).__assign(__p.__indirect(o + __p.bb_pos), __p.bb) : null; } }
 
   public static Offset<BanpoFri.Data.OptionData> CreateOptionData(FlatBufferBuilder builder,
       StringOffset languageOffset = default(StringOffset),
@@ -46,8 +48,12 @@ public struct OptionData : IFlatbufferObject
       bool slowgraphic = false,
       bool vibration = true,
       bool subscribeorder = false,
-      bool autofelling = false) {
-    builder.StartTable(7);
+      bool autofelling = false,
+      Offset<BanpoFri.Data.AquariumData> aquariumdataOffset = default(Offset<BanpoFri.Data.AquariumData>),
+      Offset<BanpoFri.Data.UpgradeData> upgradedataOffset = default(Offset<BanpoFri.Data.UpgradeData>)) {
+    builder.StartTable(9);
+    OptionData.AddUpgradedata(builder, upgradedataOffset);
+    OptionData.AddAquariumdata(builder, aquariumdataOffset);
     OptionData.AddLanguage(builder, languageOffset);
     OptionData.AddAutofelling(builder, autofelling);
     OptionData.AddSubscribeorder(builder, subscribeorder);
@@ -58,7 +64,7 @@ public struct OptionData : IFlatbufferObject
     return OptionData.EndOptionData(builder);
   }
 
-  public static void StartOptionData(FlatBufferBuilder builder) { builder.StartTable(7); }
+  public static void StartOptionData(FlatBufferBuilder builder) { builder.StartTable(9); }
   public static void AddLanguage(FlatBufferBuilder builder, StringOffset languageOffset) { builder.AddOffset(0, languageOffset.Value, 0); }
   public static void AddBgm(FlatBufferBuilder builder, bool bgm) { builder.AddBool(1, bgm, false); }
   public static void AddEffect(FlatBufferBuilder builder, bool effect) { builder.AddBool(2, effect, false); }
@@ -66,6 +72,8 @@ public struct OptionData : IFlatbufferObject
   public static void AddVibration(FlatBufferBuilder builder, bool vibration) { builder.AddBool(4, vibration, true); }
   public static void AddSubscribeorder(FlatBufferBuilder builder, bool subscribeorder) { builder.AddBool(5, subscribeorder, false); }
   public static void AddAutofelling(FlatBufferBuilder builder, bool autofelling) { builder.AddBool(6, autofelling, false); }
+  public static void AddAquariumdata(FlatBufferBuilder builder, Offset<BanpoFri.Data.AquariumData> aquariumdataOffset) { builder.AddOffset(7, aquariumdataOffset.Value, 0); }
+  public static void AddUpgradedata(FlatBufferBuilder builder, Offset<BanpoFri.Data.UpgradeData> upgradedataOffset) { builder.AddOffset(8, upgradedataOffset.Value, 0); }
   public static Offset<BanpoFri.Data.OptionData> EndOptionData(FlatBufferBuilder builder) {
     int o = builder.EndTable();
     return new Offset<BanpoFri.Data.OptionData>(o);
@@ -83,10 +91,14 @@ public struct OptionData : IFlatbufferObject
     _o.Vibration = this.Vibration;
     _o.Subscribeorder = this.Subscribeorder;
     _o.Autofelling = this.Autofelling;
+    _o.Aquariumdata = this.Aquariumdata.HasValue ? this.Aquariumdata.Value.UnPack() : null;
+    _o.Upgradedata = this.Upgradedata.HasValue ? this.Upgradedata.Value.UnPack() : null;
   }
   public static Offset<BanpoFri.Data.OptionData> Pack(FlatBufferBuilder builder, OptionDataT _o) {
     if (_o == null) return default(Offset<BanpoFri.Data.OptionData>);
     var _language = _o.Language == null ? default(StringOffset) : builder.CreateString(_o.Language);
+    var _aquariumdata = _o.Aquariumdata == null ? default(Offset<BanpoFri.Data.AquariumData>) : BanpoFri.Data.AquariumData.Pack(builder, _o.Aquariumdata);
+    var _upgradedata = _o.Upgradedata == null ? default(Offset<BanpoFri.Data.UpgradeData>) : BanpoFri.Data.UpgradeData.Pack(builder, _o.Upgradedata);
     return CreateOptionData(
       builder,
       _language,
@@ -95,7 +107,9 @@ public struct OptionData : IFlatbufferObject
       _o.Slowgraphic,
       _o.Vibration,
       _o.Subscribeorder,
-      _o.Autofelling);
+      _o.Autofelling,
+      _aquariumdata,
+      _upgradedata);
   }
 }
 
@@ -115,6 +129,10 @@ public class OptionDataT
   public bool Subscribeorder { get; set; }
   [Newtonsoft.Json.JsonProperty("autofelling")]
   public bool Autofelling { get; set; }
+  [Newtonsoft.Json.JsonProperty("aquariumdata")]
+  public BanpoFri.Data.AquariumDataT Aquariumdata { get; set; }
+  [Newtonsoft.Json.JsonProperty("upgradedata")]
+  public BanpoFri.Data.UpgradeDataT Upgradedata { get; set; }
 
   public OptionDataT() {
     this.Language = null;
@@ -124,6 +142,8 @@ public class OptionDataT
     this.Vibration = true;
     this.Subscribeorder = false;
     this.Autofelling = false;
+    this.Aquariumdata = null;
+    this.Upgradedata = null;
   }
 }
 
@@ -140,6 +160,8 @@ static public class OptionDataVerify
       && verifier.VerifyField(tablePos, 12 /*Vibration*/, 1 /*bool*/, 1, false)
       && verifier.VerifyField(tablePos, 14 /*Subscribeorder*/, 1 /*bool*/, 1, false)
       && verifier.VerifyField(tablePos, 16 /*Autofelling*/, 1 /*bool*/, 1, false)
+      && verifier.VerifyTable(tablePos, 18 /*Aquariumdata*/, BanpoFri.Data.AquariumDataVerify.Verify, false)
+      && verifier.VerifyTable(tablePos, 20 /*Upgradedata*/, BanpoFri.Data.UpgradeDataVerify.Verify, false)
       && verifier.VerifyTableEnd(tablePos);
   }
 }

@@ -45,21 +45,21 @@ public class InGameScrollSea : MonoBehaviour
     void Update()
     {
         // 마우스 왼쪽 클릭 시
-        if (Input.GetMouseButtonDown(0))
-        {
-            SubSeaCamera.transform.position = new Vector3(SubSeaCamera.transform.position.x, SubSeaCamera.transform.position.y - descendAmount, SubSeaCamera.transform.position.z);
-            isMoving = true;
-        }
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     SubSeaCamera.transform.position = new Vector3(SubSeaCamera.transform.position.x, SubSeaCamera.transform.position.y - descendAmount, SubSeaCamera.transform.position.z);
+        //     isMoving = true;
+        // }
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            isMoving = false;
-        }
+        // if (Input.GetMouseButtonUp(0))
+        // {
+        //     isMoving = false;
+        // }
 
         if (isMoving)
         {
-            SubSeaCamera.transform.position =
-             Vector3.Lerp(SubSeaCamera.transform.position, new Vector3(SubSeaCamera.transform.position.x, SubSeaCamera.transform.position.y - descendAmount, SubSeaCamera.transform.position.z), Time.deltaTime * moveSpeed);
+            // SubSeaCamera.transform.position =
+            //  Vector3.Lerp(SubSeaCamera.transform.position, new Vector3(SubSeaCamera.transform.position.x, SubSeaCamera.transform.position.y - descendAmount, SubSeaCamera.transform.position.z), Time.deltaTime * moveSpeed);
 
 
             if(SubSeaCamera.transform.position.y <= MaxCameraY)

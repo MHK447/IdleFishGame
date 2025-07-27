@@ -35,44 +35,6 @@ public class FacilityData
 
 }
 
-public class UpgradeGroupData
-{
-	public IReactiveCollection<UpgradeData> StageUpgradeCollectionList = new ReactiveCollection<UpgradeData>();
-
-
-	public UpgradeData FindUpgradeData(int upgradeidx)
-	{
-		
-
-		return null;
-	}
-}
-
-public class UpgradeData
-{
-	public int UpgradeIdx = 0;
-
-	public int UpgradeType = 0;
-
-	public int StageIdx = 0;
-
-	public IReactiveProperty<bool> IsBuyCheckProperty = new ReactiveProperty<bool>();
-
-	public UpgradeData(int upgradeidx, int upgradetype, int stageidx, bool isbuy)
-	{
-		UpgradeIdx = upgradeidx;
-		UpgradeType = upgradetype;
-		StageIdx = stageidx;
-		IsBuyCheckProperty.Value = isbuy;
-	}
-
-	public void UpgradeGet()
-	{
-		IsBuyCheckProperty.Value = true;
-
-	}
-}
-
 public class SelectFoodUpgradeData
 {
 	public int FoodIdx = 0;

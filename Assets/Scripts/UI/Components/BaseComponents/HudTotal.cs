@@ -13,6 +13,8 @@ public class HudTotal : UIBase
     [SerializeField]
     private Button AquariumBtn;
 
+    
+
     protected override void Awake()
     {
         base.Awake();

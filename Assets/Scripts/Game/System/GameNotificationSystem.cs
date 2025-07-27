@@ -85,13 +85,7 @@ public class GameNotificationSystem
             UpdateNotification(NotificationCategory.UpgradeProduct);
         }).AddTo(disposables);
 
-        var upgradelist = GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ToList().FindAll(x => x.IsBuyCheckProperty.Value == false);
-
-        foreach (var upgrade in upgradelist)
-        {
-            upgrade.IsBuyCheckProperty.SkipLatestValueOnSubscribe().Subscribe(x => { UpdateNotification(NotificationCategory.StageClear); }).AddTo(disposables);
-        }
-
+       
 
         GameRoot.Instance.WaitTimeAndCallback(1f, () =>
         {
@@ -107,18 +101,7 @@ public class GameNotificationSystem
         switch (category)
         {
             case NotificationCategory.UpgradePopup:
-                {
-                    var noti = GetData(category, -1, -1);
-                    if (noti == null) return;
-
-                    bool on = false;
-
-                    var upgradelist = GameRoot.Instance.UserData.CurMode.UpgradeGroupData.StageUpgradeCollectionList.ToList();
-
-
-                    if (on != noti.on.Value)
-                        noti.on.Value = on;
-                }
+                
                 break;
 
             case NotificationCategory.StageClear:

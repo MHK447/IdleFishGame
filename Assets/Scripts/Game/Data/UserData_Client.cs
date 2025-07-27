@@ -71,6 +71,7 @@ public partial class UserDataSystem
     public IReactiveProperty<double> HUDArtifactStone = new ReactiveProperty<double>(0);
 
     // @변수 자동 등록 위치
+    public IReactiveProperty<bool> Fishingautoproperty { get; set; } = new ReactiveProperty<bool>(false);
     public DateTime Dayinitialtime { get; set; }
     public int Energycreatefood { get; set; } = 0;
     public IReactiveProperty<int> Starcoinvalue { get; set; } = new ReactiveProperty<int>(0);
@@ -150,6 +151,7 @@ public partial class UserDataSystem
         SetLoadDatas();
 
         // @변수 자동 데이터 추가
+        Fishingautoproperty.Value = flatBufferUserData.Fishingautoproperty;
         Cash.Value = flatBufferUserData.Cash;
 
 

@@ -234,6 +234,7 @@ public partial class UserDataSystem
         BanpoFri.Data.UserData.AddOptiondata(builder, option);
         BanpoFri.Data.UserData.AddRecordcount(builder, recordCountVec);
         BanpoFri.Data.UserData.AddTutorial(builder, tutorialVec);
+        BanpoFri.Data.UserData.AddFishingautoproperty(builder, Fishingautoproperty.Value);
         var orc = BanpoFri.Data.UserData.EndUserData(builder);
         builder.Finish(orc.Value);
 

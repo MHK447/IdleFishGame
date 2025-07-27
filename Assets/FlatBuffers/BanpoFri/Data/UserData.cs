@@ -46,6 +46,8 @@ public struct UserData : IFlatbufferObject
   public bool MutateUuid(long uuid) { int o = __p.__offset(20); if (o != 0) { __p.bb.PutLong(o + __p.bb_pos, uuid); return true; } else { return false; } }
   public BanpoFri.Data.RecordCount? Recordvalue(int j) { int o = __p.__offset(22); return o != 0 ? (BanpoFri.Data.RecordCount?)(new BanpoFri.Data.RecordCount()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
   public int RecordvalueLength { get { int o = __p.__offset(22); return o != 0 ? __p.__vector_len(o) : 0; } }
+  public bool Fishingautoproperty { get { int o = __p.__offset(24); return o != 0 ? 0!=__p.bb.Get(o + __p.bb_pos) : (bool)false; } }
+  public bool MutateFishingautoproperty(bool fishingautoproperty) { int o = __p.__offset(24); if (o != 0) { __p.bb.Put(o + __p.bb_pos, (byte)(fishingautoproperty ? 1 : 0)); return true; } else { return false; } }
 
   public static Offset<BanpoFri.Data.UserData> CreateUserData(FlatBufferBuilder builder,
       double money = 0.0,
@@ -57,8 +59,9 @@ public struct UserData : IFlatbufferObject
       VectorOffset recordcountOffset = default(VectorOffset),
       long gamestarttime = 0,
       long uuid = 0,
-      VectorOffset recordvalueOffset = default(VectorOffset)) {
-    builder.StartTable(10);
+      VectorOffset recordvalueOffset = default(VectorOffset),
+      bool fishingautoproperty = false) {
+    builder.StartTable(11);
     UserData.AddUuid(builder, uuid);
     UserData.AddGamestarttime(builder, gamestarttime);
     UserData.AddLastlogintime(builder, lastlogintime);
@@ -69,10 +72,11 @@ public struct UserData : IFlatbufferObject
     UserData.AddTutorial(builder, tutorialOffset);
     UserData.AddBuyinappids(builder, buyinappidsOffset);
     UserData.AddCash(builder, cash);
+    UserData.AddFishingautoproperty(builder, fishingautoproperty);
     return UserData.EndUserData(builder);
   }
 
-  public static void StartUserData(FlatBufferBuilder builder) { builder.StartTable(10); }
+  public static void StartUserData(FlatBufferBuilder builder) { builder.StartTable(11); }
   public static void AddMoney(FlatBufferBuilder builder, double money) { builder.AddDouble(0, money, 0.0); }
   public static void AddCash(FlatBufferBuilder builder, int cash) { builder.AddInt(1, cash, 0); }
   public static void AddBuyinappids(FlatBufferBuilder builder, StringOffset buyinappidsOffset) { builder.AddOffset(2, buyinappidsOffset.Value, 0); }
@@ -98,6 +102,7 @@ public struct UserData : IFlatbufferObject
   public static VectorOffset CreateRecordvalueVectorBlock(FlatBufferBuilder builder, ArraySegment<Offset<BanpoFri.Data.RecordCount>> data) { builder.StartVector(4, data.Count, 4); builder.Add(data); return builder.EndVector(); }
   public static VectorOffset CreateRecordvalueVectorBlock(FlatBufferBuilder builder, IntPtr dataPtr, int sizeInBytes) { builder.StartVector(1, sizeInBytes, 1); builder.Add<Offset<BanpoFri.Data.RecordCount>>(dataPtr, sizeInBytes); return builder.EndVector(); }
   public static void StartRecordvalueVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
+  public static void AddFishingautoproperty(FlatBufferBuilder builder, bool fishingautoproperty) { builder.AddBool(10, fishingautoproperty, false); }
   public static Offset<BanpoFri.Data.UserData> EndUserData(FlatBufferBuilder builder) {
     int o = builder.EndTable();
     return new Offset<BanpoFri.Data.UserData>(o);
@@ -123,6 +128,7 @@ public struct UserData : IFlatbufferObject
     _o.Uuid = this.Uuid;
     _o.Recordvalue = new List<BanpoFri.Data.RecordCountT>();
     for (var _j = 0; _j < this.RecordvalueLength; ++_j) {_o.Recordvalue.Add(this.Recordvalue(_j).HasValue ? this.Recordvalue(_j).Value.UnPack() : null);}
+    _o.Fishingautoproperty = this.Fishingautoproperty;
   }
   public static Offset<BanpoFri.Data.UserData> Pack(FlatBufferBuilder builder, UserDataT _o) {
     if (_o == null) return default(Offset<BanpoFri.Data.UserData>);
@@ -157,7 +163,8 @@ public struct UserData : IFlatbufferObject
       _recordcount,
       _o.Gamestarttime,
       _o.Uuid,
-      _recordvalue);
+      _recordvalue,
+      _o.Fishingautoproperty);
   }
 }
 
@@ -183,6 +190,8 @@ public class UserDataT
   public long Uuid { get; set; }
   [Newtonsoft.Json.JsonProperty("recordvalue")]
   public List<BanpoFri.Data.RecordCountT> Recordvalue { get; set; }
+  [Newtonsoft.Json.JsonProperty("fishingautoproperty")]
+  public bool Fishingautoproperty { get; set; }
 
   public UserDataT() {
     this.Money = 0.0;
@@ -195,6 +204,7 @@ public class UserDataT
     this.Gamestarttime = 0;
     this.Uuid = 0;
     this.Recordvalue = null;
+    this.Fishingautoproperty = false;
   }
 
   public static UserDataT DeserializeFromJson(string jsonText) {
@@ -229,6 +239,7 @@ static public class UserDataVerify
       && verifier.VerifyField(tablePos, 18 /*Gamestarttime*/, 8 /*long*/, 8, false)
       && verifier.VerifyField(tablePos, 20 /*Uuid*/, 8 /*long*/, 8, false)
       && verifier.VerifyVectorOfTables(tablePos, 22 /*Recordvalue*/, BanpoFri.Data.RecordCountVerify.Verify, false)
+      && verifier.VerifyField(tablePos, 24 /*Fishingautoproperty*/, 1 /*bool*/, 1, false)
       && verifier.VerifyTableEnd(tablePos);
   }
 }
