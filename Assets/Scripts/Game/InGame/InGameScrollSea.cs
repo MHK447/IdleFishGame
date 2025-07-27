@@ -14,6 +14,8 @@ public class InGameScrollSea : MonoBehaviour
     private float MaxCameraY = -70.1f;
 
 
+
+
     private Vector3 InitCamPos;
 
     private List<Vector3> InitMappos = new List<Vector3>();
@@ -53,9 +55,11 @@ public class InGameScrollSea : MonoBehaviour
     {
         if (HookCompoent == null) return;
 
+        float camy = HookCompoent.FisshingHookTr.position.y > CameraMinY ? CameraMinY : HookCompoent.FisshingHookTr.position.y;
+
         SubSeaCamera.transform.position = new Vector3(
             SubSeaCamera.transform.position.x,
-            HookCompoent.transform.position.y,
+            camy,
             SubSeaCamera.transform.position.z
         );
 
