@@ -29,6 +29,7 @@ Material:
     - Vector1_5CB84537: 0
     - Vector1_8DA20226: 0
     - Vector1_AF318A03: 0
-    m_Colors: []
+    m_Colors:
+    - Color_D12BF231: {r: 0.31764707, g: 0.69411767, b: 0.8980392, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
