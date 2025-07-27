@@ -414,6 +414,14 @@ public static class ScrollViewFocusFunctions
         endaction?.Invoke();
     }
 
+    //exponet 1 균등 , 2 뽑기좀 어려움 , +3  많이 어려움 
+    public static int GetBiasedWeightRandomInt(int min, int max, float exponent = 2f)
+    {
+        float t = Mathf.Pow(UnityEngine.Random.value, exponent);
+        float result = Mathf.Lerp(min, max + 1, t);  // max 포함을 위해 +1
+        return Mathf.FloorToInt(result);
+    }
+
     public static IEnumerator FocusAtPointCoroutine(this ScrollRect scrollView, Vector2 focusPoint, float speed)
     {
         yield return scrollView.LerpToScrollPositionCoroutine(scrollView.CalculateFocusedScrollPosition(focusPoint), speed);

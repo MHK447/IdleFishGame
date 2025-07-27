@@ -41,6 +41,8 @@ public class GameRoot : Singleton<GameRoot>
 	public BoostSystem BoostSystem { get; private set; } = new BoostSystem();
 	public EffectSystem EffectSystem { get; private set; } = new EffectSystem();
 
+	public PlayerSystem PlayerSystem { get; private set; } = new PlayerSystem();
+
 	public GameNotificationSystem GameNotification { get; private set; } = new GameNotificationSystem();
 
 	public ContentsOpenSystem ContentsOpenSystem { get; private set; } = new ContentsOpenSystem();

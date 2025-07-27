@@ -39,7 +39,7 @@ Material:
     m_Floats:
     - Refraction_Noise: 70
     - Refraction_Speed: 12.9
-    - Vector1_56BE0FD1: 0.526
+    - Vector1_56BE0FD1: 0.03
     - Vector1_5CB84537: 18
     - Vector1_63384718: 10
     - Vector1_73BD9798: 70

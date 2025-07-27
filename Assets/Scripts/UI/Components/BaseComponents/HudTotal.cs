@@ -2,7 +2,7 @@ using UnityEngine;
 using BanpoFri;
 using UnityEngine.UI;
 using TMPro;    
-
+using UniRx;
 
 
 [UIPath("UI/Page/HudTotal", true)]
@@ -13,6 +13,9 @@ public class HudTotal : UIBase
     [SerializeField]
     private Button AquariumBtn;
 
+    [SerializeField]
+    private TextMeshProUGUI DepthText;
+
     
 
     protected override void Awake()
@@ -21,6 +24,11 @@ public class HudTotal : UIBase
 
         Upgradebtn.onClick.AddListener(OnClickUpgradeBtn);
         AquariumBtn.onClick.AddListener(OnClickAquariumBtn);
+
+        GameRoot.Instance.PlayerSystem.SeaDepthProperty.Subscribe(x =>
+        {
+            DepthText.text = $"{x.ToString("F2")}m";
+        }).AddTo(this);
     }
 
     public void OnClickUpgradeBtn()
@@ -30,11 +38,6 @@ public class HudTotal : UIBase
 
 
     public void OnClickAquariumBtn()
-    {
-
-    }
-
-    public void Init()
     {
 
     }

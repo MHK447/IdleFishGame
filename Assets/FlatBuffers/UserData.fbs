@@ -60,6 +60,7 @@ table AquariumData
   fishidx:int = 0;
 }
 
+
 table UpgradeData
 {
    upgradeidx:int = 0;

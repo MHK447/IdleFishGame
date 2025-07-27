@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      InGame_Rock_Front04_0: -2129981596878674356
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

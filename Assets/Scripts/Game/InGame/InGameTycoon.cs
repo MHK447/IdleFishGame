@@ -13,6 +13,10 @@ public class InGameTycoon : InGameMode
 {
     public IReactiveProperty<bool> MaxMode = new ReactiveProperty<bool>(true);
 
+    [SerializeField]
+    private InGameScrollSea ScrollSea;
+
+
     private int ProductHeroIdxs = 0;
     public override void Load()
     {
