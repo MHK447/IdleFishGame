@@ -18,19 +18,22 @@ public class FishingHookComponent : MonoBehaviour
 
     private Vector3 StartPos;
 
-    private float SeaDepth = -10f;
+    private float accumulatedDepth = 0f;  // 누적 수심(m 단위)
+    private float lastY;  // 이전 프레임의 y값 저장
 
-    private float MinHookY = -10f;
-
-    public float metersPerUnit = 0.1f;  // 10 유닛 = 1m → 1 유닛 = 0.1m
+    public float metersPerUnit = 0.01f;  // 10 유닛 = 1m → 1 유닛 = 0.1m
 
     void Awake()
     {
         StartPos = transform.position;
 
+        accumulatedDepth = 0f;
+        lastY = FisshingHookObj.position.y;
+
         LineRenderer.positionCount = 2;
         LineRenderer.startWidth = 0.15f;
         LineRenderer.endWidth = 0.15f;
+
     }
 
 
@@ -42,9 +45,16 @@ public class FishingHookComponent : MonoBehaviour
 
     void Update()
     {
-        float currentY = transform.position.y < MinHookY ? MinHookY : transform.position.y;
+        float currentY = FisshingHookObj.position.y;
+        float deltaY = lastY - currentY;
 
-        GameRoot.Instance.PlayerSystem.SeaDepthProperty.Value = (StartPos.y - currentY) * (1f / metersPerUnit);
+        // y가 감소했을 때만 누적
+        accumulatedDepth += deltaY * (1f / metersPerUnit);
+
+
+        lastY = currentY;
+
+        GameRoot.Instance.PlayerSystem.SeaDepthProperty.Value = accumulatedDepth / 10f;
 
         // 낚시줄 길이 조정
         UpdateLineLength();
