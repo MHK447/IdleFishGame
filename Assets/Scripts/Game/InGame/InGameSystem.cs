@@ -232,24 +232,6 @@ public class InGameSystem
 
 
 
-        var time = GameRoot.Instance.UserData.CurMode.LastLoginTime;
-
-        var diff = TimeSystem.GetCurTime().Subtract(time);
-
-        if (diff.TotalSeconds >= 120)
-        {
-            // 최대 오프라인 시간 제한 (테이블에서 가져옴)
-            var maxOfflineTime = Tables.Instance.GetTable<Define>().GetData("max_offline_time").value;
-            var limitedSeconds = System.Math.Min(diff.TotalSeconds, maxOfflineTime);
-            var addenergycoin = (int)limitedSeconds / 120;
-
-            // 최대치 확인 후 추가
-            var energycoin = GameRoot.Instance.UserData.Energycoin.Value + addenergycoin;
-
-            GameRoot.Instance.UserData.CurMode.LastLoginTime = TimeSystem.GetCurTime();
-        }
-
-
         // if (diff.TotalSeconds > minRewardTime && time != DateTime.MinValue)
         // {
         //     int rewardTime = (int)diff.TotalSeconds;
@@ -277,24 +259,16 @@ public class InGameSystem
 
         if (!firstInit)
         {
-            GameRoot.Instance.WaitTimeAndCallback(3f, () =>
+            firstInit = true;
+            GameRoot.Instance.Loading.Hide(true, () =>
             {
-                GameRoot.Instance.Loading.Hide(true, () =>
-                {
-                    NextAction();
-                });
+                NextAction();
             });
         }
 
         NextAction();
         nextStage = false;
 
-
-
-        if (!firstInit)
-        {
-            firstInit = true;
-        }
     }
 
 

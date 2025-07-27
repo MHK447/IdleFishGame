@@ -14,25 +14,27 @@ public interface IInGameMode
 public abstract class InGameMode : MonoBehaviour, IInGameMode
 {
     [SerializeField]
-    private PanAndZoom ingameCamera;
-    public PanAndZoom IngameCamera {get{ return ingameCamera;}}
-    public Camera MainCamera {get {return IngameCamera.cam;}}
-     public float CamPixelWidth { get; private set; }
-    public float CamPixelHeight { get; private set; }
+    private PanAndZoom MainCam;
 
     [SerializeField]
-    private float zoomTime = 3f;
-    private float deletaTimeZoom = 0f;
-    private bool zoomOut = false;
+    private PanAndZoom SubCam;
+
+
+    public PanAndZoom GetMainCam { get { return MainCam; } }
+    public PanAndZoom GetSubCam { get { return SubCam; } }
+
+    public float CamPixelWidth { get; private set; }
+    public float CamPixelHeight { get; private set; }
+
 
     private void Awake()
     {
-        CamPixelWidth = ingameCamera.cam.pixelWidth;
-        CamPixelHeight = ingameCamera.cam.pixelHeight;
-        if(GameRoot.IsInit())
+        CamPixelWidth = MainCam.cam.pixelWidth;
+        CamPixelHeight = MainCam.cam.pixelHeight;
+        if (GameRoot.IsInit())
         {
             GameRoot.Instance.InGameSystem.RegisteInGame(this);
-            GameRoot.Instance.UISystem.WorldCanvas.worldCamera = MainCamera;
+            GameRoot.Instance.UISystem.WorldCanvas.worldCamera = MainCam.cam;
             // ingameCamera.onPinch += (oldd, newd) => {
             //     if(GameRoot.Instance.TutorialSystem.IsActive())
             //         return;
@@ -93,20 +95,22 @@ public abstract class InGameMode : MonoBehaviour, IInGameMode
 
     public void SetCameraBoundMinY(float value)
     {
-        IngameCamera.boundMinY = value;
+        MainCam.boundMinY = value;
+        SubCam.boundMinY = value;
     }
 
-    public virtual void Load() 
+    public virtual void Load()
     {
         LoadUI();
     }
-    public virtual void UnLoad() 
+    public virtual void UnLoad()
     {
         UnLoadUI();
     }
 
-    protected virtual void LoadUI() {}
-    protected virtual void UnLoadUI() {
+    protected virtual void LoadUI() { }
+    protected virtual void UnLoadUI()
+    {
         //GameRoot.Instance.UISystem.UnLoadUIAll();
     }
 }

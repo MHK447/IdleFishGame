@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 83975803}
   - component: {fileID: 83975802}
   - component: {fileID: 83975800}
+  - component: {fileID: 83975804}
   m_Layer: 0
   m_Name: SubCam
   m_TagString: MainCamera
@@ -216,7 +217,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 13.1
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -247,6 +248,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &83975804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83975799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d9b0c979f4b74b26b2108caeb8e4416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistanceForTap: 40
+  maxDurationForTap: 0.4
+  useMouse: 1
+  mouseScrollSpeed: 2
+  controlCamera: 1
+  cam: {fileID: 83975802}
+  ignoreUI: 0
+  useBounds: 0
+  boundMinX: -150
+  boundMaxX: 150
+  boundMinY: -150
+  boundMaxY: 150
+  focusSize: 15
+  focusMoveDuration: 2
+  zoomOutSizeDefault: 20
+  smoothSpeed: 4
+  maxZoomOutSize: 14.5
+  zoomOutSize: 0
 --- !u!1 &86001480
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 86001481}
+  - component: {fileID: 86001482}
   m_Layer: 0
   m_Name: InGame
   m_TagString: Untagged
@@ -278,6 +310,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &86001482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86001480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be7f7e827492d4ee0895821146ee4130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCam: {fileID: 519420034}
+  SubCam: {fileID: 83975804}
 --- !u!1001 &498480162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -387,6 +433,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -429,7 +476,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -504,6 +551,36 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d9b0c979f4b74b26b2108caeb8e4416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistanceForTap: 40
+  maxDurationForTap: 0.4
+  useMouse: 1
+  mouseScrollSpeed: 2
+  controlCamera: 1
+  cam: {fileID: 519420031}
+  ignoreUI: 0
+  useBounds: 0
+  boundMinX: -150
+  boundMaxX: 150
+  boundMinY: -150
+  boundMaxY: 150
+  focusSize: 15
+  focusMoveDuration: 2
+  zoomOutSizeDefault: 20
+  smoothSpeed: 4
+  maxZoomOutSize: 14.5
+  zoomOutSize: 0
 --- !u!1 &758778903
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,6 +1007,103 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2213038810930195017, guid: bddc2ca6150023f449f593f9e757ff65, type: 3}
   m_PrefabInstance: {fileID: 1390298095}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1433545653
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21857040525777067, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475667551775471768, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+      propertyPath: m_Name
+      value: Dim
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
 --- !u!1001 &1727737017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4051,3 +4225,4 @@ SceneRoots:
   - {fileID: 1008968889}
   - {fileID: 86001481}
   - {fileID: 8590292271534505693}
+  - {fileID: 1433545653}

@@ -325,6 +325,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6cf8fb0ef06587438dcc3f1430c6d7f
+    m_Address: UI/Page/HudTotal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: eab5b45f9cb63403a980a8429e571f2b
     m_Address: UI/Popup/Popup_FullWidth03_Single_Navy
     m_ReadOnly: 0

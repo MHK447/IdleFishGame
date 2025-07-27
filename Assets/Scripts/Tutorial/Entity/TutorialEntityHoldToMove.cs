@@ -18,7 +18,7 @@ public class TutorialEntityHoldToMove : TutorialEntity
 
         Slider.value = 0f;
 
-        Cam = GameRoot.Instance.InGameSystem.CurInGame.IngameCamera;
+        Cam = GameRoot.Instance.InGameSystem.CurInGame.GetMainCam;
 
     }
 

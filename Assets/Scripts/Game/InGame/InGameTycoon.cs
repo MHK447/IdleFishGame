@@ -30,8 +30,11 @@ public class InGameTycoon : InGameMode
     protected override void LoadUI()
     {
         base.LoadUI();
+
         GameRoot.Instance.InGameSystem.InitPopups();
+        GameRoot.Instance.UISystem.OpenUI<HudTotal>();
     }
+
 
 
     public override void UnLoad()

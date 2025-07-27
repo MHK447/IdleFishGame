@@ -265,6 +265,8 @@ public class GameRoot : Singleton<GameRoot>
 		{
 			BgmOn();
 		});
+
+		
 	}
 
 	public void BgmOn()

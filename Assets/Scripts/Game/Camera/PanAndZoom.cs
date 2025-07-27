@@ -100,29 +100,8 @@ public class PanAndZoom : MonoBehaviour
 
     void Start()
     {
-        var aspectRatio = Mathf.Max(Screen.width, Screen.height) / Mathf.Min(Screen.width, Screen.height);
-        var isTablet = (BanpoFri.Utility.DeviceDiagonalSizeInInches() > 6.5f && aspectRatio < 2f);
-
-        if (isTablet)
-        {
-            boundMinX = -5.0f;
-            boundMaxX = 5.0f;
-        }
-        else
-        {
-            boundMinX = -4.0f;
-            boundMaxX = 4.0f;
-        }
-
-        IsFocusing = false;
-
         canUseMouse = Application.platform != RuntimePlatform.Android && Application.platform != RuntimePlatform.IPhonePlayer && Input.mousePresent;
 
-    
-        GameRoot.Instance.WaitTimeAndCallback(1f, () =>
-        {
-            cam.orthographicSize = 12;
-        });
     }
 
     Vector3 velocity = Vector3.zero; // 클래스 변수로 선언
@@ -147,7 +126,7 @@ public class PanAndZoom : MonoBehaviour
         {
             //if(!IsPointerOverUIObject())
             // 스크롤 방향에 따라 줌인(+) 또는 줌아웃(-) 처리
-            OnPinch(Input.mousePosition, 1, Input.mouseScrollDelta.y < 0 ? (1 / mouseScrollSpeed) : mouseScrollSpeed, Vector2.right);
+            //OnPinch(Input.mousePosition, 1, Input.mouseScrollDelta.y < 0 ? (1 / mouseScrollSpeed) : mouseScrollSpeed, Vector2.right);
         }
     }
 
@@ -249,15 +228,6 @@ public class PanAndZoom : MonoBehaviour
             if (touch0.phase == TouchPhase.Ended || touch1.phase == TouchPhase.Ended) return;
 
             isTouching = true;
-
-            float previousDistance = Vector2.Distance(touch0.position - touch0.deltaPosition, touch1.position - touch1.deltaPosition);
-
-            float currentDistance = Vector2.Distance(touch0.position, touch1.position);
-
-            if (previousDistance != currentDistance)
-            {
-                OnPinch((touch0.position + touch1.position) / 2, previousDistance, currentDistance, (touch1.position - touch0.position).normalized);
-            }
         }
     }
 
@@ -304,59 +274,7 @@ public class PanAndZoom : MonoBehaviour
         return false;
     }
 
-    void OnPinch(Vector2 center, float oldDistance, float newDistance, Vector2 touchDelta)
-    {
-
-        // if (!allowMove)
-        // {
-        //     return;
-        // }
-
-        //if (GameRoot.Instance.UISystem.GetOpenPopupCount() > 0) return;
-
-        if (GameRoot.Instance.TutorialSystem.IsActive()) return;
-
-
-        moving = false;
-        if (onPinch != null)
-        {
-            onPinch(oldDistance, newDistance);
-        }
-
-        // 카메라 줌 제어가 활성화된 경우에만 실행
-        if (controlCamera && cameraControlEnabled)
-        {
-            if (cam == null) cam = Camera.main;
-
-            // 직교(Orthographic) 카메라인 경우
-            if (cam.orthographic)
-            {
-                // 핀치 중심점을 월드 좌표로 변환
-                var currentPinchPosition = cam.ScreenToWorldPoint(center);
-
-                // 이전 거리와 새로운 거리의 비율로 새로운 카메라 크기 계산
-                // 최소 크기는 5f로 제한
-                var size = Mathf.Max(5f, cam.orthographicSize * oldDistance / newDistance);
-
-                // 최대 줌아웃 크기 제한 체크
-                if (size < maxZoomOutSize)
-                {
-                    // 카메라의 orthographicSize 변경으로 줌인/줌아웃 구현
-                    cam.orthographicSize = size;
-
-                    //var newPinchPosition = cam.ScreenToWorldPoint(center);
-
-                    //cam.transform.position -= newPinchPosition - currentPinchPosition;
-                }
-            }
-            else
-            {
-                // 원근(Perspective) 카메라인 경우 Field of View 조정
-                cam.fieldOfView = Mathf.Clamp(cam.fieldOfView * oldDistance / newDistance, 0.1f, 179.9f);
-            }
-
-        }
-    }
+   
 
     // 특정 위치로 포커스하며 줌인하는 함수
     public void FocusPosition(Vector3 worldPos, float _focusSize = 15f)
