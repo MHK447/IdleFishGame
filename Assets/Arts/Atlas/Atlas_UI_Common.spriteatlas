@@ -88,6 +88,7 @@ SpriteAtlas:
     - 4bddbab2bbef4a44a8ee8f3541f0e85a: 21300000
     - 5039c1e237981d649838bb89e1b51ad3: 21300000
     - ed3815a3cc4f323429345df54245c945: 21300000
+    - 7a8af5a337410634a9935b8e6bec394f: 21300000
     - 7940b7a343915b441ac6d8687db25cf8: 21300000
     - 20efd0d35e20a7e43a3c7f2b0e618019: 21300000
     - a8c4bbd386a7a30409040277f4711f99: 21300000
@@ -105,6 +106,7 @@ SpriteAtlas:
     - 46cc967942ab51e4e9e276cb0b354822: 21300000
     - cd2894d915d60ac46b18739682204165: 21300000
     - c9cdd38a392ded24589ff7b49afa1556: 21300000
+    - 9c6b349a02fa24640842af102055eb5b: 21300000
     - f00192ba367468143931fa2d04c5c2c6: 21300000
     - 034a516b58822bf4ca7b7d8d8c309bdf: 21300000
     - 21fd8e6c8f46f2345bdbe4be38f7d3e9: 21300000
@@ -132,6 +134,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 4bddbab2bbef4a44a8ee8f3541f0e85a, type: 3}
   - {fileID: 21300000, guid: 5039c1e237981d649838bb89e1b51ad3, type: 3}
   - {fileID: 21300000, guid: ed3815a3cc4f323429345df54245c945, type: 3}
+  - {fileID: 21300000, guid: 7a8af5a337410634a9935b8e6bec394f, type: 3}
   - {fileID: 21300000, guid: 7940b7a343915b441ac6d8687db25cf8, type: 3}
   - {fileID: 21300000, guid: 20efd0d35e20a7e43a3c7f2b0e618019, type: 3}
   - {fileID: 21300000, guid: a8c4bbd386a7a30409040277f4711f99, type: 3}
@@ -149,6 +152,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 46cc967942ab51e4e9e276cb0b354822, type: 3}
   - {fileID: 21300000, guid: cd2894d915d60ac46b18739682204165, type: 3}
   - {fileID: 21300000, guid: c9cdd38a392ded24589ff7b49afa1556, type: 3}
+  - {fileID: 21300000, guid: 9c6b349a02fa24640842af102055eb5b, type: 3}
   - {fileID: 21300000, guid: f00192ba367468143931fa2d04c5c2c6, type: 3}
   - {fileID: 21300000, guid: 034a516b58822bf4ca7b7d8d8c309bdf, type: 3}
   - {fileID: 21300000, guid: 21fd8e6c8f46f2345bdbe4be38f7d3e9, type: 3}
@@ -175,6 +179,7 @@ SpriteAtlas:
   - Common_Icon_ShopGems_03
   - Common_Frame_BottomBg_Orange
   - Common_Icon_Goods_Star
+  - Common_Bg_Particle_Alpha
   - Common_Btn_Default_Progress
   - Common_Progress_Default
   - Common_Frame_R20
@@ -192,6 +197,7 @@ SpriteAtlas:
   - Common_Icon_Time
   - Common_Btn_Default_Yes
   - Common_Frame_R0
+  - Common_Bg_RayEffect
   - Common_Frame_Gradation
   - Common_Icon_ShopGems_02
   - Common_Frame_BubbleMsg

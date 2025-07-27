@@ -536,7 +536,7 @@ PrefabInstance:
     - target: {fileID: 5257182365439181791, guid: 169dbd8849f643b42ad29fb079497f19, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 8755af18a1960e641a05f67ce7a807c8, type: 2}
+      objectReference: {fileID: -5201947865732831575, guid: 98447b93c8fbd644cab10c5207572fc3, type: 2}
     - target: {fileID: 7607118684987216968, guid: 169dbd8849f643b42ad29fb079497f19, type: 3}
       propertyPath: m_Name
       value: TMP

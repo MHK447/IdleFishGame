@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 915746942872298320}
   - component: {fileID: 140684443364702321}
   - component: {fileID: 7244679933353954932}
-  - component: {fileID: 2157263683673781145}
-  - component: {fileID: 9109250652894833196}
   - component: {fileID: 2117621560146315488}
   m_Layer: 5
   m_Name: QuestArrow
@@ -35,7 +33,6 @@ RectTransform:
   m_Children:
   - {fileID: 6693866527077773706}
   m_Father: {fileID: 21857040525777067}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -80,178 +77,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2157263683673781145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1490271744572474670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c84d3b5b925194e54989f63c47395d15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Tweens:
-  - TweenType: 1
-    Value: 0
-    To: {x: 0, y: 0, z: 0}
-    Duration: 1.6
-    Delay: 0
-    EaseType: 37
-    customGraph: 1
-    customCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.24953155
-        value: 1.0042994
-        inSlope: 7.5649405
-        outSlope: -10.04375
-        tangentMode: 1
-        weightedMode: 0
-        inWeight: 0.11810344
-        outWeight: 0.07261145
-      - serializedVersion: 3
-        time: 0.50073886
-        value: -0.0049605547
-        inSlope: -0.009700099
-        outSlope: -0.009700099
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.24768066
-      - serializedVersion: 3
-        time: 0.7516179
-        value: 1.0020795
-        inSlope: 10.57065
-        outSlope: -10.045534
-        tangentMode: 1
-        weightedMode: 0
-        inWeight: 0.066883
-        outWeight: 0.07398252
-      - serializedVersion: 3
-        time: 1
-        value: 0.00289917
-        inSlope: -0.019361094
-        outSlope: -0.019361094
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.35986498
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    Callback:
-      m_PersistentCalls:
-        m_Calls: []
-  LoopType: 1
-  AutoPlay: 1
-  OnEnablePlay: 0
---- !u!114 &9109250652894833196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1490271744572474670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c84d3b5b925194e54989f63c47395d15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Tweens:
-  - TweenType: 8
-    Value: 0
-    To: {x: 1.1, y: 0.9, z: 0}
-    Duration: 1.6
-    Delay: 0
-    EaseType: 37
-    customGraph: 1
-    customCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.0037231445
-        value: -0.00074768066
-        inSlope: -7.186755
-        outSlope: -7.186755
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.447217
-      - serializedVersion: 3
-        time: 0.19206136
-        value: -0.9379518
-        inSlope: 0.012209471
-        outSlope: -0.013865731
-        tangentMode: 1
-        weightedMode: 0
-        inWeight: 0.9760067
-        outWeight: 1
-      - serializedVersion: 3
-        time: 0.29550436
-        value: 0.9978969
-        inSlope: -0.021175237
-        outSlope: 0.014710302
-        tangentMode: 1
-        weightedMode: 0
-        inWeight: 0.45354497
-        outWeight: 0.88547164
-      - serializedVersion: 3
-        time: 0.50348544
-        value: 0.004820347
-        inSlope: -6.2857847
-        outSlope: -6.2857847
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.3921459
-        outWeight: 0.40678775
-      - serializedVersion: 3
-        time: 0.69009477
-        value: -0.9307867
-        inSlope: 0.22893709
-        outSlope: 0.36296627
-        tangentMode: 1
-        weightedMode: 0
-        inWeight: 0.37031096
-        outWeight: 1
-      - serializedVersion: 3
-        time: 0.7821965
-        value: 0.99708223
-        inSlope: -0.01093126
-        outSlope: 0.008599174
-        tangentMode: 1
-        weightedMode: 0
-        inWeight: 0.57621056
-        outWeight: 0.3708615
-      - serializedVersion: 3
-        time: 1
-        value: 0.00033569336
-        inSlope: -5.6266947
-        outSlope: -5.6266947
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.32364038
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    Callback:
-      m_PersistentCalls:
-        m_Calls: []
-  LoopType: 1
-  AutoPlay: 1
-  OnEnablePlay: 0
 --- !u!114 &2117621560146315488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,7 +127,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 915746942872298320}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -378,7 +202,6 @@ RectTransform:
   m_Children:
   - {fileID: 915746942872298320}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

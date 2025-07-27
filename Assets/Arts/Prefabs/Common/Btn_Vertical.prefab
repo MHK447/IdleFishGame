@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -417,7 +417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -553,7 +553,7 @@ PrefabInstance:
     - target: {fileID: 5257182365439181791, guid: 169dbd8849f643b42ad29fb079497f19, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 164dc6facc25bbc4ea75ec2c04e1476f, type: 2}
+      objectReference: {fileID: -5201947865732831575, guid: 98447b93c8fbd644cab10c5207572fc3, type: 2}
     - target: {fileID: 7607118684987216968, guid: 169dbd8849f643b42ad29fb079497f19, type: 3}
       propertyPath: m_Name
       value: TMP_Price
@@ -671,7 +671,7 @@ PrefabInstance:
     - target: {fileID: 5257182365439181791, guid: 169dbd8849f643b42ad29fb079497f19, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 164dc6facc25bbc4ea75ec2c04e1476f, type: 2}
+      objectReference: {fileID: -5201947865732831575, guid: 98447b93c8fbd644cab10c5207572fc3, type: 2}
     - target: {fileID: 7607118684987216968, guid: 169dbd8849f643b42ad29fb079497f19, type: 3}
       propertyPath: m_Name
       value: TMP_Value
