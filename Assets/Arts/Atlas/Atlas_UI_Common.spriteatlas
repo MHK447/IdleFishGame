@@ -76,9 +76,11 @@ SpriteAtlas:
     isAtlasV2: 0
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
+    - 5c3db830f835641bcabdeb2bcd41e909: 21300000
     - 1a2a3d40fbf25164f90645e4032ba241: 21300000
     - 5725fe90d97e2aa4fb361466a0895f57: 21300000
     - 712ec01171340214c86836ea4a934bc4: 21300000
+    - a756d231f49c8420d9376657e6ebb8c0: 21300000
     - 861d504150fec4041b3743453605e186: 21300000
     - 47414581ecaed384b83d942118ef4d0d: 21300000
     - 025d9591b63f37242b15c74991f47fd1: 21300000
@@ -107,6 +109,7 @@ SpriteAtlas:
     - e62cbb88590ec5c4cb5f405c0eb9de63: 21300000
     - b3b952b81aa37a7428c8fd921763d132: 21300000
     - 46cc967942ab51e4e9e276cb0b354822: 21300000
+    - 19044189ee2ab46b08a7440d3025af57: 21300000
     - cd2894d915d60ac46b18739682204165: 21300000
     - c9cdd38a392ded24589ff7b49afa1556: 21300000
     - 9c6b349a02fa24640842af102055eb5b: 21300000
@@ -124,9 +127,11 @@ SpriteAtlas:
     - ea3f607f004da2046bed6add8747f8c5: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 5c3db830f835641bcabdeb2bcd41e909, type: 3}
   - {fileID: 21300000, guid: 1a2a3d40fbf25164f90645e4032ba241, type: 3}
   - {fileID: 21300000, guid: 5725fe90d97e2aa4fb361466a0895f57, type: 3}
   - {fileID: 21300000, guid: 712ec01171340214c86836ea4a934bc4, type: 3}
+  - {fileID: 21300000, guid: a756d231f49c8420d9376657e6ebb8c0, type: 3}
   - {fileID: 21300000, guid: 861d504150fec4041b3743453605e186, type: 3}
   - {fileID: 21300000, guid: 47414581ecaed384b83d942118ef4d0d, type: 3}
   - {fileID: 21300000, guid: 025d9591b63f37242b15c74991f47fd1, type: 3}
@@ -155,6 +160,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e62cbb88590ec5c4cb5f405c0eb9de63, type: 3}
   - {fileID: 21300000, guid: b3b952b81aa37a7428c8fd921763d132, type: 3}
   - {fileID: 21300000, guid: 46cc967942ab51e4e9e276cb0b354822, type: 3}
+  - {fileID: 21300000, guid: 19044189ee2ab46b08a7440d3025af57, type: 3}
   - {fileID: 21300000, guid: cd2894d915d60ac46b18739682204165, type: 3}
   - {fileID: 21300000, guid: c9cdd38a392ded24589ff7b49afa1556, type: 3}
   - {fileID: 21300000, guid: 9c6b349a02fa24640842af102055eb5b, type: 3}
@@ -171,9 +177,11 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 042e8baec872a5049adf8843350b7a28, type: 3}
   - {fileID: 21300000, guid: ea3f607f004da2046bed6add8747f8c5, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Common_Icon_Coin
   - Common_Icon_ShopGems_05
   - Common_Btn_Default_Point
   - Common_Icon_Goods_Gem
+  - Common_Icon_Auto
   - Common_Icon_Hook
   - Common_Icon_ShopGems_06
   - Common_Bg_BubbleMsg
@@ -202,6 +210,7 @@ SpriteAtlas:
   - Common_Icon_Goods_Lightning
   - Common_Icon_ShopGems_04
   - Common_Icon_Time
+  - Common_Icon_Plus
   - Common_Btn_Default_Yes
   - Common_Frame_R0
   - Common_Bg_RayEffect
