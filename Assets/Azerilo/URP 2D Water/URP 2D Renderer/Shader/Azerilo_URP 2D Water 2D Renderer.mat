@@ -39,14 +39,14 @@ Material:
     m_Floats:
     - Refraction_Noise: 70
     - Refraction_Speed: 12.9
-    - Vector1_56BE0FD1: 0.59
+    - Vector1_56BE0FD1: 0.591
     - Vector1_5CB84537: 18
     - Vector1_63384718: 10
     - Vector1_73BD9798: 70
     - Vector1_745B9376: 1
-    - Vector1_8DA20226: 1.51
-    - Vector1_AE30F744: 0.81
-    - Vector1_AF318A03: 1.87
+    - Vector1_8DA20226: 15
+    - Vector1_AE30F744: 1
+    - Vector1_AF318A03: 1.2
     - Vector1_D775EAAC: 0.7
     - Water_Level: 0.74
     - Water_Top_Width: 5
@@ -54,8 +54,8 @@ Material:
     - Wave_Frequency: 5.64
     - Wave_Speed: 2.76
     m_Colors:
-    - Color_234C1B0B: {r: 1, g: 1, b: 1, a: 0}
-    - Color_D12BF231: {r: 0.31706125, g: 0.695, b: 0.8962264, a: 0}
+    - Color_234C1B0B: {r: 1, g: 1, b: 1, a: 1}
+    - Color_D12BF231: {r: 0.4392157, g: 0.8627451, b: 0.96862745, a: 1}
     - Water_Color: {r: 0.43867922, g: 0.8733303, b: 1, a: 0.7882353}
     - Water_Top_Color: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
