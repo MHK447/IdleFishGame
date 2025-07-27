@@ -94,7 +94,6 @@ SpriteAtlas:
     - 20efd0d35e20a7e43a3c7f2b0e618019: 21300000
     - a8c4bbd386a7a30409040277f4711f99: 21300000
     - 2174bc4436dee8d4497e601bba82061a: 21300000
-    - 57e69d252f458c14197462573cbc0602: 21300000
     - e75c71451e7bd488c9b89314465ef546: 21300000
     - f742f495452524be78a432218c8cce53: 21300000
     - f7c4289558e809147bc88c3923057976: 21300000
@@ -123,7 +122,6 @@ SpriteAtlas:
     - 5a6fb38ee51ee427ea98f97153596cba: 21300000
     - 042e8baec872a5049adf8843350b7a28: 21300000
     - ea3f607f004da2046bed6add8747f8c5: 21300000
-    - 5c57089f668e3aa4dbfd6474cf9cc07a: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 1a2a3d40fbf25164f90645e4032ba241, type: 3}
@@ -144,7 +142,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 20efd0d35e20a7e43a3c7f2b0e618019, type: 3}
   - {fileID: 21300000, guid: a8c4bbd386a7a30409040277f4711f99, type: 3}
   - {fileID: 21300000, guid: 2174bc4436dee8d4497e601bba82061a, type: 3}
-  - {fileID: 21300000, guid: 57e69d252f458c14197462573cbc0602, type: 3}
   - {fileID: 21300000, guid: e75c71451e7bd488c9b89314465ef546, type: 3}
   - {fileID: 21300000, guid: f742f495452524be78a432218c8cce53, type: 3}
   - {fileID: 21300000, guid: f7c4289558e809147bc88c3923057976, type: 3}
@@ -173,7 +170,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 5a6fb38ee51ee427ea98f97153596cba, type: 3}
   - {fileID: 21300000, guid: 042e8baec872a5049adf8843350b7a28, type: 3}
   - {fileID: 21300000, guid: ea3f607f004da2046bed6add8747f8c5, type: 3}
-  - {fileID: 21300000, guid: 5c57089f668e3aa4dbfd6474cf9cc07a, type: 3}
   m_PackedSpriteNamesToIndex:
   - Common_Icon_ShopGems_05
   - Common_Btn_Default_Point
@@ -193,7 +189,6 @@ SpriteAtlas:
   - Common_Progress_Default
   - Common_Frame_R20
   - Common_Icon_Goods_NoAds
-  - Common_Btn_HUD_Home
   - Common_Icon_Setting
   - Common_Lightning_1
   - Common_Btn_Trash
@@ -222,7 +217,6 @@ SpriteAtlas:
   - Common_Lightning_3
   - Common_Bg_IngameSlot
   - Common_Icon_ShopGems_01
-  - Common_Btn_HUD_Option
   m_RenderDataMap: {}
   m_Tag: Atlas_UI_Common
   m_IsVariant: 0
