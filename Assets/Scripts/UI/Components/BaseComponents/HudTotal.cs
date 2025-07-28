@@ -27,7 +27,7 @@ public class HudTotal : UIBase
 
         GameRoot.Instance.PlayerSystem.SeaDepthProperty.Subscribe(x =>
         {
-            DepthText.text = $"{x.ToString("F2")}m";
+            DepthText.text = x < 0 ? "0.00m" : $"{x.ToString("F2")}m";
         }).AddTo(this);
     }
 

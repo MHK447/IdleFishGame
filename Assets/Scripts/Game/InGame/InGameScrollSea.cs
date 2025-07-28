@@ -68,6 +68,11 @@ public class InGameScrollSea : MonoBehaviour
         rowcount = 0;
     }
 
+    public void Init()
+    {
+        HookCompoent.Init();
+    }
+
     void Update()
     {
         if (HookCompoent == null) return;

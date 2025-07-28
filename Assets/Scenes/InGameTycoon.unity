@@ -324,7 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCam: {fileID: 519420034}
   SubCam: {fileID: 83975804}
-  ScrollSea: {fileID: 0}
+  ScrollSea: {fileID: 1525812706}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +621,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5654b57f5ea428b43a7c530524b7db82, type: 3}
+--- !u!114 &1525812706 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3026946287229475144, guid: ed31bf5d034374f9cb0f6e237ec8c994, type: 3}
+  m_PrefabInstance: {fileID: 1952066813015002728}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46ad82e0c24d443a89ff0e71ec93a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1952066813015002728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -629,10 +640,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 971545278604212649, guid: ed31bf5d034374f9cb0f6e237ec8c994, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.06
+      objectReference: {fileID: 0}
     - target: {fileID: 3026946287229475144, guid: ed31bf5d034374f9cb0f6e237ec8c994, type: 3}
       propertyPath: SubSeaCamera
       value: 
       objectReference: {fileID: 83975802}
+    - target: {fileID: 6654359325008957659, guid: ed31bf5d034374f9cb0f6e237ec8c994, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08
+      objectReference: {fileID: 0}
     - target: {fileID: 7560372535889746130, guid: ed31bf5d034374f9cb0f6e237ec8c994, type: 3}
       propertyPath: m_Name
       value: StageMap_01 (1)

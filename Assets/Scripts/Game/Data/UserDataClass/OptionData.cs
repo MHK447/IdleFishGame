@@ -11,19 +11,6 @@ public partial class UserDataSystem
         // 선언된 변수들은 모두 저장되어야함
 
         // Optiondata 단일 저장
-        // Optiondata.Aquariumdata 처리 GenerateItemSaveCode IsCustom
-        Offset<BanpoFri.Data.AquariumData> optiondata_aquariumdata_Offset = BanpoFri.Data.AquariumData.CreateAquariumData(
-            builder, 
-            Optiondata.Aquariumdata.Fishidx
-        );
-
-        // Optiondata.Upgradedata 처리 GenerateItemSaveCode IsCustom
-        Offset<BanpoFri.Data.UpgradeData> optiondata_upgradedata_Offset = BanpoFri.Data.UpgradeData.CreateUpgradeData(
-            builder, 
-            Optiondata.Upgradedata.Upgradeidx,
-            Optiondata.Upgradedata.Upgradelevel
-        );
-
         // Optiondata 최종 생성 및 추가
         var optiondata_Offset = BanpoFri.Data.OptionData.CreateOptionData(
             builder,
@@ -33,9 +20,7 @@ public partial class UserDataSystem
             Optiondata.Slowgraphic,
             Optiondata.Vibration,
             Optiondata.Subscribeorder,
-            Optiondata.Autofelling,
-            optiondata_aquariumdata_Offset,
-            optiondata_upgradedata_Offset
+            Optiondata.Autofelling
         );
 
 
@@ -61,21 +46,6 @@ public partial class UserDataSystem
             Optiondata.Vibration = fb_Optiondata.Value.Vibration;
             Optiondata.Subscribeorder = fb_Optiondata.Value.Subscribeorder;
             Optiondata.Autofelling = fb_Optiondata.Value.Autofelling;
-
-            // Aquariumdata 로드
-            var fbAquariumdata = fb_Optiondata.Value.Aquariumdata;
-            if (fbAquariumdata.HasValue)
-            {
-                Optiondata.Aquariumdata.Fishidx = fbAquariumdata.Value.Fishidx;
-            }
-
-            // Upgradedata 로드
-            var fbUpgradedata = fb_Optiondata.Value.Upgradedata;
-            if (fbUpgradedata.HasValue)
-            {
-                Optiondata.Upgradedata.Upgradeidx = fbUpgradedata.Value.Upgradeidx;
-                Optiondata.Upgradedata.Upgradelevel = fbUpgradedata.Value.Upgradelevel;
-            }
         }
     }
 
@@ -83,10 +53,6 @@ public partial class UserDataSystem
 
 public class OptionData
 {
-    public AquariumData Aquariumdata = new AquariumData();
-
-    public UpgradeData Upgradedata = new UpgradeData();
-
     public string Language { get; set; } = "";
     public bool Bgm { get; set; } = false;
     public bool Effect { get; set; } = false;

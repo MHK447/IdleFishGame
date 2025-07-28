@@ -49,6 +49,8 @@ public class GameRoot : Singleton<GameRoot>
 
 	public ShopSystem ShopSystem { get; private set; } = new ShopSystem();
 
+	public UpgradeSystem UpgradeSystem { get; private set; } = new UpgradeSystem();
+
 	[SerializeField]
 	private ATTManager attManager;
 	public ATTManager GetATTManager { get { return attManager; } }
@@ -256,6 +258,7 @@ public class GameRoot : Singleton<GameRoot>
 		InGameSystem.Create();
 		GameNotification.Create();
 		ShopSystem.Create();
+		UpgradeSystem.Create();
 		GameRoot.instance.inAppPurchaseManager.InitializePurchasing();
 
 		InitRequestAtlas();

@@ -1,7 +1,18 @@
 using UnityEngine;
+using DG.Tweening;
+using System.Collections;
 
 public class FishingHookComponent : MonoBehaviour
 {
+    public enum FishingHookState
+    {
+        None,
+        HookDown,
+        HookUp,
+        FishingIdle,
+    }
+
+
     [SerializeField]
     private Transform FisshingHookObj;
 
@@ -24,6 +35,10 @@ public class FishingHookComponent : MonoBehaviour
 
     public float metersPerUnit = 0.01f;  // 10 유닛 = 1m → 1 유닛 = 0.1m
 
+    private float StartHookY = 0f;
+
+    private FishingHookState CurHookState = FishingHookState.None;
+
     void Awake()
     {
         StartPos = transform.position;
@@ -36,6 +51,11 @@ public class FishingHookComponent : MonoBehaviour
         LineRenderer.startWidth = 0.15f;
         LineRenderer.endWidth = 0.15f;
 
+        StartHookY = FisshingHookObj.position.y;
+
+
+        CurHookState = FishingHookState.None;
+
     }
 
 
@@ -43,6 +63,8 @@ public class FishingHookComponent : MonoBehaviour
     {
         this.transform.position = StartPos;
         FisshingHookObj.position = HookStartPos; // Hook 오브젝트도 초기 위치로 리셋
+
+        GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.HookDown));
     }
 
     // 깊이는 유지하면서 위치만 리셋하는 메서드
@@ -75,5 +97,57 @@ public class FishingHookComponent : MonoBehaviour
     {
         LineRenderer.SetPosition(0, LinrStartTr.position);
         LineRenderer.SetPosition(1, LineEndTr.position);
+    }
+
+
+
+    public void HookDown()
+    {
+        var depthvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.WaterDepth);
+
+        FisshingHookObj.transform.DOMoveY(StartHookY - depthvalue, 2f).SetEase(Ease.OutBack).OnComplete(()=>{
+            GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.FishingIdle));
+        });
+    }
+
+    public void FishingIdle()
+    {
+        GameRoot.Instance.WaitTimeAndCallback(5f , ()=> {
+            GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.HookUp));
+        });
+    }
+
+
+    public void HookUp()
+    {
+        FisshingHookObj.transform.DOMoveY(StartHookY, 2f).SetEase(Ease.Linear).OnComplete(()=>{
+            GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.HookDown, 0.5f));
+        });
+    }
+
+
+    public IEnumerator ChangeHookState(FishingHookState state , float waittime = 0f)
+    {
+        yield return new WaitForSeconds(waittime);
+
+        if(CurHookState == state)
+        {
+            yield break;
+        }
+
+        CurHookState = state;
+
+        switch(state)
+        {
+            case FishingHookState.HookDown:
+                HookDown();
+                break;
+            case FishingHookState.HookUp:
+                HookUp();
+                break;
+            case FishingHookState.FishingIdle:
+                FishingIdle();
+                break;
+        }
     }
 }

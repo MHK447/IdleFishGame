@@ -22,6 +22,8 @@ public class InGameTycoon : InGameMode
     {
         base.Load();
         GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().StartGame();
+
+        ScrollSea.Init();
     }
 
 

@@ -36,6 +36,8 @@ table UserData {
   uuid:long = 0;
   recordvalue:[RecordCount];
   fishingautoproperty:bool; //@ReactiveProperty
+  upgradedata:[UpgradeData];
+  aquariumdata:AquariumData;
 }
 
 table OptionData {
@@ -46,8 +48,6 @@ table OptionData {
   vibration:bool = true;
   subscribeorder:bool = false;
   autofelling:bool = false;
-  aquariumdata:AquariumData;
-  upgradedata:UpgradeData;
 }
 
 table RecordCount {

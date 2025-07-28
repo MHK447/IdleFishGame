@@ -48,6 +48,9 @@ public struct UserData : IFlatbufferObject
   public int RecordvalueLength { get { int o = __p.__offset(22); return o != 0 ? __p.__vector_len(o) : 0; } }
   public bool Fishingautoproperty { get { int o = __p.__offset(24); return o != 0 ? 0!=__p.bb.Get(o + __p.bb_pos) : (bool)false; } }
   public bool MutateFishingautoproperty(bool fishingautoproperty) { int o = __p.__offset(24); if (o != 0) { __p.bb.Put(o + __p.bb_pos, (byte)(fishingautoproperty ? 1 : 0)); return true; } else { return false; } }
+  public BanpoFri.Data.UpgradeData? Upgradedata(int j) { int o = __p.__offset(26); return o != 0 ? (BanpoFri.Data.UpgradeData?)(new BanpoFri.Data.UpgradeData()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
+  public int UpgradedataLength { get { int o = __p.__offset(26); return o != 0 ? __p.__vector_len(o) : 0; } }
+  public BanpoFri.Data.AquariumData? Aquariumdata { get { int o = __p.__offset(28); return o != 0 ? (BanpoFri.Data.AquariumData?)(new BanpoFri.Data.AquariumData()).__assign(__p.__indirect(o + __p.bb_pos), __p.bb) : null; } }
 
   public static Offset<BanpoFri.Data.UserData> CreateUserData(FlatBufferBuilder builder,
       double money = 0.0,
@@ -60,12 +63,16 @@ public struct UserData : IFlatbufferObject
       long gamestarttime = 0,
       long uuid = 0,
       VectorOffset recordvalueOffset = default(VectorOffset),
-      bool fishingautoproperty = false) {
-    builder.StartTable(11);
+      bool fishingautoproperty = false,
+      VectorOffset upgradedataOffset = default(VectorOffset),
+      Offset<BanpoFri.Data.AquariumData> aquariumdataOffset = default(Offset<BanpoFri.Data.AquariumData>)) {
+    builder.StartTable(13);
     UserData.AddUuid(builder, uuid);
     UserData.AddGamestarttime(builder, gamestarttime);
     UserData.AddLastlogintime(builder, lastlogintime);
     UserData.AddMoney(builder, money);
+    UserData.AddAquariumdata(builder, aquariumdataOffset);
+    UserData.AddUpgradedata(builder, upgradedataOffset);
     UserData.AddRecordvalue(builder, recordvalueOffset);
     UserData.AddRecordcount(builder, recordcountOffset);
     UserData.AddOptiondata(builder, optiondataOffset);
@@ -76,7 +83,7 @@ public struct UserData : IFlatbufferObject
     return UserData.EndUserData(builder);
   }
 
-  public static void StartUserData(FlatBufferBuilder builder) { builder.StartTable(11); }
+  public static void StartUserData(FlatBufferBuilder builder) { builder.StartTable(13); }
   public static void AddMoney(FlatBufferBuilder builder, double money) { builder.AddDouble(0, money, 0.0); }
   public static void AddCash(FlatBufferBuilder builder, int cash) { builder.AddInt(1, cash, 0); }
   public static void AddBuyinappids(FlatBufferBuilder builder, StringOffset buyinappidsOffset) { builder.AddOffset(2, buyinappidsOffset.Value, 0); }
@@ -103,6 +110,13 @@ public struct UserData : IFlatbufferObject
   public static VectorOffset CreateRecordvalueVectorBlock(FlatBufferBuilder builder, IntPtr dataPtr, int sizeInBytes) { builder.StartVector(1, sizeInBytes, 1); builder.Add<Offset<BanpoFri.Data.RecordCount>>(dataPtr, sizeInBytes); return builder.EndVector(); }
   public static void StartRecordvalueVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static void AddFishingautoproperty(FlatBufferBuilder builder, bool fishingautoproperty) { builder.AddBool(10, fishingautoproperty, false); }
+  public static void AddUpgradedata(FlatBufferBuilder builder, VectorOffset upgradedataOffset) { builder.AddOffset(11, upgradedataOffset.Value, 0); }
+  public static VectorOffset CreateUpgradedataVector(FlatBufferBuilder builder, Offset<BanpoFri.Data.UpgradeData>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
+  public static VectorOffset CreateUpgradedataVectorBlock(FlatBufferBuilder builder, Offset<BanpoFri.Data.UpgradeData>[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
+  public static VectorOffset CreateUpgradedataVectorBlock(FlatBufferBuilder builder, ArraySegment<Offset<BanpoFri.Data.UpgradeData>> data) { builder.StartVector(4, data.Count, 4); builder.Add(data); return builder.EndVector(); }
+  public static VectorOffset CreateUpgradedataVectorBlock(FlatBufferBuilder builder, IntPtr dataPtr, int sizeInBytes) { builder.StartVector(1, sizeInBytes, 1); builder.Add<Offset<BanpoFri.Data.UpgradeData>>(dataPtr, sizeInBytes); return builder.EndVector(); }
+  public static void StartUpgradedataVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
+  public static void AddAquariumdata(FlatBufferBuilder builder, Offset<BanpoFri.Data.AquariumData> aquariumdataOffset) { builder.AddOffset(12, aquariumdataOffset.Value, 0); }
   public static Offset<BanpoFri.Data.UserData> EndUserData(FlatBufferBuilder builder) {
     int o = builder.EndTable();
     return new Offset<BanpoFri.Data.UserData>(o);
@@ -129,6 +143,9 @@ public struct UserData : IFlatbufferObject
     _o.Recordvalue = new List<BanpoFri.Data.RecordCountT>();
     for (var _j = 0; _j < this.RecordvalueLength; ++_j) {_o.Recordvalue.Add(this.Recordvalue(_j).HasValue ? this.Recordvalue(_j).Value.UnPack() : null);}
     _o.Fishingautoproperty = this.Fishingautoproperty;
+    _o.Upgradedata = new List<BanpoFri.Data.UpgradeDataT>();
+    for (var _j = 0; _j < this.UpgradedataLength; ++_j) {_o.Upgradedata.Add(this.Upgradedata(_j).HasValue ? this.Upgradedata(_j).Value.UnPack() : null);}
+    _o.Aquariumdata = this.Aquariumdata.HasValue ? this.Aquariumdata.Value.UnPack() : null;
   }
   public static Offset<BanpoFri.Data.UserData> Pack(FlatBufferBuilder builder, UserDataT _o) {
     if (_o == null) return default(Offset<BanpoFri.Data.UserData>);
@@ -152,6 +169,13 @@ public struct UserData : IFlatbufferObject
       for (var _j = 0; _j < __recordvalue.Length; ++_j) { __recordvalue[_j] = BanpoFri.Data.RecordCount.Pack(builder, _o.Recordvalue[_j]); }
       _recordvalue = CreateRecordvalueVector(builder, __recordvalue);
     }
+    var _upgradedata = default(VectorOffset);
+    if (_o.Upgradedata != null) {
+      var __upgradedata = new Offset<BanpoFri.Data.UpgradeData>[_o.Upgradedata.Count];
+      for (var _j = 0; _j < __upgradedata.Length; ++_j) { __upgradedata[_j] = BanpoFri.Data.UpgradeData.Pack(builder, _o.Upgradedata[_j]); }
+      _upgradedata = CreateUpgradedataVector(builder, __upgradedata);
+    }
+    var _aquariumdata = _o.Aquariumdata == null ? default(Offset<BanpoFri.Data.AquariumData>) : BanpoFri.Data.AquariumData.Pack(builder, _o.Aquariumdata);
     return CreateUserData(
       builder,
       _o.Money,
@@ -164,7 +188,9 @@ public struct UserData : IFlatbufferObject
       _o.Gamestarttime,
       _o.Uuid,
       _recordvalue,
-      _o.Fishingautoproperty);
+      _o.Fishingautoproperty,
+      _upgradedata,
+      _aquariumdata);
   }
 }
 
@@ -192,6 +218,10 @@ public class UserDataT
   public List<BanpoFri.Data.RecordCountT> Recordvalue { get; set; }
   [Newtonsoft.Json.JsonProperty("fishingautoproperty")]
   public bool Fishingautoproperty { get; set; }
+  [Newtonsoft.Json.JsonProperty("upgradedata")]
+  public List<BanpoFri.Data.UpgradeDataT> Upgradedata { get; set; }
+  [Newtonsoft.Json.JsonProperty("aquariumdata")]
+  public BanpoFri.Data.AquariumDataT Aquariumdata { get; set; }
 
   public UserDataT() {
     this.Money = 0.0;
@@ -205,6 +235,8 @@ public class UserDataT
     this.Uuid = 0;
     this.Recordvalue = null;
     this.Fishingautoproperty = false;
+    this.Upgradedata = null;
+    this.Aquariumdata = null;
   }
 
   public static UserDataT DeserializeFromJson(string jsonText) {
@@ -240,6 +272,8 @@ static public class UserDataVerify
       && verifier.VerifyField(tablePos, 20 /*Uuid*/, 8 /*long*/, 8, false)
       && verifier.VerifyVectorOfTables(tablePos, 22 /*Recordvalue*/, BanpoFri.Data.RecordCountVerify.Verify, false)
       && verifier.VerifyField(tablePos, 24 /*Fishingautoproperty*/, 1 /*bool*/, 1, false)
+      && verifier.VerifyVectorOfTables(tablePos, 26 /*Upgradedata*/, BanpoFri.Data.UpgradeDataVerify.Verify, false)
+      && verifier.VerifyTable(tablePos, 28 /*Aquariumdata*/, BanpoFri.Data.AquariumDataVerify.Verify, false)
       && verifier.VerifyTableEnd(tablePos);
   }
 }
