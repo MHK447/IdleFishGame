@@ -85,7 +85,7 @@ public class CommonCreator
     {
         var loadResource =
             AssetDatabase.LoadAssetAtPath<GameObject>(
-                "Assets/Arts/Prefabs/Common/Img_NoneRaycast.prefab");
+                "Assets/Arts/Prefabs/Common/ImageNoneRaycast.prefab");
 
         var obj = PrefabUtility.InstantiatePrefab(loadResource) as GameObject;
         if (Selection.activeGameObject != null)
