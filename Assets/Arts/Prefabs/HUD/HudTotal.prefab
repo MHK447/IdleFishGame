@@ -1002,42 +1002,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7543080477806146517}
     m_Modifications:
-    - target: {fileID: 846779475639898591, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
-      propertyPath: m_text
-      value: 99999
-      objectReference: {fileID: 0}
-    - target: {fileID: 846779475639898591, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
-      propertyPath: m_fontSize
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 846779475639898591, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0.14509805
-      objectReference: {fileID: 0}
-    - target: {fileID: 846779475639898591, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0.22352941
-      objectReference: {fileID: 0}
-    - target: {fileID: 846779475639898591, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0.32156864
-      objectReference: {fileID: 0}
-    - target: {fileID: 846779475639898591, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
-      propertyPath: m_characterSpacing
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 846779475639898591, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4280629586
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209416832737876710, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -75
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209416832737876710, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4415113453871814279, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -1126,55 +1090,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7216834582807914613, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
-      propertyPath: keyColor
-      value: Brown
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4702708619656918335, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8092617651067336436}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
---- !u!1 &151496937346587826 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4702708619656918335, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
-  m_PrefabInstance: {fileID: 4853008186557016461}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8092617651067336436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 151496937346587826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 289f98a2822934e5e958041eec7ab332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoneyText: {fileID: 5231217157560383570}
-  MoneyRoot: {fileID: 6487967836203423161}
-  CashText: {fileID: 0}
-  CashBtn: {fileID: 0}
---- !u!114 &5231217157560383570 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 846779475639898591, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
-  m_PrefabInstance: {fileID: 4853008186557016461}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &6487967836203423161 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1824166090387471412, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
-  m_PrefabInstance: {fileID: 4853008186557016461}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &9087414610857361162 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4415113453871814279, guid: 6a5ca9aa4a5125445a07b606ec3bbc68, type: 3}
