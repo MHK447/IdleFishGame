@@ -16,17 +16,9 @@ public class InGameScrollSea : MonoBehaviour
 
     private float CameraMinY = -28.4f;
 
-    private int currentSection = 0;        // 현재 카메라가 있는 구간
-    private int previousSection = 0;       // 이전 프레임의 구간
-
     private Vector3 InitCamPos;
 
     private List<Vector3> InitMappos = new List<Vector3>();
-
-    public float descendAmount = 2f;     // 얼마나 내릴지
-    public float moveSpeed = 5f;         // 얼마나 부드럽게 이동할지
-
-    private int rowcount = 0;
 
     private int CurrentSeaIdx = 0;
 
@@ -39,22 +31,6 @@ public class InGameScrollSea : MonoBehaviour
         {
             InitMappos.Add(sea.transform.localPosition);
         }
-        
-        // 초기 구간을 실제 카메라 위치를 기준으로 계산
-        float initialCameraY = SubSeaCamera.transform.position.y;
-        if (initialCameraY >= CameraMinY)
-        {
-            currentSection = 0;
-        }
-        else
-        {
-            currentSection = Mathf.FloorToInt((CameraMinY - initialCameraY) / 27.21f) + 1;
-        }
-        
-        previousSection = currentSection;
-        
-        // rowcount도 초기화
-        rowcount = 0;
     }
 
     public void Init()
@@ -81,51 +57,8 @@ public class InGameScrollSea : MonoBehaviour
 
         float currentCameraY = SubSeaCamera.transform.position.y;
 
-        // 현재 카메라가 어떤 구간에 있는지 계산
-        if (currentCameraY >= CameraMinY)
-        {
-            currentSection = 0;
-        }
-        else
-        {
-            currentSection = Mathf.FloorToInt((CameraMinY - currentCameraY) / 27.21f) + 1;
-        }
-
-        // 구간이 바뀌었을 때만 재배치
-        if (currentSection != previousSection)
-        {
-            // 아래로 내려갔을 때 (구간 번호 증가)
-            if (currentSection > previousSection)
-            {
-                // 현재 보이는 가장 위쪽 오브젝트를 아래쪽으로 이동
-                float newY = CameraMinY - (currentSection + 1) * 27.21f;
-                
-                SeaList[rowcount].transform.localPosition = new Vector3(
-                    SeaList[rowcount].transform.localPosition.x,
-                    newY,
-                    SeaList[rowcount].transform.localPosition.z 
-                );
-
-                rowcount = (rowcount + 1) % SeaList.Count;
-            }
-            // 위로 올라갔을 때 (구간 번호 감소)
-            else if (currentSection < previousSection)
-            {
-                // rowcount를 먼저 조정
-                rowcount = (rowcount - 1 + SeaList.Count) % SeaList.Count;
-                
-                // 현재 구간 위쪽에 배치 (더 안전한 계산)
-                float newY = CameraMinY - Mathf.Max(0, currentSection - 1) * 27.21f;
-                
-                SeaList[rowcount].transform.localPosition = new Vector3(
-                    SeaList[rowcount].transform.localPosition.x,
-                    newY,
-                    SeaList[rowcount].transform.localPosition.z
-                );
-            }
-            
-            previousSection = currentSection;
-        }
+        // Sea 위치 재배치 로직 (완전히 새로 작성)
+        RepositionSeaObjects(currentCameraY);
 
         // Hook이 너무 아래로 내려가면 위치만 리셋 (깊이 값은 유지)
         if (HookCompoent.FisshingHookTr.position.y < -100000f)
@@ -141,10 +74,6 @@ public class InGameScrollSea : MonoBehaviour
             {
                 SeaList[i].transform.localPosition = InitMappos[i];
             }
-            
-            // 현재 섹션 정보만 초기화
-            currentSection = 0;
-            previousSection = 0;
         }
     }
 
@@ -184,6 +113,71 @@ public class InGameScrollSea : MonoBehaviour
         }
         
         return null;
+    }
+
+    private void RepositionSeaObjects(float cameraY)
+    {
+        float sectionDistance = 27.21f;
+        
+        // 카메라 위치를 기준으로 필요한 Sea 위치들 계산
+        List<float> requiredPositions = new List<float>();
+        
+        // 카메라 위쪽에서 아래쪽까지 Sea가 배치될 위치들 계산
+        float baseY = CameraMinY; // 기준점
+        
+        // 카메라가 기준점보다 위에 있으면 기준점 위치부터 시작
+        if (cameraY >= CameraMinY)
+        {
+            // 초기 위치들 사용
+            for (int i = 0; i < SeaList.Count && i < InitMappos.Count; i++)
+            {
+                requiredPositions.Add(InitMappos[i].y);
+            }
+        }
+        else
+        {
+            // 카메라가 아래에 있을 때 동적 계산
+            float depthFromBase = CameraMinY - cameraY;
+            int sectionsBelow = Mathf.FloorToInt(depthFromBase / sectionDistance);
+            
+            // 화면에 보여야 할 위치들 계산 (카메라 위아래로 여유있게)
+            for (int i = 0; i < SeaList.Count; i++)
+            {
+                float targetY;
+                
+                if (i == 0)
+                {
+                    // 첫 번째 Sea는 항상 카메라 근처 또는 약간 위에
+                    targetY = CameraMinY - sectionsBelow * sectionDistance;
+                }
+                else
+                {
+                    // 나머지 Sea들은 순차적으로 아래쪽에 배치
+                    targetY = CameraMinY - (sectionsBelow + i) * sectionDistance;
+                }
+                
+                requiredPositions.Add(targetY);
+            }
+        }
+        
+        // 계산된 위치에 Sea 객체들 배치
+        for (int i = 0; i < SeaList.Count && i < requiredPositions.Count; i++)
+        {
+            Vector3 currentPos = SeaList[i].transform.localPosition;
+            Vector3 targetPos = new Vector3(currentPos.x, requiredPositions[i], currentPos.z);
+            
+            SeaList[i].transform.localPosition = targetPos;
+        }
+        
+        // 디버그 로그 - 특정 카메라 위치에서만
+        if (cameraY <= -25f && cameraY >= -35f)
+        {
+            Debug.Log($"=== Sea Reposition Debug - CameraY: {cameraY:F2} ===");
+            for (int i = 0; i < SeaList.Count; i++)
+            {
+                Debug.Log($"Sea{i}: Y={SeaList[i].transform.localPosition.y:F2} (Target: {(i < requiredPositions.Count ? requiredPositions[i].ToString("F2") : "N/A")})");
+            }
+        }
     }
 
 }

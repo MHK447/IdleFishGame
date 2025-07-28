@@ -17,7 +17,6 @@ public class InGameSea : MonoBehaviour
 
     private InGameScrollSea ScrollSea;
 
-
     public void Set(int seaidx)
     {
         ScrollSea = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().GetScrollSea;

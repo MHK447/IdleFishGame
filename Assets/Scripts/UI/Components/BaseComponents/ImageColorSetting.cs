@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using BanpoFri;
 
 public class ImageColorSetting : MonoBehaviour
 {
-    public enum ImageType {Unknown, SpriteRenderer, Image, Renderer};
+    public enum ImageType { Unknown, SpriteRenderer, Image, Renderer };
     [SerializeField]
     protected ImageType currentImageType = ImageType.Unknown;
     [SerializeField]
     protected bool SetEventMode = false;
+    [SerializeField]
+    protected bool isAwake = true;
 
     [HideInInspector]
     [SerializeField]
@@ -23,83 +26,73 @@ public class ImageColorSetting : MonoBehaviour
 
     private void Start()
     {
-        //if(string.IsNullOrEmpty(keyColor)) {
-        //    return;
-        //}
+        if(!isAwake) return;        
+        if (string.IsNullOrEmpty(keyColor)) return;
 
-        //if(GameRoot.Instance.CurInGameType == InGameType.Main ||
-        //    SetEventMode == false ||
-        //    eventKeyColor.Count == 0)
-        //    SetImageColor(Config.Instance.GetImageColor(keyColor));
-        //else if(GameRoot.Instance.CurInGameType == InGameType.Event)
-        //{
-        //    var theme = GameRoot.Instance.EventSystem.CurOpendStage % 10000;
-        //    if (eventKeyColor.Count < theme) SetImageColor(Config.Instance.GetImageColor(keyColor));
-        //    else if(eventKeyColor[theme-1].Length == 0) SetImageColor(Config.Instance.GetImageColor(keyColor));
-
-        //    SetImageColor(Config.Instance.GetImageColor(eventKeyColor[theme-1]));
-        //}
-
+        SetImageColor(Config.Instance.GetImageColor(keyColor));
         UpdateColor();
     }
 
     public void UpdateColor()
     {
-
         if (string.IsNullOrEmpty(keyColor))
         {
             return;
         }
-
-        //if (GameRoot.Instance.CurInGameType == InGameType.Main ||
-        //    SetEventMode == false ||
-        //    eventKeyColor.Count == 0)
-            SetImageColor(Config.Instance.GetImageColor(keyColor));
-        //else if (GameRoot.Instance.CurInGameType == InGameType.Event)
-        //{
-        //    var theme = GameRoot.Instance.EventSystem.CurOpendStage % 10000;
-        //    if (eventKeyColor.Count < theme) SetImageColor(Config.Instance.GetImageColor(keyColor));
-        //    else if (eventKeyColor[theme - 1].Length == 0) SetImageColor(Config.Instance.GetImageColor(keyColor));
-
-        //    SetImageColor(Config.Instance.GetImageColor(eventKeyColor[theme - 1]));
-        //}
+        SetImageColor(Config.Instance.GetImageColor(keyColor));
     }
 
-    public void SetImageColor(Color color) 
+    public void ChangeColorKey(string colorKey)
     {
-        if(currentImageType == ImageType.Unknown) {
+        keyColor = colorKey;
+        UpdateColor();
+    }
+
+    public void SetImageColor(Color color)
+    {
+        if (currentImageType == ImageType.Unknown)
+        {
             return;
         }
 
-        if((currentImageType == ImageType.SpriteRenderer) && TrySetColorTo<SpriteRenderer>(color)) {
+        if ((currentImageType == ImageType.SpriteRenderer) && TrySetColorTo<SpriteRenderer>(color))
+        {
             currentImageType = ImageType.SpriteRenderer;
             return;
         }
 
-        if((currentImageType == ImageType.Image) && TrySetColorTo<Image>(color)) {
+        if ((currentImageType == ImageType.Image) && TrySetColorTo<Image>(color))
+        {
             currentImageType = ImageType.Image;
             return;
         }
 
-        if((currentImageType == ImageType.Renderer) && TrySetColorTo<Renderer>(color)) {
+        if ((currentImageType == ImageType.Renderer) && TrySetColorTo<Renderer>(color))
+        {
             currentImageType = ImageType.Renderer;
             return;
         }
     }
 
-    protected bool TrySetColorTo<T>(Color color) 
+    protected bool TrySetColorTo<T>(Color color)
     {
         var temp = GetComponent<T>();
 
-        if(temp == null) {
+        if (temp == null)
+        {
             return false;
         }
 
-        if(temp is SpriteRenderer) {
+        if (temp is SpriteRenderer)
+        {
             (temp as SpriteRenderer).color = color;
-        } else if (temp is Image) {
+        }
+        else if (temp is Image)
+        {
             (temp as Image).color = color;
-        } else if (temp is Renderer) {
+        }
+        else if (temp is Renderer)
+        {
             (temp as Renderer).material.SetColor("_Color", color);
         }
 

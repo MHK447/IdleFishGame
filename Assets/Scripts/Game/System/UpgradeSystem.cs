@@ -1,5 +1,7 @@
 using BanpoFri;
 using UnityEngine;
+using System.Numerics;
+using System;
 
 public class UpgradeSystem
 {
@@ -15,7 +17,7 @@ public class UpgradeSystem
     {
         if (GameRoot.Instance.UserData.Upgradedata.Count == 0)
         {
-            for (int i = 0; i < (int)UpgradeType.PriceMulti; i++)
+            for (int i = 0; i < (int)UpgradeType.PriceMulti + 1; i++)
             {
                 GameRoot.Instance.UserData.Upgradedata.Add(new UpgradeData() { Upgradeidx = i, Upgradelevel = 1 });
             }
@@ -44,5 +46,15 @@ public class UpgradeSystem
 
         return value;
 
+    }
+
+
+    public BigInteger GetUpgradeCost(int level, int baseCost, float power)
+    {
+        if (level <= 0) return new BigInteger(baseCost);
+
+        double costMultiplier = Math.Pow(level, power);
+        BigInteger finalCost = baseCost * new BigInteger(costMultiplier);
+        return finalCost;
     }
 }

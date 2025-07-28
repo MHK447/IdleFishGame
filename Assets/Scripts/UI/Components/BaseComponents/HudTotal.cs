@@ -33,6 +33,7 @@ public class HudTotal : UIBase
 
     public void OnClickUpgradeBtn()
     {
+        GameRoot.Instance.UISystem.OpenUI<PopupUpgrade>();
 
     }
 

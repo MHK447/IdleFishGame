@@ -115,7 +115,7 @@ public class FishingHookComponent : MonoBehaviour
     {
         var depthvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.WaterDepth);
 
-        FisshingHookObj.transform.DOMoveY(StartHookY - depthvalue, 2f).SetEase(Ease.OutBack).OnComplete(() =>
+        FisshingHookObj.transform.DOMoveY(StartHookY - depthvalue, 5f).SetEase(Ease.OutBack).OnComplete(() =>
         {
             GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.FishingIdle));
         });

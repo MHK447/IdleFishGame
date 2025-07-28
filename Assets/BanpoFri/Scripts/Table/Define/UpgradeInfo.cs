@@ -41,6 +41,13 @@ namespace BanpoFri
 			get { return _inceease_upgrade_cost;}
 			set { _inceease_upgrade_cost = value;}
 		}
+		[SerializeField]
+		private string _str_desc;
+		public string str_desc
+		{
+			get { return _str_desc;}
+			set { _str_desc = value;}
+		}
 
     }
 
