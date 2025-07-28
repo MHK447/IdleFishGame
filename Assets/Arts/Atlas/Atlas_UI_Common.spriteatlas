@@ -300,7 +300,7 @@ SpriteAtlas:
   - Common_Icon_Aquarium
   - Common_Ads_Bubble
   - Common_Focus
-  - Pictoicon_Anchor 1
+  - Common_Icon_Anchor
   - Pictoicon_Cancle 1
   - Common_Frame_BottomBg_Purple
   - Pictoicon_Moneybag 1

@@ -9,6 +9,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6991326980309725910, guid: ee64c09a136e04bf9b2199659ce5d023, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6991326980309725910, guid: ee64c09a136e04bf9b2199659ce5d023, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6991326980309725910, guid: ee64c09a136e04bf9b2199659ce5d023, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -50,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9207812892246154957, guid: ee64c09a136e04bf9b2199659ce5d023, type: 3}
       propertyPath: m_Name
-      value: Fish
+      value: Fish01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

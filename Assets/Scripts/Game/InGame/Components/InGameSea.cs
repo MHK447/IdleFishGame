@@ -21,7 +21,7 @@ public class InGameSea : MonoBehaviour
     public void Set(int seaidx)
     {
         ScrollSea = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().GetScrollSea;
-        
+
         foreach (var fish in FishList)
         {
             fish.ReturnSpawner();
@@ -33,24 +33,27 @@ public class InGameSea : MonoBehaviour
 
         if (td != null)
         {
+
             Depth = td.depth;
 
-            var tdfishlist = Tables.Instance.GetTable<FishInfo>().DataList.FindAll(x => x.max_depth > Depth && x.min_depth < Depth).ToList();
-
+            var tdfishlist = Tables.Instance.GetTable<FishInfo>().DataList.FindAll(x => x.max_depth > Depth && x.min_depth <= Depth).ToList();
 
             foreach (var fishspawn in FishSpawnList)
             {
                 var randvalue = Random.Range(0, tdfishlist.Count);
 
                 var fish = ScrollSea.FishSpawner.SpawnFish(tdfishlist[randvalue].idx);
-            
-                fish.transform.position = fishspawn.position;
-                fish.transform.rotation = fishspawn.rotation;
-                fish.transform.SetParent(this.transform , false);
+
+                fish.transform.SetParent(this.transform, false);
+                fish.transform.localPosition = fishspawn.localPosition;
 
                 FishList.Add(fish);
 
                 fish.Set(tdfishlist[randvalue].idx);
+
+                ProjectUtility.SetActiveCheck(fish.gameObject, true);
+
+
             }
 
         }

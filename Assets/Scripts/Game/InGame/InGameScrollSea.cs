@@ -12,7 +12,6 @@ public class InGameScrollSea : MonoBehaviour
     [SerializeField]
     private List<InGameSea> SeaList = new List<InGameSea>();
 
-    [HideInInspector]
     public FishSpawner FishSpawner;
 
     private float CameraMinY = -28.4f;
@@ -28,6 +27,8 @@ public class InGameScrollSea : MonoBehaviour
     public float moveSpeed = 5f;         // 얼마나 부드럽게 이동할지
 
     private int rowcount = 0;
+
+    private int CurrentSeaIdx = 0;
 
 
     void Awake()
@@ -147,5 +148,10 @@ public class InGameScrollSea : MonoBehaviour
         }
     }
 
+
+    // public InGameFish RandCatchFish()
+    // {
+    //     //return SeaList[rowcount].RandCatchFish();
+    // }
 
 }
