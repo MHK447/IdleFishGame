@@ -132,3 +132,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80722c897049c4a329b12f0abcb5928e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 2
+  movementBounds: {x: 8, y: 4}
+  changeDirectionInterval: 2
+  detectionDistance: 1
+  rotationSpeed: 3
+  maxRotationAngle: 45
+  targetFollowSpeed: 3
+  catchDistance: 0.5
+  targetDetectionRange: 5
+  respawnDelay: 1.5
+  respawnFadeTime: 1

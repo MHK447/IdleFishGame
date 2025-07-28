@@ -49,6 +49,13 @@ namespace BanpoFri
 			set { _fish_weight_max = value;}
 		}
 		[SerializeField]
+		private int _money_value;
+		public int money_value
+		{
+			get { return _money_value;}
+			set { _money_value = value;}
+		}
+		[SerializeField]
 		private string _fish_name;
 		public string fish_name
 		{

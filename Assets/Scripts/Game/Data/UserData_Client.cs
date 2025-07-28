@@ -83,7 +83,7 @@ public partial class UserDataSystem
     public List<int> Ordertest = new List<int>();
     public int Testmoney { get; set; } = 0;
     public List<string> Tutorial = new List<string>();
-    public IReactiveProperty<double> Money { get; private set; } = new ReactiveProperty<double>(0.0f);
+    public IReactiveProperty<System.Numerics.BigInteger> Money { get; private set; } = new ReactiveProperty<System.Numerics.BigInteger>(0);
     public int Abtestvalue { get; set; } = 0;
     public long Uuid { get; set; } = 0;
     public long Gamestarttime { get; set; } = 0;
@@ -106,7 +106,7 @@ public partial class UserDataSystem
         BuyInappIds.Clear();
 
 
-
+        mainData.Money.Value = HUDMoney.Value = BigInteger.Parse(flatBufferUserData.Money);
 
 
 
@@ -325,6 +325,11 @@ public partial class UserDataSystem
                         case (int)Config.CurrencyID.Cash:
                             {
                                 Cash.Value += (int)rewardCnt;
+                            }
+                            break;
+                        case (int)Config.CurrencyID.Money:
+                            {
+                                Money.Value += (int)rewardCnt;
                             }
                             break;
                     }

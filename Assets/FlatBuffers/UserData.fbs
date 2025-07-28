@@ -25,7 +25,6 @@ namespace BanpoFri.Data;
 
 table UserData {
 // @AutoCreate
-  money:double; // @ReactiveProperty
   cash:int = 0;// @ReactiveProperty
   buyinappids:string;
   tutorial:[string];
@@ -38,6 +37,8 @@ table UserData {
   fishingautoproperty:bool; //@ReactiveProperty
   upgradedata:[UpgradeData];
   aquariumdata:AquariumData;
+// @EndCreate
+  money:string;
 }
 
 table OptionData {

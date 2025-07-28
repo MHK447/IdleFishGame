@@ -180,6 +180,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8004488da7e234e35a8251a48d26a4de
+    m_Address: Effect/TextEffectMoney
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8830f135423dea14fbedb935559cf63b
     m_Address: Stage_Map_02
     m_ReadOnly: 0

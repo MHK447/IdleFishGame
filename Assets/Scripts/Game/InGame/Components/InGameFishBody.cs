@@ -24,6 +24,10 @@ public class InGameFishBody : MonoBehaviour
     [SerializeField] private float catchDistance = 0.5f; // 낚싯바늘을 무는 거리
     [SerializeField] private float targetDetectionRange = 5f; // 타겟 감지 범위
     
+    [Header("Respawn Settings")]
+    [SerializeField] private float respawnDelay = 1f; // 잡힌 후 다시 활동하기까지의 시간
+    [SerializeField] private float respawnFadeTime = 1f; // 페이드 인 시간
+    
     private Vector3 targetDirection;
     private Vector3 initialPosition;
     private float changeDirectionTimer;
@@ -34,7 +38,15 @@ public class InGameFishBody : MonoBehaviour
     private FishMovementMode movementMode = FishMovementMode.Random;
     private Transform currentTarget;
     private Vector3 lastTargetPosition;
+    private System.Action<int> onCaughtCallback; // 잡혔을 때 호출할 콜백
     
+    // 리스폰 관련
+    private float respawnTimer = 0f;
+    private bool isRespawning = false;
+    private SpriteRenderer spriteRenderer;
+
+    private int FishIdx = 0;
+
     void Start()
     {
         InitializeFish();
@@ -42,6 +54,12 @@ public class InGameFishBody : MonoBehaviour
     
     void Update()
     {
+        if (isRespawning)
+        {
+            HandleRespawn();
+            return;
+        }
+        
         if (isMoving)
         {
             switch (movementMode)
@@ -60,6 +78,11 @@ public class InGameFishBody : MonoBehaviour
             Handle2DRotation();
         }
     }
+
+    public void Init(int fishidx)
+    {
+        FishIdx = fishidx;
+    }
     
     private void InitializeFish()
     {
@@ -68,6 +91,15 @@ public class InGameFishBody : MonoBehaviour
         changeDirectionTimer = changeDirectionInterval;
         isMoving = true;
         movementMode = FishMovementMode.Random;
+        
+        // SpriteRenderer 찾기 (자식에 있을 수 있음)
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            Color color = spriteRenderer.color;
+            color.a = 1f;
+            spriteRenderer.color = color;
+        }
     }
     
     private void HandleRandomMovement()
@@ -109,7 +141,7 @@ public class InGameFishBody : MonoBehaviour
     
     private void HandleCaughtState()
     {
-        // 낚싯바늘을 물었을 때는 타겟을 따라다님 (가만히 있지 않고 끌려다님)
+        // 낚싯바늘을 물었을 때는 타겟을 따라다님
         if (currentTarget != null)
         {
             Vector3 targetPos = currentTarget.position;
@@ -123,6 +155,93 @@ public class InGameFishBody : MonoBehaviour
             }
             
             lastTargetPosition = targetPos;
+        }
+        
+        // 일정 시간 후 리스폰 시작
+        respawnTimer += Time.deltaTime;
+        if (respawnTimer >= respawnDelay)
+        {
+            StartRespawn();
+        }
+    }
+    
+    private void HandleRespawn()
+    {
+        // 페이드 아웃 후 리스폰
+        if (spriteRenderer != null)
+        {
+            Color color = spriteRenderer.color;
+            color.a = Mathf.Lerp(color.a, 0f, Time.deltaTime * 3f);
+            spriteRenderer.color = color;
+            
+            // 완전히 투명해지면 리스폰 위치로 이동
+            if (color.a < 0.1f)
+            {
+                RespawnAtRightSide();
+            }
+        }
+        else
+        {
+            // SpriteRenderer가 없으면 바로 리스폰
+            RespawnAtRightSide();
+        }
+    }
+    
+    private void StartRespawn()
+    {
+        isRespawning = true;
+        respawnTimer = 0f;
+    }
+    
+    private void RespawnAtRightSide()
+    {
+        // 오른쪽 경계에서 리스폰
+        Vector3 respawnPos = initialPosition;
+        respawnPos.x = initialPosition.x + movementBounds.x * 0.5f; // 오른쪽 경계
+        respawnPos.y = initialPosition.y + Random.Range(-movementBounds.y * 0.3f, movementBounds.y * 0.3f); // 약간의 Y 변화
+        
+        transform.position = respawnPos;
+        
+        // 왼쪽을 보도록 설정
+        if (facingRight)
+        {
+            Flip();
+        }
+        
+        // 왼쪽 방향으로 초기 이동 설정
+        targetDirection = Vector3.left;
+        
+        // 상태 리셋
+        currentTarget = null;
+        movementMode = FishMovementMode.Random;
+        isRespawning = false;
+        
+        // 페이드 인 시작
+        StartCoroutine(FadeIn());
+        
+        // 움직임 재시작
+        changeDirectionTimer = changeDirectionInterval;
+    }
+    
+    private System.Collections.IEnumerator FadeIn()
+    {
+        if (spriteRenderer != null)
+        {
+            Color color = spriteRenderer.color;
+            color.a = 0f;
+            spriteRenderer.color = color;
+            
+            float elapsed = 0f;
+            while (elapsed < respawnFadeTime)
+            {
+                elapsed += Time.deltaTime;
+                color.a = Mathf.Lerp(0f, 1f, elapsed / respawnFadeTime);
+                spriteRenderer.color = color;
+                yield return null;
+            }
+            
+            color.a = 1f;
+            spriteRenderer.color = color;
         }
     }
     
@@ -237,12 +356,20 @@ public class InGameFishBody : MonoBehaviour
     private void CatchTarget()
     {
         movementMode = FishMovementMode.Caught;
-        // 물고기가 낚싯바늘을 물었을 때의 처리
-        // 필요하다면 여기서 이벤트 호출 가능
+        respawnTimer = 0f; // 타이머 초기화
+        
+        // 물고기가 낚싯바늘을 물었을 때 콜백 호출
+        onCaughtCallback?.Invoke(FishIdx);
+        onCaughtCallback = null; // 한 번만 호출하도록
     }
     
     // 공개 함수들
     public void SetTarget(Transform target)
+    {
+        SetTarget(target, null);
+    }
+
+    public void SetTarget(Transform target, System.Action<int> onCaught)
     {
         currentTarget = target;
         if (target != null)
@@ -254,12 +381,14 @@ public class InGameFishBody : MonoBehaviour
         {
             SetMovementMode(FishMovementMode.Random);
         }
+        onCaughtCallback = onCaught;
     }
-    
+
     public void ClearTarget()
     {
         currentTarget = null;
         SetMovementMode(FishMovementMode.Random);
+        onCaughtCallback = null;
     }
     
     public void SetMovementMode(FishMovementMode mode)
@@ -305,6 +434,12 @@ public class InGameFishBody : MonoBehaviour
         moveSpeed = speed;
     }
     
+    // 즉시 리스폰 (외부에서 호출 가능)
+    public void ForceRespawn()
+    {
+        StartRespawn();
+    }
+    
     // 디버그용 - Scene 뷰에서 움직임 영역 표시
     void OnDrawGizmosSelected()
     {
@@ -324,6 +459,15 @@ public class InGameFishBody : MonoBehaviour
                 Gizmos.color = Color.red;
                 Gizmos.DrawLine(transform.position, currentTarget.position);
                 Gizmos.DrawWireSphere(currentTarget.position, catchDistance);
+            }
+            
+            // 리스폰 위치
+            if (isRespawning)
+            {
+                Vector3 respawnPos = initialPosition;
+                respawnPos.x = initialPosition.x + movementBounds.x * 0.5f;
+                Gizmos.color = Color.green;
+                Gizmos.DrawWireSphere(respawnPos, 0.5f);
             }
         }
         else

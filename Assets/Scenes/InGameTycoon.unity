@@ -650,6 +650,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FishPrefab: {fileID: 9207812892246154957, guid: 6d4cc0332dd93415e91b0127613c2203, type: 3}
+--- !u!4 &1723302644 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8745624071581551872, guid: ed31bf5d034374f9cb0f6e237ec8c994, type: 3}
+  m_PrefabInstance: {fileID: 1952066813015002728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1952066813015002728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -658,6 +663,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 672383275713709279, guid: ed31bf5d034374f9cb0f6e237ec8c994, type: 3}
+      propertyPath: TopRopeTr
+      value: 
+      objectReference: {fileID: 1723302644}
     - target: {fileID: 971545278604212649, guid: ed31bf5d034374f9cb0f6e237ec8c994, type: 3}
       propertyPath: m_LocalPosition.y
       value: 8.06

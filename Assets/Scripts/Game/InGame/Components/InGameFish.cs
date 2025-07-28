@@ -28,7 +28,8 @@ public class InGameFish : MonoBehaviour
         {
             FishBody = handle.Result.GetComponent<InGameFishBody>();
             FishBody.transform.SetParent(this.transform, false);
-            
+            FishBody.Init(fishidx);
+
             // 물고기 종류에 따른 움직임 설정
             SetupFishMovement();
         };
@@ -119,5 +120,38 @@ public class InGameFish : MonoBehaviour
             FishBody.SetMoveSpeed(speed);
             FishBody.SetMovementBounds(bounds);
         }
+    }
+
+    // 타겟 관련 메서드들
+    public void SetTarget(Transform target)
+    {
+        if (FishBody != null)
+            FishBody.SetTarget(target);
+    }
+
+    public void SetTarget(Transform target, System.Action<int> onCatchCallback)
+    {
+        if (FishBody != null)
+            FishBody.SetTarget(target, onCatchCallback);
+    }
+
+    public void ClearTarget()
+    {
+        if (FishBody != null)
+            FishBody.ClearTarget();
+    }
+
+    public bool IsCaught()
+    {
+        if (FishBody != null)
+            return FishBody.IsCaught();
+        return false;
+    }
+
+    public bool IsTargetInRange(Transform target)
+    {
+        if (FishBody != null)
+            return FishBody.IsTargetInRange(target);
+        return false;
     }
 }

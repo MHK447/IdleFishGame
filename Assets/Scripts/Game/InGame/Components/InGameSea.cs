@@ -60,4 +60,52 @@ public class InGameSea : MonoBehaviour
 
 
     }
+
+    public InGameFish RandCatchFish()
+    {
+        // 활성화된 물고기들 중에서 아직 잡히지 않은 물고기들만 필터링
+        var availableFishes = FishList.FindAll(x => x.gameObject.activeSelf && !x.IsCaught()).ToList();
+        
+        if (availableFishes.Count > 0)
+        {
+            int randomIndex = Random.Range(0, availableFishes.Count);
+            return availableFishes[randomIndex];
+        }
+        
+        return null;
+    }
+
+    public InGameFish GetClosestFish(Vector3 targetPosition)
+    {
+        // 활성화된 물고기들 중에서 아직 잡히지 않은 물고기들만 필터링
+        var availableFishes = FishList.FindAll(x => x.gameObject.activeSelf && !x.IsCaught()).ToList();
+        
+        if (availableFishes.Count == 0)
+            return null;
+
+        InGameFish closestFish = null;
+        float closestDistance = float.MaxValue;
+
+        foreach (var fish in availableFishes)
+        {
+            float distance = Vector3.Distance(fish.transform.position, targetPosition);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestFish = fish;
+            }
+        }
+
+        return closestFish;
+    }
+
+    public List<InGameFish> GetActiveFishes()
+    {
+        return FishList.FindAll(x => x.gameObject.activeSelf && !x.IsCaught()).ToList();
+    }
+
+    public float GetDistanceToPoint(Vector3 point)
+    {
+        return Vector3.Distance(transform.position, point);
+    }
 }

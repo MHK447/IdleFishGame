@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 1024156537077836178}
   - component: {fileID: 50016720465216129}
   - component: {fileID: 8691965728328731074}
+  - component: {fileID: 6871632844196737123}
   m_Layer: 5
   m_Name: TextEffect_GetMoney
   m_TagString: Untagged
@@ -188,7 +189,7 @@ RectTransform:
   m_GameObject: {fileID: 7477977995340301213}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6443576967962757943}
@@ -197,7 +198,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1024156537077836178
 Animator:
@@ -245,6 +246,20 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 100
   m_SortAtRoot: 0
+--- !u!114 &6871632844196737123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477977995340301213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac41eed4180843309516dd553684613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles: []
+  MoneyText: {fileID: 8937205950649889275}
 --- !u!1001 &3815137071690756644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -375,3 +390,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8745925318361794790, guid: 169dbd8849f643b42ad29fb079497f19, type: 3}
   m_PrefabInstance: {fileID: 3815137071690756644}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8937205950649889275 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5257182365439181791, guid: 169dbd8849f643b42ad29fb079497f19, type: 3}
+  m_PrefabInstance: {fileID: 3815137071690756644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -149,9 +149,41 @@ public class InGameScrollSea : MonoBehaviour
     }
 
 
-    // public InGameFish RandCatchFish()
-    // {
-    //     //return SeaList[rowcount].RandCatchFish();
-    // }
+    public InGameFish RandCatchFish(System.Action<int> cauthaction)
+    {
+        if (HookCompoent == null || HookCompoent.FisshingHookTr == null || SeaList.Count == 0)
+            return null;
+
+        Vector3 hookPosition = HookCompoent.FisshingHookTr.position;
+        
+        // 낚싯바늘에 가장 가까운 바다 찾기
+        InGameSea closestSea = null;
+        float closestDistance = float.MaxValue;
+        
+        foreach (var sea in SeaList)
+        {
+            float distance = sea.GetDistanceToPoint(hookPosition);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestSea = sea;
+            }
+        }
+        
+        // 가장 가까운 바다에서 랜덤한 물고기 선택
+        if (closestSea != null)
+        {
+            InGameFish targetFish = closestSea.RandCatchFish();
+            
+            if (targetFish != null)
+            {
+                // 선택된 물고기가 낚싯바늘을 타겟으로 설정하고 콜백 등록
+                targetFish.SetTarget(HookCompoent.FisshingHookTr, cauthaction);
+                return targetFish;
+            }
+        }
+        
+        return null;
+    }
 
 }

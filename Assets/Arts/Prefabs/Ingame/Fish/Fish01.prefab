@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7537377159578397052, guid: ee64c09a136e04bf9b2199659ce5d023, type: 3}
+      propertyPath: respawnDelay
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 9207812892246154957, guid: ee64c09a136e04bf9b2199659ce5d023, type: 3}
       propertyPath: m_Name
       value: Fish01

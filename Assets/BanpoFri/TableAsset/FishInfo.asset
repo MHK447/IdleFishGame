@@ -26,6 +26,7 @@ MonoBehaviour:
     _weight_price: 1
     _fish_weight_min: 1
     _fish_weight_max: 5
+    _money_value: 10
     _fish_name: 
     _fish_desc: 
   - _idx: 2
@@ -34,6 +35,7 @@ MonoBehaviour:
     _weight_price: 2
     _fish_weight_min: 1
     _fish_weight_max: 5
+    _money_value: 20
     _fish_name: 
     _fish_desc: 
   - _idx: 3
@@ -42,6 +44,7 @@ MonoBehaviour:
     _weight_price: 3
     _fish_weight_min: 1
     _fish_weight_max: 10
+    _money_value: 30
     _fish_name: 
     _fish_desc: 
   - _idx: 4
@@ -50,6 +53,7 @@ MonoBehaviour:
     _weight_price: 5
     _fish_weight_min: 1
     _fish_weight_max: 20
+    _money_value: 40
     _fish_name: 
     _fish_desc: 
   - _idx: 5
@@ -58,5 +62,6 @@ MonoBehaviour:
     _weight_price: 5
     _fish_weight_min: 1
     _fish_weight_max: 30
+    _money_value: 50
     _fish_name: 
     _fish_desc: 

@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using BanpoFri;
+using TMPro;    
 
-
-[EffectPath("Effect/TextEffectMoney",false , true)]
+[EffectPath("Effect/TextEffectMoney", false, true)]
 public class TextEffectMoney : Effect
 {
     [SerializeField]
-    private Text MoneyText;
+    private TextMeshProUGUI MoneyText;
 
     public void SetText(System.Numerics.BigInteger value)
     {
-        MoneyText.text = ProjectUtility.CalculateMoneyToString(value);
+        GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, value);
+        MoneyText.text = $"+{ ProjectUtility.CalculateMoneyToString(value)}";
     }
 }

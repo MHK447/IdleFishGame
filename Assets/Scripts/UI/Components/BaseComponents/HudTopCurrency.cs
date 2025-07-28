@@ -9,23 +9,16 @@ using UniRx;
 public class HudTopCurrency : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI EnergycoinText;
+    private TextMeshProUGUI MoneyText;
 
     [SerializeField]
-    private TextMeshProUGUI EnergyCoinTimeText;
-
-    [SerializeField]
-    private GameObject EnergyRoot;
+    private GameObject MoneyRoot;
 
     [SerializeField]
     private TextMeshProUGUI CashText;
 
     [SerializeField]
     private Button CashBtn;
-
-    [SerializeField]
-    private Button EnergyBtn;
-
 
 
     private CompositeDisposable disposables = new CompositeDisposable();
@@ -34,32 +27,20 @@ public class HudTopCurrency : MonoBehaviour
     void Awake()
     {
        //CashBtn.onClick.AddListener(OnClickCash);
-        EnergyBtn.onClick.AddListener(OnClickEnergy);
     }
 
-
-    public void OnClickEnergy()
-    {
-        GameRoot.Instance.UISystem.OpenUI<PopupPurchaseLightning>(popup => popup.Init());
-    }
 
     void OnEnable()
     {
         disposables.Clear();
 
-        GameRoot.Instance.UserData.Cash.Subscribe(x =>
+        GameRoot.Instance.UserData.Money.Subscribe(x =>
         {
-
-            CashText.text = $"{x}";
+            MoneyText.text = ProjectUtility.CalculateMoneyToString(x);
         }).AddTo(disposables);
     }
 
     void OnDestroy()
-    {
-        disposables.Clear();
-    }
-
-    void OnDisable()
     {
         disposables.Clear();
     }
