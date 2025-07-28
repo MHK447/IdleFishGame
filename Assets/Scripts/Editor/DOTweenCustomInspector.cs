@@ -6,13 +6,13 @@ using DG.DOTweenEditor;
 using DG.Tweening;
 
 
-[CustomEditor(typeof(DotweenComponent))]
+[CustomEditor(typeof(DoTweenScriptComponent))]
 public class DOTweenCustomInspector : Editor
 {
 
 
 
-    DotweenComponent targetComponent;
+    DoTweenScriptComponent targetComponent;
 
     private void OnDisable()
     {
@@ -60,7 +60,7 @@ public class DOTweenCustomInspector : Editor
     {
         base.OnInspectorGUI();
 
-        targetComponent = (DotweenComponent)target;
+        targetComponent = (DoTweenScriptComponent)target;
 
 
         EditorGUILayout.Space();
