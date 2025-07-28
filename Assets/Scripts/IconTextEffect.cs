@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Treeplla;
+using BanpoFri;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,13 +22,12 @@ public class IconTextEffect : Effect
     }
 
     void HideActive(){
-        TpUtility.SetActiveCheck(gameObject , false);
+        ProjectUtility.SetActiveCheck(gameObject , false);
     }
 
     public void SetText_NotRemove(string _text){
         text.text = $"+{_text}";
         ani.Play("Show", 0, 0f);
-        action_endCB = HideActive;
     }
 
     public void Reset()

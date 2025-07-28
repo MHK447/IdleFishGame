@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 06a48d8af5ddc4c22844008a656d4e67
+    m_Address: Fish_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0ca7532bea97c7a4387034d0ae0367ec
     m_Address: UI/Popup/PopupInGameUI
     m_ReadOnly: 0
@@ -125,6 +130,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61c93f0ce8ef341679cd4afaa0f04dbc
+    m_Address: Fish_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 64b11461136fe4bdb9c4e3e3cf49e08a
     m_Address: Atlas_UI_Common
     m_ReadOnly: 0
@@ -162,6 +172,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7be9d1a093180477b99de9cf0026994e
     m_Address: UI/Popup/Popup_FullWidth01_White
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e4a216e589dc43009565c182383dac2
+    m_Address: Fish_2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -267,6 +282,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cbbfb779e4df8724a8073e970556f4b1
     m_Address: UI/Popup/PopupAdRemove
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ccef98b4a78ce45e1b66ebd06704bf8c
+    m_Address: Fish_3
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

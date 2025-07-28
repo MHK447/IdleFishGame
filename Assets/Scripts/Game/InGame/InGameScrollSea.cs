@@ -9,46 +9,34 @@ public class InGameScrollSea : MonoBehaviour
     [SerializeField]
     private FishingHookComponent HookCompoent;
 
+    [SerializeField]
+    private List<InGameSea> SeaList = new List<InGameSea>();
+
+    [HideInInspector]
+    public FishSpawner FishSpawner;
+
     private float CameraMinY = -28.4f;
 
     private int currentSection = 0;        // 현재 카메라가 있는 구간
     private int previousSection = 0;       // 이전 프레임의 구간
 
-
-
-
     private Vector3 InitCamPos;
 
     private List<Vector3> InitMappos = new List<Vector3>();
 
-    private float OffsetY = 5f;
-
-
-
-
     public float descendAmount = 2f;     // 얼마나 내릴지
     public float moveSpeed = 5f;         // 얼마나 부드럽게 이동할지
 
-
-    //private Vector2[] SeaVecPoss =  {new Vector2(-100f , -100f), new}
-
-    private bool isMoving = false;
-
-
-    [SerializeField]
-    private List<Transform> SeaTrList = new List<Transform>();
-
     private int rowcount = 0;
 
-    private float previousCameraY = 0f; // 이전 프레임의 카메라 Y 위치를 저장할 변수
 
     void Awake()
     {
         InitCamPos = SubSeaCamera.transform.position;
 
-        foreach (Transform sea in SeaTrList)
+        foreach (var sea in SeaList)
         {
-            InitMappos.Add(sea.localPosition);
+            InitMappos.Add(sea.transform.localPosition);
         }
         
         // 초기 구간을 실제 카메라 위치를 기준으로 계산
@@ -71,6 +59,11 @@ public class InGameScrollSea : MonoBehaviour
     public void Init()
     {
         HookCompoent.Init();
+
+        foreach (var sea in SeaList)
+        {
+            sea.Set(1);
+        }
     }
 
     void Update()
@@ -106,27 +99,27 @@ public class InGameScrollSea : MonoBehaviour
                 // 현재 보이는 가장 위쪽 오브젝트를 아래쪽으로 이동
                 float newY = CameraMinY - (currentSection + 1) * 27.21f;
                 
-                SeaTrList[rowcount].transform.localPosition = new Vector3(
-                    SeaTrList[rowcount].transform.localPosition.x,
+                SeaList[rowcount].transform.localPosition = new Vector3(
+                    SeaList[rowcount].transform.localPosition.x,
                     newY,
-                    SeaTrList[rowcount].transform.localPosition.z
+                    SeaList[rowcount].transform.localPosition.z 
                 );
 
-                rowcount = (rowcount + 1) % SeaTrList.Count;
+                rowcount = (rowcount + 1) % SeaList.Count;
             }
             // 위로 올라갔을 때 (구간 번호 감소)
             else if (currentSection < previousSection)
             {
                 // rowcount를 먼저 조정
-                rowcount = (rowcount - 1 + SeaTrList.Count) % SeaTrList.Count;
+                rowcount = (rowcount - 1 + SeaList.Count) % SeaList.Count;
                 
                 // 현재 구간 위쪽에 배치 (더 안전한 계산)
                 float newY = CameraMinY - Mathf.Max(0, currentSection - 1) * 27.21f;
                 
-                SeaTrList[rowcount].transform.localPosition = new Vector3(
-                    SeaTrList[rowcount].transform.localPosition.x,
+                SeaList[rowcount].transform.localPosition = new Vector3(
+                    SeaList[rowcount].transform.localPosition.x,
                     newY,
-                    SeaTrList[rowcount].transform.localPosition.z
+                    SeaList[rowcount].transform.localPosition.z
                 );
             }
             
@@ -143,9 +136,9 @@ public class InGameScrollSea : MonoBehaviour
             SubSeaCamera.transform.position = InitCamPos;
 
             // Sea 오브젝트들의 위치만 초기화
-            for (int i = 0; i < SeaTrList.Count; i++)
+            for (int i = 0; i < SeaList.Count; i++)
             {
-                SeaTrList[i].transform.localPosition = InitMappos[i];
+                SeaList[i].transform.localPosition = InitMappos[i];
             }
             
             // 현재 섹션 정보만 초기화

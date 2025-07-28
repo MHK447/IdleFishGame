@@ -16,6 +16,8 @@ public class InGameTycoon : InGameMode
     [SerializeField]
     private InGameScrollSea ScrollSea;
 
+    public InGameScrollSea GetScrollSea { get { return ScrollSea; } }
+
 
     private int ProductHeroIdxs = 0;
     public override void Load()
