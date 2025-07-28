@@ -16,13 +16,13 @@ MonoBehaviour:
   - key_string: Black
     color: {r: 0, g: 0, b: 0, a: 1}
   - key_string: Brown
-    color: {r: 0.3490566, g: 0.18907733, b: 0.07409222, a: 1}
+    color: {r: 0.32156864, g: 0.22352941, b: 0.14509805, a: 1}
   - key_string: White
     color: {r: 1, g: 0.9882353, b: 0.9607843, a: 1}
   - key_string: DarkBlue
     color: {r: 0.105882354, g: 0.34901962, b: 0.5568628, a: 1}
   - key_string: Red
-    color: {r: 0.6509804, g: 0.15294118, b: 0.11764706, a: 1}
+    color: {r: 0.8584906, g: 0.2647946, b: 0.22272164, a: 1}
   - key_string: BlueGreen
     color: {r: 0, g: 0.4528302, b: 0.35555553, a: 1}
   - key_string: Yellow
