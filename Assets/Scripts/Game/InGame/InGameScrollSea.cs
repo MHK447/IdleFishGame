@@ -166,6 +166,7 @@ public class InGameScrollSea : MonoBehaviour
             Vector3 currentPos = SeaList[i].transform.localPosition;
             Vector3 targetPos = new Vector3(currentPos.x, requiredPositions[i], currentPos.z);
             
+
             SeaList[i].transform.localPosition = targetPos;
         }
         

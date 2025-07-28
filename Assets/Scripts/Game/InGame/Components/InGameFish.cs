@@ -8,6 +8,7 @@ public class InGameFish : MonoBehaviour
 
     public int GetFishIdx { get { return FishIdx; } }
 
+    [SerializeField]
     private InGameFishBody FishBody;
 
     [Header("Fish Movement Settings")]
@@ -16,23 +17,11 @@ public class InGameFish : MonoBehaviour
 
     public void Set(int fishidx)
     {
-        if (FishBody != null && FishIdx != fishidx)
-        {
-            Destroy(FishBody.gameObject);
-            FishBody = null;
-        }
-
         FishIdx = fishidx;
+        
+        FishBody.Init(fishidx);
 
-        Addressables.InstantiateAsync($"Fish_{fishidx}").Completed += (handle) =>
-        {
-            FishBody = handle.Result.GetComponent<InGameFishBody>();
-            FishBody.transform.SetParent(this.transform, false);
-            FishBody.Init(fishidx);
-
-            // 물고기 종류에 따른 움직임 설정
-            SetupFishMovement();
-        };
+        SetupFishMovement();
     }
 
     private void SetupFishMovement()
@@ -46,7 +35,7 @@ public class InGameFish : MonoBehaviour
                 // 물고기 크기/종류에 따라 속도와 움직임 범위 조정
                 float speedMultiplier = GetSpeedMultiplier(fishData);
                 Vector2 movementBounds = GetMovementBounds(fishData);
-                
+
                 FishBody.SetMoveSpeed(defaultMoveSpeed * speedMultiplier);
                 FishBody.SetMovementBounds(movementBounds);
             }
@@ -56,7 +45,7 @@ public class InGameFish : MonoBehaviour
                 FishBody.SetMoveSpeed(defaultMoveSpeed);
                 FishBody.SetMovementBounds(defaultMovementBounds);
             }
-            
+
             // 움직임 시작
             FishBody.StartMovement();
         }
@@ -96,7 +85,7 @@ public class InGameFish : MonoBehaviour
         {
             FishBody.StopMovement();
         }
-        
+
         ProjectUtility.SetActiveCheck(this.gameObject, false);
     }
 

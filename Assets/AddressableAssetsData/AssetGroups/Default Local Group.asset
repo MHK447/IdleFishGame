@@ -25,6 +25,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 09dc682ca950848c0902959bf1504483
+    m_Address: Atlas_UI_InGameFish
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0ca7532bea97c7a4387034d0ae0367ec
     m_Address: UI/Popup/PopupInGameUI
     m_ReadOnly: 0
