@@ -255,7 +255,7 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - Common_Icon_Coin
   - Common_Icon_ShopGems_05
-  - Pictoicon_Caution 1
+  - Common_Icon_Reddot
   - Common_Btn_Default_Point
   - Pictoicon_Alert 1
   - Common_Icon_Goods_Gem
