@@ -410,6 +410,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6898517659297026380}
     m_Modifications:
+    - target: {fileID: 140507794516643828, guid: 335441a9d294e4aa283edba3d3240fcd, type: 3}
+      propertyPath: m_text
+      value: " <color=#6AB040>+{0}%  </color>\uB0B4\uB824\uAC00\uB294 \uC18D\uB3C4
+        \uC99D\uAC00"
+      objectReference: {fileID: 0}
+    - target: {fileID: 140507794516643828, guid: 335441a9d294e4aa283edba3d3240fcd, type: 3}
+      propertyPath: m_fontSize
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 140507794516643828, guid: 335441a9d294e4aa283edba3d3240fcd, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.38431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 140507794516643828, guid: 335441a9d294e4aa283edba3d3240fcd, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.43137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 140507794516643828, guid: 335441a9d294e4aa283edba3d3240fcd, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 140507794516643828, guid: 335441a9d294e4aa283edba3d3240fcd, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4284640896
+      objectReference: {fileID: 0}
     - target: {fileID: 919350944715342276, guid: 335441a9d294e4aa283edba3d3240fcd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1147,6 +1172,14 @@ PrefabInstance:
     - target: {fileID: 2851663316486770002, guid: 9a19794b814697d4fab955bdb7bba1df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899031789895294441, guid: 9a19794b814697d4fab955bdb7bba1df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899031789895294441, guid: 9a19794b814697d4fab955bdb7bba1df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3832932629032703140, guid: 9a19794b814697d4fab955bdb7bba1df, type: 3}
       propertyPath: m_Name

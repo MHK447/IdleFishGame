@@ -64,14 +64,14 @@ MonoBehaviour:
     _en: 
     _ja: 
   - _idx: str_speed_value
-    _ko: "{0} \uB0B4\uB824\uAC00\uB294 \uC18D\uB3C4 \uC99D\uAC00"
+    _ko: "<color=#6AB040>+{0}%</color> \uB0B4\uB824\uAC00\uB294 \uC18D\uB3C4 \uC99D\uAC00"
     _en: 
     _ja: 
   - _idx: str_depth_value
-    _ko: "{0} \uCD5C\uB300 \uC218\uC2EC \uC99D\uAC00"
+    _ko: "<color=#6AB040>{0}m</color> \uCD5C\uB300 \uC218\uC2EC \uC99D\uAC00"
     _en: 
     _ja: 
   - _idx: str_income_income
-    _ko: "{0} \uC218\uC785 \uC99D\uAC00"
+    _ko: "<color=#6AB040> x{0}\uBC30</color> \uC218\uC785 \uC99D\uAC00"
     _en: 
     _ja: 
