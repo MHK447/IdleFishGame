@@ -13,8 +13,6 @@ public class InGameScrollSea : MonoBehaviour
     [SerializeField]
     private List<InGameSea> SeaList = new List<InGameSea>();
 
-    public FishSpawner FishSpawner;
-
     private float CameraMinY = -28.4f;
 
     private Vector3 InitCamPos;
@@ -44,14 +42,15 @@ public class InGameScrollSea : MonoBehaviour
     public void Init()
     {
         HookCompoent.Init();
-        currentDepthLevel = 1;
+        currentDepthLevel = 0;
         prevCameraY = InitCamPos.y;
 
         // 초기 바다들을 깊이에 맞게 설정
         for (int i = 0; i < SeaList.Count; i++)
         {
-            int seaDepthLevel = currentDepthLevel + i;
-            SeaList[i].Set(seaDepthLevel);
+            currentDepthLevel++;
+            SeaList[i].Init();
+            SeaList[i].Set(i + 1);
         }
     }
 
@@ -177,7 +176,7 @@ public class InGameScrollSea : MonoBehaviour
             // 깊이 레벨 계산 및 바다 정보 업데이트
             currentDepthLevel++;
             int newDepthLevel = currentDepthLevel + SeaList.Count - 1;
-            farthestSea.Set(1);
+            farthestSea.Set(currentDepthLevel);
         }
     }
 
@@ -198,10 +197,13 @@ public class InGameScrollSea : MonoBehaviour
         }
         
         // y포지션이 40 정도 차이가 나면 재배치
-        if (farthestSea != null && maxDistance > 40f && currentDepthLevel > 1)
+        if (farthestSea != null && maxDistance > 40f && currentDepthLevel > 4)
         {
             // 가장 위에 있는 바다 찾기
             InGameSea topSea = SeaList.OrderByDescending(s => s.transform.localPosition.y).First();
+
+
+            InGameSea DownSea = SeaList.OrderByDescending(s => s.transform.localPosition.y).First();
             float newY = topSea.transform.localPosition.y + sectionDistance;
             
             // 바다를 새 위치로 이동
@@ -210,7 +212,7 @@ public class InGameScrollSea : MonoBehaviour
             
             // 깊이 레벨 계산 및 바다 정보 업데이트
             currentDepthLevel--;
-            farthestSea.Set(1);
+            farthestSea.Set(DownSea.GetSeaidx - SeaList.Count - 1);
         }
     }
 

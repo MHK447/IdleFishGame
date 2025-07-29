@@ -14,20 +14,6 @@ namespace BanpoFri
 			set { _idx = value;}
 		}
 		[SerializeField]
-		private int _min_depth;
-		public int min_depth
-		{
-			get { return _min_depth;}
-			set { _min_depth = value;}
-		}
-		[SerializeField]
-		private int _max_depth;
-		public int max_depth
-		{
-			get { return _max_depth;}
-			set { _max_depth = value;}
-		}
-		[SerializeField]
 		private int _weight_price;
 		public int weight_price
 		{

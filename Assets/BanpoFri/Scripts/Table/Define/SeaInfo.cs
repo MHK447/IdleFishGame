@@ -14,11 +14,11 @@ namespace BanpoFri
 			set { _idx = value;}
 		}
 		[SerializeField]
-		private int _depth;
-		public int depth
+		private List<int> _inhabit_fish;
+		public List<int> inhabit_fish
 		{
-			get { return _depth;}
-			set { _depth = value;}
+			get { return _inhabit_fish;}
+			set { _inhabit_fish = value;}
 		}
 
     }

@@ -2856,6 +2856,8 @@ MonoBehaviour:
   - {fileID: 1732836551010051859}
   - {fileID: 1918671793933745516}
   - {fileID: 2968447361409618802}
+  SeaIdx: 0
+  FishPrefab: {fileID: 9207812892246154957, guid: 6d4cc0332dd93415e91b0127613c2203, type: 3}
 --- !u!1 &8883796035350710398
 GameObject:
   m_ObjectHideFlags: 0

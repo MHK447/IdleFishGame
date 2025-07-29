@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using System.Collections;
 using BanpoFri;
+using UniRx;
 
 public class FishingHookComponent : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class FishingHookComponent : MonoBehaviour
 
     [SerializeField]
     private float hookDownSpeed = 2f;  // 내려가는 속도 (유닛/초)
-    
+
     [SerializeField]
     private float hookUpSpeed = 5f;    // 올라가는 속도 (유닛/초)
 
@@ -82,6 +83,8 @@ public class FishingHookComponent : MonoBehaviour
         ScrollSea = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().GetScrollSea;
 
         GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.HookDown));
+
+
     }
 
     // 깊이는 유지하면서 위치만 리셋하는 메서드
@@ -108,7 +111,7 @@ public class FishingHookComponent : MonoBehaviour
 
         // 낚시줄 길이 조정
         UpdateLineLength();
-        
+
         // 훅 이동 처리
         UpdateHookMovement();
     }
@@ -122,16 +125,17 @@ public class FishingHookComponent : MonoBehaviour
     private void UpdateHookMovement()
     {
         Vector3 currentPos = FisshingHookObj.position;
-        
+
         switch (CurHookState)
         {
             case FishingHookState.HookDown:
                 if (currentPos.y > targetY)
                 {
-                    float newY = currentPos.y - hookDownSpeed * Time.deltaTime;
+                    var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.FisihngSpeeed);
+                    float newY = currentPos.y - (hookDownSpeed + buffvalue) * Time.deltaTime;
                     newY = Mathf.Max(newY, targetY); // 목표점을 넘지 않도록
                     FisshingHookObj.position = new Vector3(currentPos.x, newY, currentPos.z);
-                    
+
                     // 목표 지점 도달 시
                     if (newY <= targetY)
                     {
@@ -139,14 +143,15 @@ public class FishingHookComponent : MonoBehaviour
                     }
                 }
                 break;
-                
+
             case FishingHookState.HookUp:
                 if (currentPos.y < targetY)
                 {
-                    float newY = currentPos.y + hookUpSpeed * Time.deltaTime;
+                    var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.FisihngSpeeed);
+                    float newY = currentPos.y + (hookUpSpeed + buffvalue) * Time.deltaTime;
                     newY = Mathf.Min(newY, targetY); // 목표점을 넘지 않도록
                     FisshingHookObj.position = new Vector3(currentPos.x, newY, currentPos.z);
-                    
+
                     // 목표 지점 도달 시
                     if (newY >= targetY)
                     {
@@ -189,9 +194,11 @@ public class FishingHookComponent : MonoBehaviour
 
         if (fishinfotd != null)
         {
+            System.Numerics.BigInteger moneyvalue = fishinfotd.money_value * (long)GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.PriceMulti);
+
             GameRoot.Instance.EffectSystem.MultiPlay<TextEffectMoney>(TopRopeTr.position, x =>
             {
-                x.SetText(fishinfotd.money_value);
+                x.SetText(moneyvalue);
                 x.SetAutoRemove(true, 1.5f);
             });
         }

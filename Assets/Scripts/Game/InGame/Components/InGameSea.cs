@@ -10,6 +10,14 @@ public class InGameSea : MonoBehaviour
     [SerializeField]
     private List<Transform> FishSpawnList = new List<Transform>();
 
+    [SerializeField]
+    private int SeaIdx = 0;
+
+    public int GetSeaidx { get { return SeaIdx; } }
+
+    [SerializeField]
+    private GameObject FishPrefab;
+
 
     private List<InGameFish> FishList = new List<InGameFish>();
 
@@ -17,48 +25,39 @@ public class InGameSea : MonoBehaviour
 
     private InGameScrollSea ScrollSea;
 
+    public void Init()
+    {
+        FishList.Clear();
+
+        foreach (var fishspawn in FishSpawnList)
+        {
+            var fish = Instantiate(FishPrefab, transform).GetComponent<InGameFish>();
+
+            fish.transform.SetParent(this.transform, false);
+            fish.transform.localPosition = fishspawn.localPosition;
+
+            FishList.Add(fish);
+
+        }
+    }
+
     public void Set(int seaidx)
     {
+        SeaIdx = seaidx;
+
         ScrollSea = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().GetScrollSea;
-
-        foreach (var fish in FishList)
-        {
-            fish.ReturnSpawner();
-        }
-
-        FishList.Clear();
 
         var td = Tables.Instance.GetTable<SeaInfo>().GetData(seaidx);
 
         if (td != null)
-        {
-
-            Depth = td.depth;
-
-            //var tdfishlist = Tables.Instance.GetTable<FishInfo>().DataList.FindAll(x => x.max_depth > Depth && x.min_depth <= Depth).ToList();
-            var tdfishlist = Tables.Instance.GetTable<FishInfo>().DataList.ToList();
-
-            foreach (var fishspawn in FishSpawnList)
+        {   
+            for (int i = 0; i < FishList.Count; ++i)
             {
-                var randvalue = Random.Range(0, tdfishlist.Count);
+                var randvalue = Random.Range(0, td.inhabit_fish.Count);
 
-                var fish = ScrollSea.FishSpawner.SpawnFish(tdfishlist[randvalue].idx);
-
-                fish.transform.SetParent(this.transform, false);
-                fish.transform.localPosition = fishspawn.localPosition;
-
-                FishList.Add(fish);
-
-                fish.Set(tdfishlist[randvalue].idx);
-
-                ProjectUtility.SetActiveCheck(fish.gameObject, true);
-
-
+                FishList[i].Set(td.inhabit_fish[randvalue]);
             }
-
         }
-
-
     }
 
     public InGameFish RandCatchFish()
