@@ -35,7 +35,8 @@ public class InGameSea : MonoBehaviour
 
             Depth = td.depth;
 
-            var tdfishlist = Tables.Instance.GetTable<FishInfo>().DataList.FindAll(x => x.max_depth > Depth && x.min_depth <= Depth).ToList();
+            //var tdfishlist = Tables.Instance.GetTable<FishInfo>().DataList.FindAll(x => x.max_depth > Depth && x.min_depth <= Depth).ToList();
+            var tdfishlist = Tables.Instance.GetTable<FishInfo>().DataList.ToList();
 
             foreach (var fishspawn in FishSpawnList)
             {
@@ -64,13 +65,13 @@ public class InGameSea : MonoBehaviour
     {
         // 활성화된 물고기들 중에서 아직 잡히지 않은 물고기들만 필터링
         var availableFishes = FishList.FindAll(x => x.gameObject.activeSelf && !x.IsCaught()).ToList();
-        
+
         if (availableFishes.Count > 0)
         {
             int randomIndex = Random.Range(0, availableFishes.Count);
             return availableFishes[randomIndex];
         }
-        
+
         return null;
     }
 
@@ -78,7 +79,7 @@ public class InGameSea : MonoBehaviour
     {
         // 활성화된 물고기들 중에서 아직 잡히지 않은 물고기들만 필터링
         var availableFishes = FishList.FindAll(x => x.gameObject.activeSelf && !x.IsCaught()).ToList();
-        
+
         if (availableFishes.Count == 0)
             return null;
 

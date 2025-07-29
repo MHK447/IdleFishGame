@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class InGameScrollSea : MonoBehaviour
 {
@@ -22,10 +23,17 @@ public class InGameScrollSea : MonoBehaviour
 
     private int CurrentSeaIdx = 0;
 
+    // 무한 스크롤링을 위한 새 변수들
+    private float prevCameraY;
+    private float sectionDistance = 27.21f;
+    private float cameraViewHeight = 20f; // 카메라가 보는 영역 높이
+    private int currentDepthLevel = 1; // 현재 깊이 레벨
+
 
     void Awake()
     {
         InitCamPos = SubSeaCamera.transform.position;
+        prevCameraY = InitCamPos.y;
 
         foreach (var sea in SeaList)
         {
@@ -36,10 +44,14 @@ public class InGameScrollSea : MonoBehaviour
     public void Init()
     {
         HookCompoent.Init();
+        currentDepthLevel = 1;
+        prevCameraY = InitCamPos.y;
 
-        foreach (var sea in SeaList)
+        // 초기 바다들을 깊이에 맞게 설정
+        for (int i = 0; i < SeaList.Count; i++)
         {
-            sea.Set(1);
+            int seaDepthLevel = currentDepthLevel + i;
+            SeaList[i].Set(seaDepthLevel);
         }
     }
 
@@ -57,8 +69,11 @@ public class InGameScrollSea : MonoBehaviour
 
         float currentCameraY = SubSeaCamera.transform.position.y;
 
-        // Sea 위치 재배치 로직 (완전히 새로 작성)
-        RepositionSeaObjects(currentCameraY);
+        // 무한 스크롤링 로직
+        HandleInfiniteScrolling(currentCameraY);
+
+        // 이전 카메라 위치 업데이트
+        prevCameraY = currentCameraY;
 
         // Hook이 너무 아래로 내려가면 위치만 리셋 (깊이 값은 유지)
         if (HookCompoent.FisshingHookTr.position.y < -100000f)
@@ -68,6 +83,7 @@ public class InGameScrollSea : MonoBehaviour
             
             // 카메라도 초기 위치로
             SubSeaCamera.transform.position = InitCamPos;
+            prevCameraY = InitCamPos.y;
 
             // Sea 오브젝트들의 위치만 초기화
             for (int i = 0; i < SeaList.Count; i++)
@@ -115,70 +131,88 @@ public class InGameScrollSea : MonoBehaviour
         return null;
     }
 
-    private void RepositionSeaObjects(float cameraY)
+    private void HandleInfiniteScrolling(float currentCameraY)
     {
-        float sectionDistance = 27.21f;
+        float cameraMovement = currentCameraY - prevCameraY;
         
-        // 카메라 위치를 기준으로 필요한 Sea 위치들 계산
-        List<float> requiredPositions = new List<float>();
-        
-        // 카메라 위쪽에서 아래쪽까지 Sea가 배치될 위치들 계산
-        float baseY = CameraMinY; // 기준점
-        
-        // 카메라가 기준점보다 위에 있으면 기준점 위치부터 시작
-        if (cameraY >= CameraMinY)
+        // 카메라가 아래로 이동 (더 깊이 들어감) - 더 민감하게 반응
+        if (cameraMovement < -0.5f)
         {
-            // 초기 위치들 사용
-            for (int i = 0; i < SeaList.Count && i < InitMappos.Count; i++)
-            {
-                requiredPositions.Add(InitMappos[i].y);
-            }
+            RepositionFarthestSeaForDownward(currentCameraY);
         }
-        else
+        // 카메라가 위로 이동 (덜 깊어짐) - 더 민감하게 반응
+        else if (cameraMovement > 0.5f)
         {
-            // 카메라가 아래에 있을 때 동적 계산
-            float depthFromBase = CameraMinY - cameraY;
-            int sectionsBelow = Mathf.FloorToInt(depthFromBase / sectionDistance);
-            
-            // 화면에 보여야 할 위치들 계산 (카메라 위아래로 여유있게)
-            for (int i = 0; i < SeaList.Count; i++)
-            {
-                float targetY;
-                
-                if (i == 0)
-                {
-                    // 첫 번째 Sea는 항상 카메라 근처 또는 약간 위에
-                    targetY = CameraMinY - sectionsBelow * sectionDistance;
-                }
-                else
-                {
-                    // 나머지 Sea들은 순차적으로 아래쪽에 배치
-                    targetY = CameraMinY - (sectionsBelow + i) * sectionDistance;
-                }
-                
-                requiredPositions.Add(targetY);
-            }
+            RepositionFarthestSeaForUpward(currentCameraY);
         }
-        
-        // 계산된 위치에 Sea 객체들 배치
-        for (int i = 0; i < SeaList.Count && i < requiredPositions.Count; i++)
-        {
-            Vector3 currentPos = SeaList[i].transform.localPosition;
-            Vector3 targetPos = new Vector3(currentPos.x, requiredPositions[i], currentPos.z);
-            
+    }
 
-            SeaList[i].transform.localPosition = targetPos;
+    private void RepositionFarthestSeaForDownward(float cameraY)
+    {
+        // 카메라 위치에서 가장 먼 바다 찾기 (위쪽에 있는 바다)
+        InGameSea farthestSea = null;
+        float maxDistance = 0f;
+        
+        foreach (var sea in SeaList)
+        {
+            float distance = sea.transform.localPosition.y - cameraY;
+            if (distance > maxDistance)
+            {
+                maxDistance = distance;
+                farthestSea = sea;
+            }
         }
         
-        // 디버그 로그 - 특정 카메라 위치에서만
-        if (cameraY <= -25f && cameraY >= -35f)
+        // y포지션이 40 정도 차이가 나면 재배치
+        if (farthestSea != null && maxDistance > 40f)
         {
-            Debug.Log($"=== Sea Reposition Debug - CameraY: {cameraY:F2} ===");
-            for (int i = 0; i < SeaList.Count; i++)
+            // 가장 아래에 있는 바다 찾기
+            InGameSea bottomSea = SeaList.OrderBy(s => s.transform.localPosition.y).First();
+            float newY = bottomSea.transform.localPosition.y - sectionDistance;
+            
+            // 바다를 새 위치로 이동
+            Vector3 currentPos = farthestSea.transform.localPosition;
+            farthestSea.transform.localPosition = new Vector3(currentPos.x, newY, currentPos.z);
+            
+            // 깊이 레벨 계산 및 바다 정보 업데이트
+            currentDepthLevel++;
+            int newDepthLevel = currentDepthLevel + SeaList.Count - 1;
+            farthestSea.Set(1);
+        }
+    }
+
+    private void RepositionFarthestSeaForUpward(float cameraY)
+    {
+        // 카메라 위치에서 가장 먼 바다 찾기 (아래쪽에 있는 바다)
+        InGameSea farthestSea = null;
+        float maxDistance = 0f;
+        
+        foreach (var sea in SeaList)
+        {
+            float distance = cameraY - sea.transform.localPosition.y;
+            if (distance > maxDistance)
             {
-                Debug.Log($"Sea{i}: Y={SeaList[i].transform.localPosition.y:F2} (Target: {(i < requiredPositions.Count ? requiredPositions[i].ToString("F2") : "N/A")})");
+                maxDistance = distance;
+                farthestSea = sea;
             }
+        }
+        
+        // y포지션이 40 정도 차이가 나면 재배치
+        if (farthestSea != null && maxDistance > 40f && currentDepthLevel > 1)
+        {
+            // 가장 위에 있는 바다 찾기
+            InGameSea topSea = SeaList.OrderByDescending(s => s.transform.localPosition.y).First();
+            float newY = topSea.transform.localPosition.y + sectionDistance;
+            
+            // 바다를 새 위치로 이동
+            Vector3 currentPos = farthestSea.transform.localPosition;
+            farthestSea.transform.localPosition = new Vector3(currentPos.x, newY, currentPos.z);
+            
+            // 깊이 레벨 계산 및 바다 정보 업데이트
+            currentDepthLevel--;
+            farthestSea.Set(1);
         }
     }
 
 }
+
