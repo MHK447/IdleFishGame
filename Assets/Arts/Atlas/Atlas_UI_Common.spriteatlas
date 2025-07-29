@@ -89,18 +89,15 @@ SpriteAtlas:
     - a23b49d166798463983d9349dcd24cef: 21300000
     - 0efe9112bd4d9a24fb04dd1f46223c63: 21300000
     - 8e59f5427f4934fefb4a26764e7b1067: 21300000
-    - 9a14845297aefad4e9e1364d4c422400: 21300000
     - bd9adc726bf6e1c4290684116eea8925: 21300000
     - 38565fa2114314db1a91a802eaa76e60: 21300000
     - 37be62b2a4e9b154a923503c1800929b: 21300000
     - 4bddbab2bbef4a44a8ee8f3541f0e85a: 21300000
     - d7419fd278d274bcbbf46a7db41e5095: 21300000
-    - 5039c1e237981d649838bb89e1b51ad3: 21300000
     - 878da233615924fc29c1d1e1898f6857: 21300000
     - f74b2d832490c4d1492c33d1cfd0b55a: 21300000
     - ed3815a3cc4f323429345df54245c945: 21300000
     - 7a8af5a337410634a9935b8e6bec394f: 21300000
-    - 7940b7a343915b441ac6d8687db25cf8: 21300000
     - 20efd0d35e20a7e43a3c7f2b0e618019: 21300000
     - a8c4bbd386a7a30409040277f4711f99: 21300000
     - 800fb5f3c211f45238f7c9f4e1eeeaa5: 21300000
@@ -125,7 +122,6 @@ SpriteAtlas:
     - f98686e68b2534ab6910ff41a1b2ced1: 21300000
     - 9ce9e7e6354a04f49ba6a67144e8f837: 21300000
     - 361679e6d19da4d019d20383ed758438: 21300000
-    - d2ee1817ed7a9164086523d539e12998: 21300000
     - adce342799a6c4185ae6fea56dd10d87: 21300000
     - 66ffa857b14444d70873e2c91e5a8dc0: 21300000
     - 2262dd97220f146e9ad0efd693dd5768: 21300000
@@ -148,17 +144,18 @@ SpriteAtlas:
     - 034a516b58822bf4ca7b7d8d8c309bdf: 21300000
     - 21fd8e6c8f46f2345bdbe4be38f7d3e9: 21300000
     - 135ec3ac624374d1eb93212520c5727a: 21300000
-    - da5f97bce2eef5b48b7b6e5cc7d0135f: 21300000
     - d65acabc04c81284b99dcf08238eeb2f: 21300000
-    - 73621ddc1d677514db0e937917086288: 21300000
     - bb36eefc86c394e2bbe2184a0cd8f1aa: 21300000
+    - f311e61d146ef4aecb940a5ad24f0b4e: 21300000
     - 17086b2df86db436a93b4e47fc1a8c06: 21300000
+    - 5da4e95dc82a54ae4a8fce551fdff085: 21300000
     - cb81cf5d2a1ac4f49b47bb5c6f404371: 21300000
     - 214dc7bdbed888b4bbbeada7c1ccacc1: 21300000
     - 4ac703ddb9f6dfe489d863dd0d82c2c1: 21300000
     - 86b3f9fd8b09d4dd4a9f60190d025476: 21300000
     - 30317ffd6c45945b493e3ad1540b113b: 21300000
     - 095e082e7123a4991ae43d54c2855c96: 21300000
+    - abba995ea30294b11b094e18844794bf: 21300000
     - 5a6fb38ee51ee427ea98f97153596cba: 21300000
     - 042e8baec872a5049adf8843350b7a28: 21300000
     - ea3f607f004da2046bed6add8747f8c5: 21300000
@@ -178,18 +175,15 @@ SpriteAtlas:
   - {fileID: 21300000, guid: a23b49d166798463983d9349dcd24cef, type: 3}
   - {fileID: 21300000, guid: 0efe9112bd4d9a24fb04dd1f46223c63, type: 3}
   - {fileID: 21300000, guid: 8e59f5427f4934fefb4a26764e7b1067, type: 3}
-  - {fileID: 21300000, guid: 9a14845297aefad4e9e1364d4c422400, type: 3}
   - {fileID: 21300000, guid: bd9adc726bf6e1c4290684116eea8925, type: 3}
   - {fileID: 21300000, guid: 38565fa2114314db1a91a802eaa76e60, type: 3}
   - {fileID: 21300000, guid: 37be62b2a4e9b154a923503c1800929b, type: 3}
   - {fileID: 21300000, guid: 4bddbab2bbef4a44a8ee8f3541f0e85a, type: 3}
   - {fileID: 21300000, guid: d7419fd278d274bcbbf46a7db41e5095, type: 3}
-  - {fileID: 21300000, guid: 5039c1e237981d649838bb89e1b51ad3, type: 3}
   - {fileID: 21300000, guid: 878da233615924fc29c1d1e1898f6857, type: 3}
   - {fileID: 21300000, guid: f74b2d832490c4d1492c33d1cfd0b55a, type: 3}
   - {fileID: 21300000, guid: ed3815a3cc4f323429345df54245c945, type: 3}
   - {fileID: 21300000, guid: 7a8af5a337410634a9935b8e6bec394f, type: 3}
-  - {fileID: 21300000, guid: 7940b7a343915b441ac6d8687db25cf8, type: 3}
   - {fileID: 21300000, guid: 20efd0d35e20a7e43a3c7f2b0e618019, type: 3}
   - {fileID: 21300000, guid: a8c4bbd386a7a30409040277f4711f99, type: 3}
   - {fileID: 21300000, guid: 800fb5f3c211f45238f7c9f4e1eeeaa5, type: 3}
@@ -214,7 +208,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: f98686e68b2534ab6910ff41a1b2ced1, type: 3}
   - {fileID: 21300000, guid: 9ce9e7e6354a04f49ba6a67144e8f837, type: 3}
   - {fileID: 21300000, guid: 361679e6d19da4d019d20383ed758438, type: 3}
-  - {fileID: 21300000, guid: d2ee1817ed7a9164086523d539e12998, type: 3}
   - {fileID: 21300000, guid: adce342799a6c4185ae6fea56dd10d87, type: 3}
   - {fileID: 21300000, guid: 66ffa857b14444d70873e2c91e5a8dc0, type: 3}
   - {fileID: 21300000, guid: 2262dd97220f146e9ad0efd693dd5768, type: 3}
@@ -237,17 +230,18 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 034a516b58822bf4ca7b7d8d8c309bdf, type: 3}
   - {fileID: 21300000, guid: 21fd8e6c8f46f2345bdbe4be38f7d3e9, type: 3}
   - {fileID: 21300000, guid: 135ec3ac624374d1eb93212520c5727a, type: 3}
-  - {fileID: 21300000, guid: da5f97bce2eef5b48b7b6e5cc7d0135f, type: 3}
   - {fileID: 21300000, guid: d65acabc04c81284b99dcf08238eeb2f, type: 3}
-  - {fileID: 21300000, guid: 73621ddc1d677514db0e937917086288, type: 3}
   - {fileID: 21300000, guid: bb36eefc86c394e2bbe2184a0cd8f1aa, type: 3}
+  - {fileID: 21300000, guid: f311e61d146ef4aecb940a5ad24f0b4e, type: 3}
   - {fileID: 21300000, guid: 17086b2df86db436a93b4e47fc1a8c06, type: 3}
+  - {fileID: 21300000, guid: 5da4e95dc82a54ae4a8fce551fdff085, type: 3}
   - {fileID: 21300000, guid: cb81cf5d2a1ac4f49b47bb5c6f404371, type: 3}
   - {fileID: 21300000, guid: 214dc7bdbed888b4bbbeada7c1ccacc1, type: 3}
   - {fileID: 21300000, guid: 4ac703ddb9f6dfe489d863dd0d82c2c1, type: 3}
   - {fileID: 21300000, guid: 86b3f9fd8b09d4dd4a9f60190d025476, type: 3}
   - {fileID: 21300000, guid: 30317ffd6c45945b493e3ad1540b113b, type: 3}
   - {fileID: 21300000, guid: 095e082e7123a4991ae43d54c2855c96, type: 3}
+  - {fileID: 21300000, guid: abba995ea30294b11b094e18844794bf, type: 3}
   - {fileID: 21300000, guid: 5a6fb38ee51ee427ea98f97153596cba, type: 3}
   - {fileID: 21300000, guid: 042e8baec872a5049adf8843350b7a28, type: 3}
   - {fileID: 21300000, guid: ea3f607f004da2046bed6add8747f8c5, type: 3}
@@ -266,18 +260,15 @@ SpriteAtlas:
   - Pictoicon_Music 1
   - Common_Progress_Pink
   - Common_Frame_S0_R40
-  - Common_Btn_Close
   - Common_Glow
   - Pictoicon_Like 1
   - Common_Frame_R16
   - Common_Icon_ShopGems_03
   - Pictoicon_Hourglass 1
-  - Common_Frame_BottomBg_Orange
   - Pictoicon_Life 1
   - Pictoicon_Detail 1
   - Common_Icon_Goods_Star
   - Common_Bg_Particle_Alpha
-  - Common_Btn_Default_Progress
   - Common_Progress_Default
   - Common_Frame_R20
   - Pictoicon_Mail 1
@@ -302,7 +293,6 @@ SpriteAtlas:
   - Common_Focus
   - Common_Icon_Anchor
   - Pictoicon_Cancle 1
-  - Common_Frame_BottomBg_Purple
   - Pictoicon_Moneybag 1
   - Pictoicon_Map_1 1
   - Pictoicon_Bulb 1
@@ -325,17 +315,18 @@ SpriteAtlas:
   - Common_Icon_ShopGems_02
   - Common_Frame_BubbleMsg
   - Common_Lightning_2
-  - Common_Frame_Popup
   - Common_Icon_Goods_Shop
-  - Common_Icon_NoAds
   - Pictoicon_Bell 1
+  - Common_Icon_Collection
   - Pictoicon_Documnet 1
+  - Common_Icon_Anchor02
   - Common_Frame_S0_R35
   - Common_Icon_Ads
   - Common_Btn_Default_Cash
   - Pictoicon_Mappin 1
   - Pictoicon_Music_Off 1
   - Pictoicon_Bell_Mute 1
+  - Common_Icon_Arrow_Down
   - Common_Lightning_3
   - Common_Bg_IngameSlot
   - Common_Icon_ShopGems_01

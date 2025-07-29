@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9a14845297aefad4e9e1364d4c422400
+guid: 563a51c8a547f4f00b07db6794b3e1db
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5554868810815804971
-    second: Common_Btn_Close_0
+      213: -4368920149279409559
+    second: Common_Icon_Arrow_Back_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Common_Btn_Close_0
+      name: Common_Icon_Arrow_Back_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 134
-        height: 134
+        x: 7
+        y: 14
+        width: 86
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b269292a0cbd61d40800000000000000
-      internalID: 5554868810815804971
+      spriteID: 96a7722954a7e53c0800000000000000
+      internalID: -4368920149279409559
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Common_Btn_Close_0: 5554868810815804971
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
