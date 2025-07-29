@@ -31,6 +31,12 @@ public class FishingHookComponent : MonoBehaviour
     [SerializeField]
     private Transform LineEndTr;
 
+    [SerializeField]
+    private float hookDownSpeed = 2f;  // 내려가는 속도 (유닛/초)
+    
+    [SerializeField]
+    private float hookUpSpeed = 5f;    // 올라가는 속도 (유닛/초)
+
     private Vector3 StartPos;
     private Vector3 HookStartPos; // FisshingHookObj의 초기 위치 저장
 
@@ -40,6 +46,7 @@ public class FishingHookComponent : MonoBehaviour
     public float metersPerUnit = 0.01f;  // 10 유닛 = 1m → 1 유닛 = 0.1m
 
     private float StartHookY = 0f;
+    private float targetY = 0f;  // 목표 Y 위치
 
     private FishingHookState CurHookState = FishingHookState.None;
 
@@ -101,6 +108,9 @@ public class FishingHookComponent : MonoBehaviour
 
         // 낚시줄 길이 조정
         UpdateLineLength();
+        
+        // 훅 이동 처리
+        UpdateHookMovement();
     }
 
     private void UpdateLineLength()
@@ -109,16 +119,50 @@ public class FishingHookComponent : MonoBehaviour
         LineRenderer.SetPosition(1, LineEndTr.position);
     }
 
+    private void UpdateHookMovement()
+    {
+        Vector3 currentPos = FisshingHookObj.position;
+        
+        switch (CurHookState)
+        {
+            case FishingHookState.HookDown:
+                if (currentPos.y > targetY)
+                {
+                    float newY = currentPos.y - hookDownSpeed * Time.deltaTime;
+                    newY = Mathf.Max(newY, targetY); // 목표점을 넘지 않도록
+                    FisshingHookObj.position = new Vector3(currentPos.x, newY, currentPos.z);
+                    
+                    // 목표 지점 도달 시
+                    if (newY <= targetY)
+                    {
+                        GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.FishingIdle));
+                    }
+                }
+                break;
+                
+            case FishingHookState.HookUp:
+                if (currentPos.y < targetY)
+                {
+                    float newY = currentPos.y + hookUpSpeed * Time.deltaTime;
+                    newY = Mathf.Min(newY, targetY); // 목표점을 넘지 않도록
+                    FisshingHookObj.position = new Vector3(currentPos.x, newY, currentPos.z);
+                    
+                    // 목표 지점 도달 시
+                    if (newY >= targetY)
+                    {
+                        CautchFishAction(CautchFishIdx);
+                        GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.HookDown, 0.5f));
+                    }
+                }
+                break;
+        }
+    }
 
 
     public void HookDown()
     {
         var depthvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.WaterDepth);
-
-        FisshingHookObj.transform.DOMoveY(StartHookY - depthvalue, 5f).SetEase(Ease.OutBack).OnComplete(() =>
-        {
-            GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.FishingIdle));
-        });
+        targetY = StartHookY - depthvalue;
     }
 
     public void FishingIdle()
@@ -157,11 +201,7 @@ public class FishingHookComponent : MonoBehaviour
 
     public void HookUp()
     {
-        FisshingHookObj.transform.DOMoveY(StartHookY, 2f).SetEase(Ease.Linear).OnComplete(() =>
-        {
-            CautchFishAction(CautchFishIdx);
-            GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.HookDown, 0.5f));
-        });
+        targetY = StartHookY;
     }
 
 

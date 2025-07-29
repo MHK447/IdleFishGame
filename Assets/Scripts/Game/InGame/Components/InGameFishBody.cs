@@ -505,11 +505,14 @@ public class InGameFishBody : MonoBehaviour
             // 부모가 이동한 만큼 물고기의 기준점들도 이동
             Vector3 parentMoveDelta = currentParentPosition - lastParentPosition;
 
+            // 물고기의 initialPosition 기준 상대적 위치 계산
+            Vector3 relativePosition = transform.position - initialPosition;
+
             // initialPosition 업데이트
             initialPosition += parentMoveDelta;
 
-            // 현재 위치도 함께 이동
-            transform.position += parentMoveDelta;
+            // 새로운 initialPosition 기준으로 상대적 위치 유지
+            transform.position = initialPosition + relativePosition;
 
             // 부모 위치 업데이트
             lastParentPosition = currentParentPosition;
