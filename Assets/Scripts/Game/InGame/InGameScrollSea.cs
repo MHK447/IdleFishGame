@@ -58,6 +58,7 @@ public class InGameScrollSea : MonoBehaviour
     {
         if (HookCompoent == null) return;
 
+
         float camy = HookCompoent.FisshingHookTr.position.y > CameraMinY ? CameraMinY : HookCompoent.FisshingHookTr.position.y;
 
         SubSeaCamera.transform.position = new Vector3(

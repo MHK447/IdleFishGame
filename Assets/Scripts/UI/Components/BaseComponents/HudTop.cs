@@ -41,11 +41,11 @@ public class HudTop : MonoBehaviour
         }
         if (MoneyText != null)
         {
-            MoneyText.text = Utility.CalculateMoneyToString(GameRoot.Instance.UserData.CurMode.Money.Value);
+            MoneyText.text = Utility.CalculateMoneyToString(GameRoot.Instance.UserData.Money.Value);
 
             GameRoot.Instance.UserData.HUDMoney.Subscribe(x =>
             {
-                MoneyText.text = Utility.CalculateMoneyToString(GameRoot.Instance.UserData.CurMode.Money.Value);
+                MoneyText.text = Utility.CalculateMoneyToString(GameRoot.Instance.UserData.Money.Value);
             }).AddTo(this);
         }
 

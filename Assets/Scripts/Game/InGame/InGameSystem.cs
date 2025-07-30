@@ -134,7 +134,7 @@ public class InGameSystem
 
                     // 나머지 초기화
                     GameRoot.Instance.TutorialSystem.ClearRegisiter();
-                    GameRoot.Instance.UserData.CurMode.Money.Value = 0;
+                    GameRoot.Instance.UserData.Money.Value = 0;
                     GameRoot.Instance.UserData.Save();
 
                     if (!Init)

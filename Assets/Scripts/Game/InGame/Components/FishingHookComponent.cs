@@ -55,6 +55,8 @@ public class FishingHookComponent : MonoBehaviour
 
     private int CautchFishIdx = 0;
 
+    private float HookTouchSpeed = 0f;
+
     void Awake()
     {
         StartPos = transform.position;
@@ -71,8 +73,10 @@ public class FishingHookComponent : MonoBehaviour
 
 
         CurHookState = FishingHookState.None;
-
     }
+
+
+
 
 
     public void Init()
@@ -114,6 +118,8 @@ public class FishingHookComponent : MonoBehaviour
 
         // 훅 이동 처리
         UpdateHookMovement();
+
+        UpdateHookTouchSpeed();
     }
 
     private void UpdateLineLength()
@@ -132,7 +138,7 @@ public class FishingHookComponent : MonoBehaviour
                 if (currentPos.y > targetY)
                 {
                     var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.FisihngSpeeed);
-                    float newY = currentPos.y - (hookDownSpeed + buffvalue) * Time.deltaTime;
+                    float newY = currentPos.y - (hookDownSpeed + buffvalue + HookTouchSpeed) * Time.deltaTime;
                     newY = Mathf.Max(newY, targetY); // 목표점을 넘지 않도록
                     FisshingHookObj.position = new Vector3(currentPos.x, newY, currentPos.z);
 
@@ -148,7 +154,7 @@ public class FishingHookComponent : MonoBehaviour
                 if (currentPos.y < targetY)
                 {
                     var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.FisihngSpeeed);
-                    float newY = currentPos.y + (hookUpSpeed + buffvalue) * Time.deltaTime;
+                    float newY = currentPos.y + (hookUpSpeed + buffvalue + HookTouchSpeed) * Time.deltaTime;
                     newY = Mathf.Min(newY, targetY); // 목표점을 넘지 않도록
                     FisshingHookObj.position = new Vector3(currentPos.x, newY, currentPos.z);
 
@@ -226,14 +232,27 @@ public class FishingHookComponent : MonoBehaviour
         switch (state)
         {
             case FishingHookState.HookDown:
+                HookTouchSpeed = 0;
                 HookDown();
                 break;
             case FishingHookState.HookUp:
+                HookTouchSpeed = 0;
                 HookUp();
                 break;
             case FishingHookState.FishingIdle:
                 FishingIdle();
                 break;
+        }
+    }
+
+
+
+    public void UpdateHookTouchSpeed()
+    {
+
+        if (Input.GetMouseButtonDown(0) && (CurHookState == FishingHookState.HookDown || CurHookState == FishingHookState.HookUp))
+        {
+            HookTouchSpeed += 3f;
         }
     }
 }

@@ -17,8 +17,6 @@ public class GameNotificationSystem
     public enum NotificationCategory
     {
         UpgradePopup,
-        StageClear,
-        UpgradeProduct,
     }
 
     public class NotificationData
@@ -78,20 +76,16 @@ public class GameNotificationSystem
             notifications.Add(e, managerNotiList);
         }
 
-        GameRoot.Instance.UserData.CurMode.Money.Subscribe(x =>
+        GameRoot.Instance.UserData.Money.Subscribe(x =>
         {
             UpdateNotification(NotificationCategory.UpgradePopup);
-            UpdateNotification(NotificationCategory.StageClear);
-            UpdateNotification(NotificationCategory.UpgradeProduct);
         }).AddTo(disposables);
 
-       
+
 
         GameRoot.Instance.WaitTimeAndCallback(1f, () =>
         {
             UpdateNotification(NotificationCategory.UpgradePopup);
-            UpdateNotification(NotificationCategory.StageClear);
-            UpdateNotification(NotificationCategory.UpgradeProduct);
         });
 
     }
@@ -101,16 +95,28 @@ public class GameNotificationSystem
         switch (category)
         {
             case NotificationCategory.UpgradePopup:
-                
-                break;
+                {
+                    bool ison = false;
 
-            case NotificationCategory.StageClear:
-                {
-                
-                }
-                break;
-            case NotificationCategory.UpgradeProduct:
-                {
+                    var data = GetData(category, -1, -1);
+                    if (data != null)
+                    {
+                        foreach (var upgrade in GameRoot.Instance.UserData.Upgradedata)
+                        {
+                            var td = Tables.Instance.GetTable<UpgradeInfo>().GetData(upgrade.Upgradeidx);
+
+                            if (td != null)
+                            {
+                                var costvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeCost(upgrade.Upgradelevel, td.base_upgrade_cost, td.level_up_value);
+
+                                ison = GameRoot.Instance.UserData.Money.Value >= costvalue;
+
+                                if(ison) break;
+                            }
+                        }
+
+                        data.on.Value = ison;
+                    }
                 }
                 break;
         }

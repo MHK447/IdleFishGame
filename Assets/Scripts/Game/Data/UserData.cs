@@ -188,7 +188,7 @@ public partial class UserDataSystem
         var buyInappIds = builder.CreateString(string.Join(";", BuyInappIds));
 
 
-        var money = builder.CreateString(mainData.Money.Value.ToString());
+        var money = builder.CreateString(Money.Value.ToString());
 
         //option
         var option = BanpoFri.Data.OptionData.CreateOptionData(builder, builder.CreateString(Language.ToString()), Bgm, Effect, SlowGraphic, Vib, SubscribeOrder, AutoFelling);

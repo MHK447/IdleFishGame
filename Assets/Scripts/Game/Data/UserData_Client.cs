@@ -106,7 +106,7 @@ public partial class UserDataSystem
         BuyInappIds.Clear();
 
 
-        mainData.Money.Value = HUDMoney.Value = BigInteger.Parse(flatBufferUserData.Money);
+        Money.Value = HUDMoney.Value = BigInteger.Parse(flatBufferUserData.Money);
 
 
 

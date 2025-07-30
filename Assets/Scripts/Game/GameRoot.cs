@@ -255,10 +255,10 @@ public class GameRoot : Singleton<GameRoot>
 
 		InitSystem();
 
+		UpgradeSystem.Create();
 		InGameSystem.Create();
 		GameNotification.Create();
 		ShopSystem.Create();
-		UpgradeSystem.Create();
 		GameRoot.instance.inAppPurchaseManager.InitializePurchasing();
 
 		InitRequestAtlas();
@@ -271,7 +271,7 @@ public class GameRoot : Singleton<GameRoot>
 			BgmOn();
 		});
 
-		
+
 	}
 
 	public void BgmOn()
@@ -297,7 +297,7 @@ public class GameRoot : Singleton<GameRoot>
 			attManager = attManagerObj.AddComponent<ATTManager>();
 			DontDestroyOnLoad(attManagerObj);
 		}
-		
+
 		// 이벤트 연결
 		if (attManager != null)
 		{
@@ -308,7 +308,7 @@ public class GameRoot : Singleton<GameRoot>
 	private void OnATTResponseReceived(bool isAuthorized)
 	{
 		Debug.Log($"ATT 권한 응답 받음: {isAuthorized}");
-		
+
 		// 광고 SDK에 ATT 상태 전달 및 초기화
 		if (AdManager != null)
 		{
@@ -318,7 +318,7 @@ public class GameRoot : Singleton<GameRoot>
 				AdManager.InitializeAdsAfterATT(isAuthorized);
 			}
 		}
-		
+
 		// 필요시 다른 추적 관련 SDK들에도 상태 전달
 	}
 
