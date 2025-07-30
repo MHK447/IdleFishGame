@@ -49,6 +49,8 @@ public class FishingHookComponent : MonoBehaviour
     private float StartHookY = 0f;
     private float targetY = 0f;  // 목표 Y 위치
 
+    private float NoneAutoDowndeltime = 0f;
+
     private FishingHookState CurHookState = FishingHookState.None;
 
     private InGameScrollSea ScrollSea;
@@ -135,19 +137,9 @@ public class FishingHookComponent : MonoBehaviour
         switch (CurHookState)
         {
             case FishingHookState.HookDown:
-                if (currentPos.y > targetY)
-                {
-                    var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.FisihngSpeeed);
-                    float newY = currentPos.y - (hookDownSpeed + buffvalue + HookTouchSpeed) * Time.deltaTime;
-                    newY = Mathf.Max(newY, targetY); // 목표점을 넘지 않도록
-                    FisshingHookObj.position = new Vector3(currentPos.x, newY, currentPos.z);
-
-                    // 목표 지점 도달 시
-                    if (newY <= targetY)
-                    {
-                        GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.FishingIdle));
-                    }
-                }
+   
+                   HookDownCheck();
+                
                 break;
 
             case FishingHookState.HookUp:
@@ -166,6 +158,53 @@ public class FishingHookComponent : MonoBehaviour
                     }
                 }
                 break;
+        }
+    }
+
+
+    public void HookDownCheck()
+    {
+        Vector3 currentPos = FisshingHookObj.position;
+        if (GameRoot.Instance.UserData.Fishingautoproperty.Value)
+        {
+            if (currentPos.y > targetY)
+            {
+                var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.FisihngSpeeed);
+                float newY = currentPos.y - (hookDownSpeed + buffvalue + HookTouchSpeed) * Time.deltaTime;
+                newY = Mathf.Max(newY, targetY); // 목표점을 넘지 않도록
+                FisshingHookObj.position = new Vector3(currentPos.x, newY, currentPos.z);
+
+                // 목표 지점 도달 시
+                if (newY <= targetY)
+                {
+                    GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.FishingIdle));
+                }
+            }
+        }
+        else
+        {
+            if(FisshingHookObj.position.y <= -10f)
+            {
+                NoneAutoDowndeltime += Time.deltaTime;
+                if (NoneAutoDowndeltime >= 2f)
+                {
+                    NoneAutoDowndeltime = 0f;
+                    GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.FishingIdle));
+                }
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                NoneAutoDowndeltime = 0f;
+                float newY = currentPos.y - 2f * Time.deltaTime;
+                newY = Mathf.Max(newY, targetY); // 목표점을 넘지 않도록
+                FisshingHookObj.position = new Vector3(currentPos.x, newY, currentPos.z);
+
+                if (newY <= targetY)
+                {
+                    GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.FishingIdle));
+                }
+            }
         }
     }
 
