@@ -14,6 +14,13 @@ namespace BanpoFri
 			set { _idx = value;}
 		}
 		[SerializeField]
+		private int _move_type;
+		public int move_type
+		{
+			get { return _move_type;}
+			set { _move_type = value;}
+		}
+		[SerializeField]
 		private int _weight_price;
 		public int weight_price
 		{

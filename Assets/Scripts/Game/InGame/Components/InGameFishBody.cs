@@ -1,3 +1,4 @@
+using BanpoFri;
 using UnityEngine;
 
 public enum FishMovementMode
@@ -5,6 +6,13 @@ public enum FishMovementMode
     Random,      // 랜덤 움직임
     FollowTarget, // 타겟 추적
     Caught       // 낚싯바늘을 물어서 정지
+}
+
+// 물고기 움직임 타입 열거형 추가
+public enum FishMovePattern
+{
+    NormalFish = 1,  // 일반 물고기 (빠르고 활발한 움직임)
+    WhaleType = 2    // 고래 타입 (느리고 우아한 움직임)
 }
 
 public class InGameFishBody : MonoBehaviour
@@ -27,6 +35,12 @@ public class InGameFishBody : MonoBehaviour
     [Header("Respawn Settings")]
     [SerializeField] private float respawnDelay = 1f; // 잡힌 후 다시 활동하기까지의 시간
     [SerializeField] private float respawnFadeTime = 1f; // 페이드 인 시간
+
+    [Header("Whale Type Settings")]
+    [SerializeField] private float whaleSpeedMultiplier = 0.6f; // 고래 타입 속도 배율
+    [SerializeField] private float whaleDirectionChangeMultiplier = 2.0f; // 고래 타입 방향 전환 간격 배율
+    [SerializeField] private float whaleRotationSpeedMultiplier = 0.5f; // 고래 타입 회전 속도 배율
+    [SerializeField] private float whaleSmoothMovement = 0.1f; // 고래 타입 부드러운 움직임
 
     private Vector3 targetDirection;
     private Vector3 initialPosition;
@@ -52,6 +66,16 @@ public class InGameFishBody : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private int FishIdx = 0;
+    private int FishMoveType = 0;
+
+    // 고래 타입 전용 변수들
+    private Vector3 whaleCurrentVelocity;
+    private Vector3 whaleTargetDirection;
+
+    // 현재 물고기 타입별 설정값들
+    private float currentMoveSpeed;
+    private float currentChangeDirectionInterval;
+    private float currentRotationSpeed;
 
     void Start()
     {
@@ -93,13 +117,60 @@ public class InGameFishBody : MonoBehaviour
         FishIdx = fishidx;
 
         spriteRenderer.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_InGameFish, $"Ingame_Fish_{fishidx}");
+
+        var td = Tables.Instance.GetTable<FishInfo>().GetData(fishidx);
+
+        if (td != null)
+        {
+            FishMoveType = td.move_type;
+            ApplyMoveTypeSettings();
+        }
+    }
+
+    private void ApplyMoveTypeSettings()
+    {
+        switch (FishMoveType)
+        {
+            case (int)FishMovePattern.NormalFish:
+                currentMoveSpeed = moveSpeed;
+                currentChangeDirectionInterval = changeDirectionInterval;
+                currentRotationSpeed = rotationSpeed;
+                break;
+
+            case (int)FishMovePattern.WhaleType:
+                currentMoveSpeed = moveSpeed * whaleSpeedMultiplier;
+                currentChangeDirectionInterval = changeDirectionInterval * whaleDirectionChangeMultiplier;
+                currentRotationSpeed = rotationSpeed * whaleRotationSpeedMultiplier;
+                whaleCurrentVelocity = Vector3.zero;
+                whaleTargetDirection = Vector3.right;
+                break;
+
+            default:
+                // 기본값 사용
+                currentMoveSpeed = moveSpeed;
+                currentChangeDirectionInterval = changeDirectionInterval;
+                currentRotationSpeed = rotationSpeed;
+                break;
+        }
     }
 
     private void InitializeFish()
     {
         initialPosition = transform.position;
-        SetRandomDirection();
-        changeDirectionTimer = changeDirectionInterval;
+        
+        // 물고기 타입에 따른 초기 방향 설정
+        FishMovePattern movePattern = (FishMovePattern)FishMoveType;
+        if (movePattern == FishMovePattern.WhaleType)
+        {
+            SetWhaleRandomDirection();
+            targetDirection = whaleTargetDirection;
+        }
+        else
+        {
+            SetRandomDirection();
+        }
+        
+        changeDirectionTimer = currentChangeDirectionInterval;
         isMoving = true;
         movementMode = FishMovementMode.Random;
 
@@ -110,18 +181,80 @@ public class InGameFishBody : MonoBehaviour
             hasParent = true;
         }
 
-
         Color color = spriteRenderer.color;
         color.a = 1f;
         spriteRenderer.color = color;
-
     }
 
     private void HandleRandomMovement()
     {
+        FishMovePattern movePattern = (FishMovePattern)FishMoveType;
+
+        switch (movePattern)
+        {
+            case FishMovePattern.NormalFish:
+                HandleNormalFishMovement();
+                break;
+
+            case FishMovePattern.WhaleType:
+                HandleWhaleMovement();
+                break;
+
+            default:
+                HandleNormalFishMovement();
+                break;
+        }
+
+        CheckBoundaries();
+    }
+
+    private void HandleNormalFishMovement()
+    {
+        // 기존 일반 물고기 움직임
         HandleMovement();
         HandleDirectionChange();
-        CheckBoundaries();
+    }
+
+    private void HandleWhaleMovement()
+    {
+        // 고래 타입의 부드럽고 우아한 움직임
+        HandleWhaleDirectionChange();
+        HandleWhaleSmoothMovement();
+        
+        // 고래 타입 전용 경계 체크
+        Vector3 currentPos = transform.position;
+        Vector3 boundsMin = initialPosition - new Vector3(movementBounds.x * 0.5f, movementBounds.y * 0.5f, 0);
+        Vector3 boundsMax = initialPosition + new Vector3(movementBounds.x * 0.5f, movementBounds.y * 0.5f, 0);
+        CheckWhaleBoundaries(currentPos, boundsMin, boundsMax);
+    }
+
+    private void HandleWhaleDirectionChange()
+    {
+        changeDirectionTimer -= Time.deltaTime;
+
+        if (changeDirectionTimer <= 0f)
+        {
+            SetWhaleRandomDirection();
+            changeDirectionTimer = Random.Range(currentChangeDirectionInterval * 0.8f, currentChangeDirectionInterval * 1.2f);
+        }
+    }
+
+    private void HandleWhaleSmoothMovement()
+    {
+        // 부드러운 가속/감속 움직임
+        whaleCurrentVelocity = Vector3.Lerp(whaleCurrentVelocity, whaleTargetDirection * currentMoveSpeed, whaleSmoothMovement);
+        transform.position += whaleCurrentVelocity * Time.deltaTime;
+        
+        // 회전용으로 실제 움직이는 방향 업데이트 (움직임이 있을 때만)
+        if (whaleCurrentVelocity.magnitude > 0.1f)
+        {
+            targetDirection = whaleCurrentVelocity.normalized;
+        }
+        else
+        {
+            // 움직임이 거의 없으면 목표 방향 사용
+            targetDirection = whaleTargetDirection;
+        }
     }
 
     private void HandleTargetFollowing()
@@ -148,8 +281,13 @@ public class InGameFishBody : MonoBehaviour
         Vector3 directionToTarget = (targetPos - currentPos).normalized;
         targetDirection = directionToTarget;
 
-        // 타겟 추적 속도로 이동
-        transform.position += targetDirection * targetFollowSpeed * Time.deltaTime;
+        // 타겟 추적 속도로 이동 (타입별 속도 적용)
+        float followSpeed = targetFollowSpeed;
+        if (FishMoveType == (int)FishMovePattern.WhaleType)
+        {
+            followSpeed *= whaleSpeedMultiplier;
+        }
+        transform.position += targetDirection * followSpeed * Time.deltaTime;
 
         lastTargetPosition = targetPos;
     }
@@ -160,7 +298,7 @@ public class InGameFishBody : MonoBehaviour
         if (currentTarget != null)
         {
             Vector3 targetPos = currentTarget.position;
-            transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 5f);
+            transform.position = targetPos;
 
             // 타겟 방향 설정 (회전용)
             Vector3 directionToTarget = (targetPos - lastTargetPosition).normalized;
@@ -170,13 +308,6 @@ public class InGameFishBody : MonoBehaviour
             }
 
             lastTargetPosition = targetPos;
-        }
-
-        // 일정 시간 후 리스폰 시작
-        respawnTimer += Time.deltaTime;
-        if (respawnTimer >= respawnDelay)
-        {
-            StartRespawn();
         }
     }
 
@@ -235,7 +366,7 @@ public class InGameFishBody : MonoBehaviour
         StartCoroutine(FadeIn());
 
         // 움직임 재시작
-        changeDirectionTimer = changeDirectionInterval;
+        changeDirectionTimer = currentChangeDirectionInterval;
     }
 
     private System.Collections.IEnumerator FadeIn()
@@ -263,7 +394,7 @@ public class InGameFishBody : MonoBehaviour
     private void HandleMovement()
     {
         // 현재 방향으로 이동
-        transform.position += targetDirection * moveSpeed * Time.deltaTime;
+        transform.position += targetDirection * currentMoveSpeed * Time.deltaTime;
     }
 
     private void Handle2DRotation()
@@ -294,7 +425,7 @@ public class InGameFishBody : MonoBehaviour
         float currentAngle = transform.eulerAngles.z;
         if (currentAngle > 180f) currentAngle -= 360f; // -180 ~ 180 범위로 정규화
 
-        float newAngle = Mathf.LerpAngle(currentAngle, targetAngle, rotationSpeed * Time.deltaTime);
+        float newAngle = Mathf.LerpAngle(currentAngle, targetAngle, currentRotationSpeed * Time.deltaTime);
         transform.rotation = Quaternion.Euler(0, 0, newAngle);
     }
 
@@ -313,7 +444,7 @@ public class InGameFishBody : MonoBehaviour
         if (changeDirectionTimer <= 0f)
         {
             SetRandomDirection();
-            changeDirectionTimer = Random.Range(changeDirectionInterval * 0.5f, changeDirectionInterval * 1.5f);
+            changeDirectionTimer = Random.Range(currentChangeDirectionInterval * 0.5f, currentChangeDirectionInterval * 1.5f);
         }
     }
 
@@ -412,8 +543,18 @@ public class InGameFishBody : MonoBehaviour
 
         if (mode == FishMovementMode.Random)
         {
-            SetRandomDirection();
-            changeDirectionTimer = changeDirectionInterval;
+            // 물고기 타입에 따른 방향 설정
+            FishMovePattern movePattern = (FishMovePattern)FishMoveType;
+            if (movePattern == FishMovePattern.WhaleType)
+            {
+                SetWhaleRandomDirection();
+                targetDirection = whaleTargetDirection;
+            }
+            else
+            {
+                SetRandomDirection();
+            }
+            changeDirectionTimer = currentChangeDirectionInterval;
         }
     }
 
@@ -447,6 +588,7 @@ public class InGameFishBody : MonoBehaviour
     public void SetMoveSpeed(float speed)
     {
         moveSpeed = speed;
+        ApplyMoveTypeSettings(); // 타입별 설정 다시 적용
     }
 
     // 즉시 리스폰 (외부에서 호출 가능)
@@ -489,6 +631,65 @@ public class InGameFishBody : MonoBehaviour
         {
             Gizmos.color = Color.cyan;
             Gizmos.DrawWireCube(transform.position, new Vector3(movementBounds.x, movementBounds.y, 0));
+        }
+    }
+
+    private void CheckWhaleBoundaries(Vector3 currentPos, Vector3 boundsMin, Vector3 boundsMax)
+    {
+        // 고래 타입의 부드러운 경계 처리 (양옆으로만 움직임)
+        float boundaryBuffer = 1.0f; // 경계에서 부드럽게 회전하기 시작하는 거리
+        
+        bool needRedirection = false;
+        
+        // X축 경계 체크만 (양옆 움직임)
+        if (currentPos.x <= boundsMin.x + boundaryBuffer && whaleTargetDirection.x < 0)
+        {
+            whaleTargetDirection.x = Mathf.Lerp(whaleTargetDirection.x, Mathf.Abs(whaleTargetDirection.x), Time.deltaTime * 2f);
+            needRedirection = true;
+        }
+        else if (currentPos.x >= boundsMax.x - boundaryBuffer && whaleTargetDirection.x > 0)
+        {
+            whaleTargetDirection.x = Mathf.Lerp(whaleTargetDirection.x, -Mathf.Abs(whaleTargetDirection.x), Time.deltaTime * 2f);
+            needRedirection = true;
+        }
+        
+        // Y축은 중앙 근처에서 유지 (약간의 상하 움직임만 허용)
+        float centerY = (boundsMin.y + boundsMax.y) * 0.5f;
+        float yOffset = currentPos.y - centerY;
+        if (Mathf.Abs(yOffset) > movementBounds.y * 0.1f) // 전체 높이의 10% 범위 내에서만 유지
+        {
+            whaleTargetDirection.y = -yOffset * 0.1f; // 중앙으로 천천히 복귀
+            needRedirection = true;
+        }
+        
+        if (needRedirection)
+        {
+            whaleTargetDirection = whaleTargetDirection.normalized;
+            targetDirection = whaleTargetDirection; // 방향 동기화
+            changeDirectionTimer = currentChangeDirectionInterval * 0.5f; // 빠른 방향 전환
+        }
+    }
+
+    private void SetWhaleRandomDirection()
+    {
+        // 고래는 양옆으로만 느릿느릿 움직임
+        if (whaleTargetDirection == Vector3.zero)
+        {
+            // 초기화 시에는 왼쪽 또는 오른쪽 방향
+            float randomDirection = Random.Range(0f, 1f) > 0.5f ? 1f : -1f;
+            whaleTargetDirection = new Vector3(randomDirection, 0f, 0f).normalized;
+        }
+        else
+        {
+            // 현재 X 방향을 기준으로 좌우 방향만 변경
+            // 가끔씩 방향을 바꾸거나 유지
+            if (Random.Range(0f, 1f) < 0.3f) // 30% 확률로 방향 변경
+            {
+                whaleTargetDirection.x = -whaleTargetDirection.x; // 반대 방향으로
+            }
+            // Y축은 거의 0에 가깝게 유지 (약간의 상하 움직임은 허용)
+            whaleTargetDirection.y = Random.Range(-0.1f, 0.1f);
+            whaleTargetDirection = whaleTargetDirection.normalized;
         }
     }
 

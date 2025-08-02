@@ -21,6 +21,7 @@ MonoBehaviour:
   mSecondKey: []
   mDataList:
   - _idx: 1
+    _move_type: 1
     _weight_price: 1
     _fish_weight_min: 1
     _fish_weight_max: 5
@@ -28,6 +29,7 @@ MonoBehaviour:
     _fish_name: 
     _fish_desc: 
   - _idx: 2
+    _move_type: 1
     _weight_price: 2
     _fish_weight_min: 1
     _fish_weight_max: 5
@@ -35,6 +37,7 @@ MonoBehaviour:
     _fish_name: 
     _fish_desc: 
   - _idx: 3
+    _move_type: 1
     _weight_price: 3
     _fish_weight_min: 1
     _fish_weight_max: 10
@@ -42,6 +45,7 @@ MonoBehaviour:
     _fish_name: 
     _fish_desc: 
   - _idx: 4
+    _move_type: 2
     _weight_price: 5
     _fish_weight_min: 1
     _fish_weight_max: 20
@@ -49,6 +53,7 @@ MonoBehaviour:
     _fish_name: 
     _fish_desc: 
   - _idx: 5
+    _move_type: 2
     _weight_price: 5
     _fish_weight_min: 1
     _fish_weight_max: 30

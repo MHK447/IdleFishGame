@@ -78,6 +78,8 @@ public class FishingHookComponent : MonoBehaviour
 
     private int CautchFishIdx = 0;
 
+    private InGameFish CautchFish = null;
+
     private float HookTouchSpeed = 0f;
 
     void Awake()
@@ -225,6 +227,10 @@ public class FishingHookComponent : MonoBehaviour
                     // 목표 지점 도달 시
                     if (newY >= targetY)
                     {
+
+                        
+
+
                         CautchFishAction(CautchFishIdx);
                         GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.HookDown, 0.5f));
                     }
@@ -292,7 +298,7 @@ public class FishingHookComponent : MonoBehaviour
         GameRoot.Instance.WaitTimeAndCallback(5f, () =>
         {
 
-            ScrollSea.RandCatchFish(
+            CautchFish = ScrollSea.RandCatchFish(
                 (fishidx) =>
                 {
 
@@ -318,6 +324,11 @@ public class FishingHookComponent : MonoBehaviour
                 x.SetText(moneyvalue);
                 x.SetAutoRemove(true, 1.5f);
             });
+
+            CautchFish.ReturnSpawner();
+
+
+                
         }
 
     }

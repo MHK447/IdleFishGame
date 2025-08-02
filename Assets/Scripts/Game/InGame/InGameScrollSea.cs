@@ -54,7 +54,7 @@ public class InGameScrollSea : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (HookCompoent == null) return;
 
