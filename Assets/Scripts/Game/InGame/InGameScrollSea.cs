@@ -136,12 +136,12 @@ public class InGameScrollSea : MonoBehaviour
         float cameraMovement = currentCameraY - prevCameraY;
         
         // 카메라가 아래로 이동 (더 깊이 들어감) - 더 민감하게 반응
-        if (cameraMovement < -0.5f)
+        if (cameraMovement < -0.1f)
         {
             RepositionFarthestSeaForDownward(currentCameraY);
         }
         // 카메라가 위로 이동 (덜 깊어짐) - 더 민감하게 반응
-        else if (cameraMovement > 0.5f)
+        else if (cameraMovement > 0.1f)
         {
             RepositionFarthestSeaForUpward(currentCameraY);
         }
