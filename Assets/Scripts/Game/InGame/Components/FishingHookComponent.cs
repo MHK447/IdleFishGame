@@ -33,6 +33,27 @@ public class FishingHookComponent : MonoBehaviour
     private Transform LineEndTr;
 
     [SerializeField]
+    private int lineSegments = 20; // 라인 세그먼트 수
+
+    [SerializeField]
+    private int minLineSegments = 15; // 최소 라인 세그먼트 수 (고속 이동시)
+
+    [SerializeField]
+    private float speedThreshold = 15f; // 세그먼트 감소 속도 임계값
+
+    [SerializeField]
+    private float lineSag = 0.5f; // 라인 처짐 정도
+
+    [SerializeField]
+    private float lineUpdateThreshold = 0.1f; // 라인 업데이트 최소 거리
+
+    [SerializeField]
+    private int maxLineUpdatesPerSecond = 60; // 초당 최대 라인 업데이트 횟수
+
+    private float lastLineUpdateTime = 0f;
+    private Vector3 lastHookPosition;
+
+    [SerializeField]
     private float hookDownSpeed = 2f;  // 내려가는 속도 (유닛/초)
 
     [SerializeField]
@@ -66,13 +87,13 @@ public class FishingHookComponent : MonoBehaviour
 
         accumulatedDepth = 0f;
         lastY = FisshingHookObj.position.y;
+        lastHookPosition = FisshingHookObj.position; // 라인 업데이트용 초기 위치
 
-        LineRenderer.positionCount = 2;
+        LineRenderer.positionCount = lineSegments + 1;
         LineRenderer.startWidth = 0.15f;
         LineRenderer.endWidth = 0.15f;
 
         StartHookY = FisshingHookObj.position.y;
-
 
         CurHookState = FishingHookState.None;
     }
@@ -102,7 +123,7 @@ public class FishingHookComponent : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         float currentY = FisshingHookObj.position.y;
         float deltaY = lastY - currentY;
@@ -110,12 +131,11 @@ public class FishingHookComponent : MonoBehaviour
         // y가 감소했을 때만 누적
         accumulatedDepth += deltaY * (1f / metersPerUnit);
 
-
         lastY = currentY;
 
         GameRoot.Instance.PlayerSystem.SeaDepthProperty.Value = accumulatedDepth / 10f;
 
-        // 낚시줄 길이 조정
+        // 낚시줄 길이 조정 - 조건부 업데이트
         UpdateLineLength();
 
         // 훅 이동 처리
@@ -126,8 +146,60 @@ public class FishingHookComponent : MonoBehaviour
 
     private void UpdateLineLength()
     {
-        LineRenderer.SetPosition(0, LinrStartTr.position);
-        LineRenderer.SetPosition(1, LineEndTr.position);
+        float currentTime = Time.time;
+        Vector3 currentHookPos = FisshingHookObj.position;
+        
+        // 업데이트 조건 체크
+        float timeSinceLastUpdate = currentTime - lastLineUpdateTime;
+        float distanceMoved = Vector3.Distance(currentHookPos, lastHookPosition);
+        float minUpdateInterval = 1f / maxLineUpdatesPerSecond;
+        
+        // 시간 기반 또는 거리 기반 업데이트
+        bool shouldUpdate = timeSinceLastUpdate >= minUpdateInterval || 
+                           distanceMoved >= lineUpdateThreshold;
+        
+        if (!shouldUpdate) return;
+        
+        // 속도 계산
+        float speed = distanceMoved / timeSinceLastUpdate;
+        
+        // 속도에 따른 세그먼트 수 조절
+        int currentSegments = speed > speedThreshold ? minLineSegments : lineSegments;
+        
+        // 라인 렌더러 포인트 수 조정
+        if (LineRenderer.positionCount != currentSegments + 1)
+        {
+            LineRenderer.positionCount = currentSegments + 1;
+        }
+        
+        // 업데이트 시간과 위치 기록
+        lastLineUpdateTime = currentTime;
+        lastHookPosition = currentHookPos;
+        
+        Vector3 startPos = LinrStartTr.position;
+        Vector3 endPos = LineEndTr.position;
+        
+        // 시작점과 끝점 사이의 거리 계산
+        float distance = Vector3.Distance(startPos, endPos);
+        
+        // 라인의 처짐 정도를 거리에 비례하여 계산 (최대값 제한)
+        float currentSag = Mathf.Min(lineSag * (distance / 10f), lineSag * 2f);
+        
+        // 라인의 각 점을 계산
+        for (int i = 0; i <= currentSegments; i++)
+        {
+            float t = (float)i / currentSegments; // 0부터 1까지의 비율
+            
+            // 기본 선형 보간
+            Vector3 targetPos = Vector3.Lerp(startPos, endPos, t);
+            
+            // 포물선 형태의 처짐 추가 (중간에서 가장 많이 처짐)
+            float sagAmount = currentSag * Mathf.Sin(t * Mathf.PI);
+            targetPos.y -= sagAmount;
+            
+            // 바로 적용 (부드러운 보간 없음)
+            LineRenderer.SetPosition(i, targetPos);
+        }
     }
 
     private void UpdateHookMovement()

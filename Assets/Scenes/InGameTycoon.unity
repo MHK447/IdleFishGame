@@ -848,6 +848,14 @@ PrefabInstance:
       propertyPath: TopRopeTr
       value: 
       objectReference: {fileID: 1723302644}
+    - target: {fileID: 672383275713709279, guid: ed31bf5d034374f9cb0f6e237ec8c994, type: 3}
+      propertyPath: lineSegments
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 672383275713709279, guid: ed31bf5d034374f9cb0f6e237ec8c994, type: 3}
+      propertyPath: minLineSegments
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 971545278604212649, guid: ed31bf5d034374f9cb0f6e237ec8c994, type: 3}
       propertyPath: m_LocalPosition.y
       value: 8.06
