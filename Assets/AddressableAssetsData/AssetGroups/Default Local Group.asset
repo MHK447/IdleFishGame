@@ -265,6 +265,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf678b4e56f358a4b8cddcb851ac8165
+    m_Address: Atlas_UI_InGameStage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c0f2e4313a0144ba2b887462e38875d9
     m_Address: UI/Top/ToastMessage_Topbar_White
     m_ReadOnly: 0

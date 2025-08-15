@@ -262,6 +262,7 @@ public enum Atlas
 
     Atlas_UI_Common,
         Atlas_UI_InGameFish,
+        Atlas_UI_InGameStage,
     // @ add here
 
 }
