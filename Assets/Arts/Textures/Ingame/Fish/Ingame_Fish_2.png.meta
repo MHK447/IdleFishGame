@@ -3,8 +3,8 @@ guid: 52f5c5e1ac01040d98f6249668294617
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5656643130388087204
-    second: Ingame_Fish_02_0
+      213: 2347539888490243337
+    second: Ingame_Fish_2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ingame_Fish_02_0
+      name: Ingame_Fish_2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 175
-        height: 75
+        width: 111
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4a18fe7f4fe608e40800000000000000
-      internalID: 5656643130388087204
+      spriteID: 905658d3713249020800000000000000
+      internalID: 2347539888490243337
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Ingame_Fish_02_0: 5656643130388087204
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
