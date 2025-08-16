@@ -271,7 +271,10 @@ public class FishingHookComponent : MonoBehaviour
                 if (currentPos.y < targetY)
                 {
                     var buffvalue = GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.FisihngSpeeed);
-                    float newY = currentPos.y + (hookUpSpeed + buffvalue + HookTouchSpeed) * Time.deltaTime;
+
+                    var buffcalc = ProjectUtility.PercentCalc(hookUpSpeed , buffvalue);
+                    
+                    float newY = currentPos.y + (hookUpSpeed  + buffcalc) * Time.deltaTime;
                     newY = Mathf.Min(newY, targetY); // 목표점을 넘지 않도록
                     FisshingHookObj.position = new Vector3(currentPos.x, newY, currentPos.z);
 
@@ -297,7 +300,7 @@ public class FishingHookComponent : MonoBehaviour
     {
         TopRopeTr.DOScaleY(22f, 0.2f).OnComplete(() =>
                         {
-                            GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.HookDown, 0.5f));
+                            GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.HookDown, 0f));
                         });
     }
 
@@ -379,7 +382,7 @@ public class FishingHookComponent : MonoBehaviour
 
         if (fishinfotd != null)
         {
-            System.Numerics.BigInteger moneyvalue = fishinfotd.money_value * (long)GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.PriceMulti);
+            System.Numerics.BigInteger moneyvalue = fishinfotd.money_value + (long)ProjectUtility.PercentCalc(fishinfotd.money_value , GameRoot.Instance.UpgradeSystem.GetUpgradeValue(UpgradeSystem.UpgradeType.PriceMulti));;
 
             GameRoot.Instance.EffectSystem.MultiPlay<TextEffectMoney>(TopRopeTr.position, x =>
             {

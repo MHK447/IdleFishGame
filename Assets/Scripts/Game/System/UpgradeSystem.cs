@@ -39,7 +39,7 @@ public class UpgradeSystem
             var level = GameRoot.Instance.UserData.Upgradedata[(int)type].Upgradelevel;
 
 
-            value = td.start_value * (td.level_up_value * level);
+            value = td.start_value + (td.level_up_value * level);
 
         }
 
@@ -53,8 +53,8 @@ public class UpgradeSystem
     {
         if (level <= 0) return new BigInteger(baseCost);
 
-        double costMultiplier = Math.Pow(level, power);
+        double costMultiplier = Math.Pow(level, power) * 100;
         BigInteger finalCost = baseCost * new BigInteger(costMultiplier);
-        return finalCost;
+        return finalCost / 100;
     }
 }

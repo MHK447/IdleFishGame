@@ -26,7 +26,7 @@ public class InGameSeaComponent : MonoBehaviour
 
 
 
-        foreach (var fishspawn in FishSpawnList)
+    foreach (var fishspawn in FishSpawnList)
         {
             var fish = Instantiate(FishPrefab, transform).GetComponent<InGameFish>();
 

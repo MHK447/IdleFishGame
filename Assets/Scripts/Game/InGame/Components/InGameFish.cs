@@ -19,24 +19,24 @@ public class InGameFish : MonoBehaviour
     {
         FishIdx = fishidx;
 
-        var td = Tables.Instance.GetTable<FishInfo>().GetData(fishidx);
+        //var td = Tables.Instance.GetTable<FishInfo>().GetData(fishidx);
 
-        if (td != null)
-        {
-            switch (td.move_type)
-            {
-                case 1:
-                    {
-                        transform.localScale = new Vector3(-1f, 1f, 1f);
-                        break;
-                    }
-                case 2:
-                    {
-                        transform.localScale = new Vector3(1f, 1f, 1f);
-                        break;
-                    }
-            }
-        }
+        // if (td != null)
+        // {
+        //     switch (td.move_type)
+        //     {
+        //         case 1:
+        //             {
+        //                 transform.localScale = new Vector3(-1f, 1f, 1f);
+        //                 break;
+        //             }
+        //         case 2:
+        //             {
+        //                 transform.localScale = new Vector3(1f, 1f, 1f);
+        //                 break;
+        //             }
+        //     }
+        // }
 
         FishBody.Init(fishidx);
 
