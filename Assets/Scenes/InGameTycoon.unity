@@ -738,6 +738,10 @@ PrefabInstance:
       propertyPath: minLineSegments
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 793998629180331923, guid: ed31bf5d034374f9cb0f6e237ec8c994, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 971545278604212649, guid: ed31bf5d034374f9cb0f6e237ec8c994, type: 3}
       propertyPath: m_LocalPosition.y
       value: 8.06
@@ -817,6 +821,10 @@ PrefabInstance:
     - target: {fileID: 8590292271253298584, guid: ed31bf5d034374f9cb0f6e237ec8c994, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870513164128340577, guid: ed31bf5d034374f9cb0f6e237ec8c994, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

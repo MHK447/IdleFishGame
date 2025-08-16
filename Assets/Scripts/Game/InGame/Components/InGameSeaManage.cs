@@ -71,7 +71,9 @@ public class InGameSeaManage : MonoBehaviour
             }
             else
             {
-                var sea = Instantiate(SeaListPrefab[seaidx - 1], transform);
+                var sea = Instantiate(SeaListPrefab[td.prefab_sea_idx - 1], transform);
+
+                ProjectUtility.SetActiveCheck(sea.gameObject , true);
 
                 CurrentSeaObj = sea;
                 sea.Set(seaidx);

@@ -50,6 +50,8 @@ public class InGameScrollSea : MonoBehaviour
         {
             currentDepthLevel++;
             SeaList[i].Init();
+        
+
             SeaList[i].Set(i + 1);
         }
     }

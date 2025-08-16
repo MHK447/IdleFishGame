@@ -41,8 +41,6 @@ public class InGameSeaComponent : MonoBehaviour
 
     public void Set(int seaidx)
     {
-        FishList.Clear();
-
         var td = Tables.Instance.GetTable<SeaInfo>().GetData(seaidx);
 
         if (td != null)

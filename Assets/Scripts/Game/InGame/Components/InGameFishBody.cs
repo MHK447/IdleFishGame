@@ -196,9 +196,9 @@ public class InGameFishBody : MonoBehaviour
                 HandleNormalFishMovement();
                 break;
 
-            case FishMovePattern.WhaleType:
-                HandleWhaleMovement();
-                break;
+            // case FishMovePattern.WhaleType:
+            //     HandleWhaleMovement();
+            //     break;
 
             default:
                 HandleNormalFishMovement();

@@ -21,11 +21,11 @@ namespace BanpoFri
 			set { _inhabit_fish = value;}
 		}
 		[SerializeField]
-		private string _sea_prefab;
-		public string sea_prefab
+		private int _prefab_sea_idx;
+		public int prefab_sea_idx
 		{
-			get { return _sea_prefab;}
-			set { _sea_prefab = value;}
+			get { return _prefab_sea_idx;}
+			set { _prefab_sea_idx = value;}
 		}
 		[SerializeField]
 		private int _gradation_on;
