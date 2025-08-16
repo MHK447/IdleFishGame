@@ -2789,7 +2789,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4267054263043931179}
-  - component: {fileID: 6706928525645151447}
+  - component: {fileID: 3432283135079384015}
   m_Layer: 0
   m_Name: Sea
   m_TagString: Untagged
@@ -2836,7 +2836,7 @@ Transform:
   - {fileID: 4132708495004606339}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6706928525645151447
+--- !u!114 &3432283135079384015
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2845,9 +2845,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7627192587906325122}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e6838d0ac6f6454f960eb66153b8eeb, type: 3}
+  m_Script: {fileID: 11500000, guid: 46364b19ec6fb493dbe4aa0adea087e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GradientObj: {fileID: 5963334939907348662}
   FishSpawnList:
   - {fileID: 1810438825828875554}
   - {fileID: 8620201433726720947}
@@ -2856,7 +2857,6 @@ MonoBehaviour:
   - {fileID: 1732836551010051859}
   - {fileID: 1918671793933745516}
   - {fileID: 2968447361409618802}
-  SeaIdx: 0
   FishPrefab: {fileID: 9207812892246154957, guid: 6d4cc0332dd93415e91b0127613c2203, type: 3}
 --- !u!1 &8883796035350710398
 GameObject:

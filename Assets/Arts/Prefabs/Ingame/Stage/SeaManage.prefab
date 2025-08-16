@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7627192587906325122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4267054263043931179}
+  - component: {fileID: 6706928525645151447}
+  m_Layer: 0
+  m_Name: SeaManage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4267054263043931179
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7627192587906325122}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -53.5, y: -31.1, z: 0.80078125}
+  m_LocalScale: {x: 20, y: 20, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6706928525645151447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7627192587906325122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6838d0ac6f6454f960eb66153b8eeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FishSpawnList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  SeaIdx: 0
+  SeaListPrefab:
+  - {fileID: 3300524575383204507, guid: 0547b40ec2344bc42bcb3d0953465b74, type: 3}
+  - {fileID: 3300524575383204507, guid: a8dbf4d0a8a940b44bc5e5f765d6983e, type: 3}
+  - {fileID: 3300524575383204507, guid: 2366b767dd707004fa740253aa9dbfba, type: 3}
+  - {fileID: 3300524575383204507, guid: f82769fc04c75444abd81052ba5adc09, type: 3}
+  - {fileID: 3300524575383204507, guid: 3427633e5422c4f4cb5f68e7a45b4bed, type: 3}
+  - {fileID: 3300524575383204507, guid: 3440624ce7556954cbbeb3c93873bcc6, type: 3}
+  - {fileID: 3300524575383204507, guid: c6382bd0b50ec284fafd712dd59984a7, type: 3}
+  - {fileID: 3300524575383204507, guid: 5bc38b15cd2240048a46d36b8e96b00d, type: 3}
+  - {fileID: 3300524575383204507, guid: 72b99a71c98d93741bf06e9c932d969c, type: 3}
+  - {fileID: 3300524575383204507, guid: 3ce5dd380541645409572e71eea63f99, type: 3}
+  FishPrefab: {fileID: 9207812892246154957, guid: 6d4cc0332dd93415e91b0127613c2203, type: 3}

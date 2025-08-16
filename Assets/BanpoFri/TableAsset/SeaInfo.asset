@@ -27,21 +27,41 @@ MonoBehaviour:
   mDataList:
   - _idx: 1
     _inhabit_fish: 0100000002000000
+    _sea_prefab: Sea_01
+    _gradation_on: -1
   - _idx: 2
     _inhabit_fish: 03000000
+    _sea_prefab: Sea_01
+    _gradation_on: 1
   - _idx: 3
     _inhabit_fish: 04000000
+    _sea_prefab: Sea_02
+    _gradation_on: -1
   - _idx: 4
     _inhabit_fish: 04000000
+    _sea_prefab: Sea_02
+    _gradation_on: 1
   - _idx: 5
     _inhabit_fish: 0100000002000000
+    _sea_prefab: Sea_03
+    _gradation_on: -1
   - _idx: 6
     _inhabit_fish: 03000000
+    _sea_prefab: Sea_03
+    _gradation_on: 1
   - _idx: 7
     _inhabit_fish: 04000000
+    _sea_prefab: Sea_04
+    _gradation_on: -1
   - _idx: 8
     _inhabit_fish: 04000000
+    _sea_prefab: Sea_04
+    _gradation_on: 1
   - _idx: 9
     _inhabit_fish: 0100000002000000
+    _sea_prefab: Sea_05
+    _gradation_on: -1
   - _idx: 10
     _inhabit_fish: 04000000
+    _sea_prefab: Sea_05
+    _gradation_on: 1

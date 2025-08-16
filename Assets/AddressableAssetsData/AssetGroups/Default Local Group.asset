@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 08a828bfbd41f48f29c62c948b8cf964
   m_SerializeEntries:
+  - m_GUID: 0547b40ec2344bc42bcb3d0953465b74
+    m_Address: Sea_01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 055ee5af5d3aaca45abf507622c5280e
     m_Address: UI/Page/LoadingBasic
     m_ReadOnly: 0
@@ -60,6 +65,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2366b767dd707004fa740253aa9dbfba
+    m_Address: Sea_03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 26183ec9be711494c8f9006288a44a1c
     m_Address: UI/Popup/Popup01_White
     m_ReadOnly: 0
@@ -82,6 +92,21 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2da0395338a755d4f9b6349657d4e96c
     m_Address: UI/Page/PageLobby
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3427633e5422c4f4cb5f68e7a45b4bed
+    m_Address: Sea_05
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3440624ce7556954cbbeb3c93873bcc6
+    m_Address: Sea_06
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ce5dd380541645409572e71eea63f99
+    m_Address: Sea_10
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -135,6 +160,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5bc38b15cd2240048a46d36b8e96b00d
+    m_Address: Sea_08
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5c8fe8ec86447415084d847d1b56111c
     m_Address: UI/Popup/Popup03_Divided_Single_Navy
     m_ReadOnly: 0
@@ -162,6 +192,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7093463340df746288bf695b0352e25b
     m_Address: UI/Popup/Popup_Update
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72b99a71c98d93741bf06e9c932d969c
+    m_Address: Sea_09
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -245,6 +280,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a8dbf4d0a8a940b44bc5e5f765d6983e
+    m_Address: Sea_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ac9a897c94ef941cf809e3693a2f03ce
     m_Address: UI/Popup/Popup_Slide02_White
     m_ReadOnly: 0
@@ -287,6 +327,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c3ac434fd15296347baefd290f83e2c8
     m_Address: Effect/MergeEffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c6382bd0b50ec284fafd712dd59984a7
+    m_Address: Sea_07
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -377,6 +422,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f04852330a03647a28eebd4b7232eb35
     m_Address: UI/Popup/Popup_Login
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f82769fc04c75444abd81052ba5adc09
+    m_Address: Sea_04
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

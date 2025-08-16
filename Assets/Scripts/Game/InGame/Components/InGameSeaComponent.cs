@@ -1,44 +1,31 @@
-using System.Collections.Generic;
-using System.Data.SqlTypes;
-using System.Linq;
-using BanpoFri;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-
-public class InGameSea : MonoBehaviour
+using BanpoFri;
+using System.Collections.Generic;
+using System.Linq;
+public class InGameSeaComponent : MonoBehaviour
 {
     [SerializeField]
-    private List<Transform> FishSpawnList = new List<Transform>();
-
-    private int SeaIdx = 0;
+    private GameObject GradientObj;
 
     [SerializeField]
-    private List<GameObject> SeaListPrefab = new List<GameObject>();
-
-    private GameObject CurrentSeaObj;
-
-
-    private List<GameObject> CurrentSeaList = new List<GameObject>();
-
-    public int GetSeaidx { get { return SeaIdx; } }
+    private List<Transform> FishSpawnList = new List<Transform>();
 
     [SerializeField]
     private GameObject FishPrefab;
 
-    [SerializeField]
-    private GameObject GradientObj;
 
 
     private List<InGameFish> FishList = new List<InGameFish>();
 
-    private int Depth = 0;
 
-    private InGameScrollSea ScrollSea;
+    private int SeaIdx = 0;
 
-    public void Init()
+    void Awake()
     {
         FishList.Clear();
-        CurrentSeaList.Clear();
+
+
+
         foreach (var fishspawn in FishSpawnList)
         {
             var fish = Instantiate(FishPrefab, transform).GetComponent<InGameFish>();
@@ -49,61 +36,31 @@ public class InGameSea : MonoBehaviour
             FishList.Add(fish);
 
         }
+
     }
 
     public void Set(int seaidx)
     {
-        SeaIdx = seaidx;
-
-        ScrollSea = GameRoot.Instance.InGameSystem.GetInGame<InGameTycoon>().GetScrollSea;
+        FishList.Clear();
 
         var td = Tables.Instance.GetTable<SeaInfo>().GetData(seaidx);
 
         if (td != null)
         {
-
-            for (int i = 0; i < FishList.Count; ++i)
-            {
-                var randvalue = Random.Range(0, td.inhabit_fish.Count);
-
-                FishList[i].Set(td.inhabit_fish[randvalue]);
-            }
+            SeaIdx = seaidx;
 
             ProjectUtility.SetActiveCheck(GradientObj, td.gradation_on == 1);
-        }
-    }
 
-
-    public void SeaCreate(int seaidx)
-    {
-        var td = Tables.Instance.GetTable<SeaInfo>().GetData(seaidx);
-
-        if (td != null)
-        {
-            if(CurrentSeaObj != null)
+            for (int i = 0; i < FishSpawnList.Count; ++i)
             {
-                ProjectUtility.SetActiveCheck(CurrentSeaObj , false);
-            }
+                var randfishidx = Random.Range(0, td.inhabit_fish.Count);
 
-
-            var findsea = CurrentSeaList.Find(x => !x.gameObject.activeSelf);
-
-            if (findsea != null)
-            {
-                ProjectUtility.SetActiveCheck(findsea.gameObject, true);
-
-                CurrentSeaObj = findsea;
-            }
-            else
-            {
-                var sea = Instantiate(SeaListPrefab[seaidx - 1], transform);
-
-                CurrentSeaObj = sea;
-
-                CurrentSeaList.Add(sea);
+                FishList[i].Set(td.inhabit_fish[randfishidx]);
             }
         }
     }
+
+
 
     public InGameFish RandCatchFish()
     {
@@ -147,6 +104,7 @@ public class InGameSea : MonoBehaviour
     {
         return FishList.FindAll(x => x.gameObject.activeSelf && !x.IsCaught()).ToList();
     }
+
 
     public float GetDistanceToPoint(Vector3 point)
     {

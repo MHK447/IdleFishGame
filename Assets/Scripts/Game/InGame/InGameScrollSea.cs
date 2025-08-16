@@ -11,7 +11,7 @@ public class InGameScrollSea : MonoBehaviour
     private FishingHookComponent HookCompoent;
 
     [SerializeField]
-    private List<InGameSea> SeaList = new List<InGameSea>();
+    private List<InGameSeaManage> SeaList = new List<InGameSeaManage>();
 
     private float CameraMinY = -28.4f;
 
@@ -102,12 +102,12 @@ public class InGameScrollSea : MonoBehaviour
         Vector3 hookPosition = HookCompoent.FisshingHookTr.position;
         
         // 낚싯바늘에 가장 가까운 바다 찾기
-        InGameSea closestSea = null;
+        InGameSeaManage closestSea = null;
         float closestDistance = float.MaxValue;
         
         foreach (var sea in SeaList)
         {
-            float distance = sea.GetDistanceToPoint(hookPosition);
+            float distance = sea.GetCurrentSea.GetDistanceToPoint(hookPosition);
             if (distance < closestDistance)
             {
                 closestDistance = distance;
@@ -118,7 +118,7 @@ public class InGameScrollSea : MonoBehaviour
         // 가장 가까운 바다에서 랜덤한 물고기 선택
         if (closestSea != null)
         {
-            InGameFish targetFish = closestSea.RandCatchFish();
+            InGameFish targetFish = closestSea.GetCurrentSea.RandCatchFish();
             
             if (targetFish != null)
             {
@@ -150,7 +150,7 @@ public class InGameScrollSea : MonoBehaviour
     private void RepositionFarthestSeaForDownward(float cameraY)
     {
         // 카메라 위치에서 가장 먼 바다 찾기 (위쪽에 있는 바다)
-        InGameSea farthestSea = null;
+        InGameSeaManage farthestSea = null;
         float maxDistance = 0f;
         
         foreach (var sea in SeaList)
@@ -167,7 +167,7 @@ public class InGameScrollSea : MonoBehaviour
         if (farthestSea != null && maxDistance > 40f)
         {
             // 가장 아래에 있는 바다 찾기
-            InGameSea bottomSea = SeaList.OrderBy(s => s.transform.localPosition.y).First();
+            InGameSeaManage bottomSea = SeaList.OrderBy(s => s.transform.localPosition.y).First();
             float newY = bottomSea.transform.localPosition.y - sectionDistance;
             
             // 바다를 새 위치로 이동
@@ -181,10 +181,12 @@ public class InGameScrollSea : MonoBehaviour
         }
     }
 
+
+
     private void RepositionFarthestSeaForUpward(float cameraY)
     {
         // 카메라 위치에서 가장 먼 바다 찾기 (아래쪽에 있는 바다)
-        InGameSea farthestSea = null;
+        InGameSeaManage farthestSea = null;
         float maxDistance = 0f;
         
         foreach (var sea in SeaList)
@@ -201,10 +203,10 @@ public class InGameScrollSea : MonoBehaviour
         if (farthestSea != null && maxDistance > 40f && currentDepthLevel > 4)
         {
             // 가장 위에 있는 바다 찾기
-            InGameSea topSea = SeaList.OrderByDescending(s => s.transform.localPosition.y).First();
+            InGameSeaManage topSea = SeaList.OrderByDescending(s => s.transform.localPosition.y).First();
 
 
-            InGameSea DownSea = SeaList.OrderByDescending(s => s.transform.localPosition.y).First();
+            InGameSeaManage DownSea = SeaList.OrderByDescending(s => s.transform.localPosition.y).First();
             float newY = topSea.transform.localPosition.y + sectionDistance;
             
             // 바다를 새 위치로 이동

@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6706928525645151447, guid: a2265f4c9a14b4c849e9de63d90bbb59, type: 3}
+      propertyPath: SeaIdx
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7627192587906325122, guid: a2265f4c9a14b4c849e9de63d90bbb59, type: 3}
       propertyPath: m_Name
       value: Sea_02
