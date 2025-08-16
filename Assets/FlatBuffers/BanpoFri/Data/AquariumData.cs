@@ -19,18 +19,30 @@ public struct AquariumData : IFlatbufferObject
   public void __init(int _i, ByteBuffer _bb) { __p = new Table(_i, _bb); }
   public AquariumData __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
-  public int Fishidx { get { int o = __p.__offset(4); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
-  public bool MutateFishidx(int fishidx) { int o = __p.__offset(4); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, fishidx); return true; } else { return false; } }
+  public int Fishidxs(int j) { int o = __p.__offset(4); return o != 0 ? __p.bb.GetInt(__p.__vector(o) + j * 4) : (int)0; }
+  public int FishidxsLength { get { int o = __p.__offset(4); return o != 0 ? __p.__vector_len(o) : 0; } }
+#if ENABLE_SPAN_T
+  public Span<int> GetFishidxsBytes() { return __p.__vector_as_span<int>(4, 4); }
+#else
+  public ArraySegment<byte>? GetFishidxsBytes() { return __p.__vector_as_arraysegment(4); }
+#endif
+  public int[] GetFishidxsArray() { return __p.__vector_as_array<int>(4); }
+  public bool MutateFishidxs(int j, int fishidxs) { int o = __p.__offset(4); if (o != 0) { __p.bb.PutInt(__p.__vector(o) + j * 4, fishidxs); return true; } else { return false; } }
 
   public static Offset<BanpoFri.Data.AquariumData> CreateAquariumData(FlatBufferBuilder builder,
-      int fishidx = 0) {
+      VectorOffset fishidxsOffset = default(VectorOffset)) {
     builder.StartTable(1);
-    AquariumData.AddFishidx(builder, fishidx);
+    AquariumData.AddFishidxs(builder, fishidxsOffset);
     return AquariumData.EndAquariumData(builder);
   }
 
   public static void StartAquariumData(FlatBufferBuilder builder) { builder.StartTable(1); }
-  public static void AddFishidx(FlatBufferBuilder builder, int fishidx) { builder.AddInt(0, fishidx, 0); }
+  public static void AddFishidxs(FlatBufferBuilder builder, VectorOffset fishidxsOffset) { builder.AddOffset(0, fishidxsOffset.Value, 0); }
+  public static VectorOffset CreateFishidxsVector(FlatBufferBuilder builder, int[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddInt(data[i]); return builder.EndVector(); }
+  public static VectorOffset CreateFishidxsVectorBlock(FlatBufferBuilder builder, int[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
+  public static VectorOffset CreateFishidxsVectorBlock(FlatBufferBuilder builder, ArraySegment<int> data) { builder.StartVector(4, data.Count, 4); builder.Add(data); return builder.EndVector(); }
+  public static VectorOffset CreateFishidxsVectorBlock(FlatBufferBuilder builder, IntPtr dataPtr, int sizeInBytes) { builder.StartVector(1, sizeInBytes, 1); builder.Add<int>(dataPtr, sizeInBytes); return builder.EndVector(); }
+  public static void StartFishidxsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static Offset<BanpoFri.Data.AquariumData> EndAquariumData(FlatBufferBuilder builder) {
     int o = builder.EndTable();
     return new Offset<BanpoFri.Data.AquariumData>(o);
@@ -41,23 +53,29 @@ public struct AquariumData : IFlatbufferObject
     return _o;
   }
   public void UnPackTo(AquariumDataT _o) {
-    _o.Fishidx = this.Fishidx;
+    _o.Fishidxs = new List<int>();
+    for (var _j = 0; _j < this.FishidxsLength; ++_j) {_o.Fishidxs.Add(this.Fishidxs(_j));}
   }
   public static Offset<BanpoFri.Data.AquariumData> Pack(FlatBufferBuilder builder, AquariumDataT _o) {
     if (_o == null) return default(Offset<BanpoFri.Data.AquariumData>);
+    var _fishidxs = default(VectorOffset);
+    if (_o.Fishidxs != null) {
+      var __fishidxs = _o.Fishidxs.ToArray();
+      _fishidxs = CreateFishidxsVector(builder, __fishidxs);
+    }
     return CreateAquariumData(
       builder,
-      _o.Fishidx);
+      _fishidxs);
   }
 }
 
 public class AquariumDataT
 {
-  [Newtonsoft.Json.JsonProperty("fishidx")]
-  public int Fishidx { get; set; }
+  [Newtonsoft.Json.JsonProperty("fishidxs")]
+  public List<int> Fishidxs { get; set; }
 
   public AquariumDataT() {
-    this.Fishidx = 0;
+    this.Fishidxs = null;
   }
 }
 
@@ -67,7 +85,7 @@ static public class AquariumDataVerify
   static public bool Verify(Google.FlatBuffers.Verifier verifier, uint tablePos)
   {
     return verifier.VerifyTableStart(tablePos)
-      && verifier.VerifyField(tablePos, 4 /*Fishidx*/, 4 /*int*/, 4, false)
+      && verifier.VerifyVectorOfData(tablePos, 4 /*Fishidxs*/, 4 /*int*/, false)
       && verifier.VerifyTableEnd(tablePos);
   }
 }

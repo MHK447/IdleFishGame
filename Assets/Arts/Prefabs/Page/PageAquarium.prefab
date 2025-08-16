@@ -180,6 +180,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3778555340815686688}
   m_CullTransparentMesh: 1
+--- !u!1 &5073347459154924462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6829058234877285786}
+  m_Layer: 5
+  m_Name: FishTrs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6829058234877285786
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5073347459154924462}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6320156257905869766}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5123804079943655065
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,6 +534,7 @@ GameObject:
   - component: {fileID: 7004852941865895792}
   - component: {fileID: 8371888457210206478}
   - component: {fileID: 39688861268205648}
+  - component: {fileID: 3082180070716492041}
   m_Layer: 5
   m_Name: PageAquarium
   m_TagString: Untagged
@@ -521,6 +557,7 @@ RectTransform:
   - {fileID: 5862214402490259061}
   - {fileID: 8794927523382582639}
   - {fileID: 8055438219775349900}
+  - {fileID: 6829058234877285786}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -602,6 +639,29 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &3082180070716492041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9040764865858936208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df3a097b24d348f981ffb48fcb84ced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrencyTop: {fileID: 0}
+  uiType: 2
+  uiShowStateName: 
+  activeAnimator: {fileID: 0}
+  closeBtn: {fileID: 891842796027560624}
+  sortingObjects: []
+  batchParticleOrder: 0
+  DontCloseInteraction: 0
+  touchLockTime: 0.5
+  FishPrefab: {fileID: 5294454286300851421, guid: 984f9b9047c5b4463ae6a5f47fc8fbe4, type: 3}
+  FishRoot: {fileID: 6829058234877285786}
 --- !u!1001 &1045521072620311779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -707,6 +767,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a07e0d71da001944ac98d1d54cfa75f, type: 3}
+--- !u!114 &891842796027560624 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 207756761318217299, guid: 0a07e0d71da001944ac98d1d54cfa75f, type: 3}
+  m_PrefabInstance: {fileID: 1045521072620311779}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &9110686118968743429 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8137379048416264934, guid: 0a07e0d71da001944ac98d1d54cfa75f, type: 3}

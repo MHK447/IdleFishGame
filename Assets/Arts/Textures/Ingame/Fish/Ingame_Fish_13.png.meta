@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ingame_Fish_13_0: 5961422883075756740
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

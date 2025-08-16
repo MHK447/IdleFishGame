@@ -1143,7 +1143,7 @@ PrefabInstance:
     - target: {fileID: 3305938530521219494, guid: 0a07e0d71da001944ac98d1d54cfa75f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 876bb97605b414a40871d657a86c164c, type: 3}
+      objectReference: {fileID: 21300000, guid: f311e61d146ef4aecb940a5ad24f0b4e, type: 3}
     - target: {fileID: 3620696422439466371, guid: 0a07e0d71da001944ac98d1d54cfa75f, type: 3}
       propertyPath: m_Name
       value: Btn_Aquarium

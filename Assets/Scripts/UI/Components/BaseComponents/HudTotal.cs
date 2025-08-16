@@ -40,6 +40,6 @@ public class HudTotal : UIBase
 
     public void OnClickAquariumBtn()
     {
-
+        GameRoot.Instance.UISystem.OpenUI<PageAquarium>(popup=> popup.Init());
     }
 }

@@ -58,7 +58,7 @@ table RecordCount {
 
 table AquariumData
 {
-  fishidx:int = 0;
+  fishidxs:[int];
 }
 
 

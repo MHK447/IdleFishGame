@@ -50,6 +50,9 @@ public class FishingHookComponent : MonoBehaviour
     [SerializeField]
     private int maxLineUpdatesPerSecond = 60; // 초당 최대 라인 업데이트 횟수
 
+    [SerializeField]
+    private bool ultraFastLineUpdate = true; // 초고속 라인 업데이트 모드
+
     private float lastLineUpdateTime = 0f;
     private Vector3 lastHookPosition;
 
@@ -81,6 +84,9 @@ public class FishingHookComponent : MonoBehaviour
     private InGameFish CautchFish = null;
 
     private float HookTouchSpeed = 0f;
+
+
+
 
     void Awake()
     {
@@ -137,68 +143,115 @@ public class FishingHookComponent : MonoBehaviour
 
         GameRoot.Instance.PlayerSystem.SeaDepthProperty.Value = accumulatedDepth / 10f;
 
-        // 낚시줄 길이 조정 - 조건부 업데이트
-        UpdateLineLength();
-
         // 훅 이동 처리
         UpdateHookMovement();
 
         UpdateHookTouchSpeed();
+
+        // 낚시줄 길이 조정 - 조건부 업데이트
+        UpdateLineLength();
     }
 
     private void UpdateLineLength()
     {
-        float currentTime = Time.time;
         Vector3 currentHookPos = FisshingHookObj.position;
-        
-        // 업데이트 조건 체크
+
+        // 초고속 모드일 때는 업데이트 제한을 거의 없앰
+        if (ultraFastLineUpdate)
+        {
+            // 매 프레임 업데이트 (성능이 허용하는 한)
+            // 속도에 관계없이 최대 세그먼트 사용
+            int ultraCurrentSegments = lineSegments;
+
+            // 라인 렌더러 포인트 수 조정
+            if (LineRenderer.positionCount != ultraCurrentSegments + 1)
+            {
+                LineRenderer.positionCount = ultraCurrentSegments + 1;
+            }
+
+            Vector3 ultraStartPos = LinrStartTr.position;
+            Vector3 ultraEndPos = LineEndTr.position;
+
+            // 시작점과 끝점 사이의 거리 계산
+            float ultraDistance = Vector3.Distance(ultraStartPos, ultraEndPos);
+
+            // 라인의 처짐 정도를 거리에 비례하여 계산 (최대값 제한)
+            float ultraCurrentSag = Mathf.Min(lineSag * (ultraDistance / 10f), lineSag * 2f);
+
+            // 라인의 각 점을 계산
+            for (int i = 0; i <= ultraCurrentSegments; i++)
+            {
+                float t = (float)i / ultraCurrentSegments; // 0부터 1까지의 비율
+
+                // 기본 선형 보간
+                Vector3 targetPos = Vector3.Lerp(ultraStartPos, ultraEndPos, t);
+
+                // 포물선 형태의 처짐 추가 (중간에서 가장 많이 처짐)
+                float sagAmount = ultraCurrentSag * Mathf.Sin(t * Mathf.PI);
+                targetPos.y -= sagAmount;
+
+                // 바로 적용 (부드러운 보간 없음)
+                LineRenderer.SetPosition(i, targetPos);
+            }
+            return;
+        }
+
+        // 기존 방식 (제한된 업데이트)
+        float currentTime = Time.time;
+
+        // 업데이트 조건을 훨씬 빠르게 설정
         float timeSinceLastUpdate = currentTime - lastLineUpdateTime;
         float distanceMoved = Vector3.Distance(currentHookPos, lastHookPosition);
-        float minUpdateInterval = 1f / maxLineUpdatesPerSecond;
-        
-        // 시간 기반 또는 거리 기반 업데이트
-        bool shouldUpdate = timeSinceLastUpdate >= minUpdateInterval || 
-                           distanceMoved >= lineUpdateThreshold;
-        
+        float minUpdateInterval = 1f / 120f; // 120fps로 증가 (기존 60fps에서)
+
+        // 거리 임계값을 낮춰서 더 자주 업데이트
+        float dynamicLineUpdateThreshold = lineUpdateThreshold * 0.1f; // 기존의 10%로 감소
+
+        // 업데이트 조건을 더 관대하게 설정
+        bool shouldUpdate = timeSinceLastUpdate >= minUpdateInterval ||
+                           distanceMoved >= dynamicLineUpdateThreshold ||
+                           timeSinceLastUpdate >= 0.008f; // 강제 업데이트 (약 125fps)
+
         if (!shouldUpdate) return;
-        
-        // 속도 계산
-        float speed = distanceMoved / timeSinceLastUpdate;
-        
-        // 속도에 따른 세그먼트 수 조절
-        int currentSegments = speed > speedThreshold ? minLineSegments : lineSegments;
-        
+
+        // 속도 계산 (0으로 나누는 것 방지)
+        float speed = timeSinceLastUpdate > 0 ? distanceMoved / timeSinceLastUpdate : 0f;
+
+        // 속도에 따른 세그먼트 수 조절 (빠른 속도에서도 더 많은 세그먼트 유지)
+        int currentSegments = speed > speedThreshold ?
+            Mathf.Max(minLineSegments, lineSegments - 3) : lineSegments;
+
         // 라인 렌더러 포인트 수 조정
         if (LineRenderer.positionCount != currentSegments + 1)
         {
             LineRenderer.positionCount = currentSegments + 1;
         }
-        
+
         // 업데이트 시간과 위치 기록
         lastLineUpdateTime = currentTime;
         lastHookPosition = currentHookPos;
-        
+
         Vector3 startPos = LinrStartTr.position;
         Vector3 endPos = LineEndTr.position;
-        
+
         // 시작점과 끝점 사이의 거리 계산
         float distance = Vector3.Distance(startPos, endPos);
-        
+
         // 라인의 처짐 정도를 거리에 비례하여 계산 (최대값 제한)
         float currentSag = Mathf.Min(lineSag * (distance / 10f), lineSag * 2f);
-        
+
         // 라인의 각 점을 계산
         for (int i = 0; i <= currentSegments; i++)
         {
             float t = (float)i / currentSegments; // 0부터 1까지의 비율
-            
+
             // 기본 선형 보간
             Vector3 targetPos = Vector3.Lerp(startPos, endPos, t);
-            
+
             // 포물선 형태의 처짐 추가 (중간에서 가장 많이 처짐)
             float sagAmount = currentSag * Mathf.Sin(t * Mathf.PI);
             targetPos.y -= sagAmount;
-            
+
             // 바로 적용 (부드러운 보간 없음)
             LineRenderer.SetPosition(i, targetPos);
         }
@@ -211,9 +264,7 @@ public class FishingHookComponent : MonoBehaviour
         switch (CurHookState)
         {
             case FishingHookState.HookDown:
-   
-                   HookDownCheck();
-                
+                HookDownCheck();
                 break;
 
             case FishingHookState.HookUp:
@@ -228,15 +279,26 @@ public class FishingHookComponent : MonoBehaviour
                     if (newY >= targetY)
                     {
 
-                        
 
-
-                        CautchFishAction(CautchFishIdx);
-                        GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.HookDown, 0.5f));
+                        //위에로프도 위로 하기 
+                        TopRopeTr.DOScaleY(0, 0.2f).OnComplete(() =>
+                        {
+                            CautchFishAction(CautchFishIdx);
+                            StartHookDown();
+                        });
                     }
                 }
                 break;
         }
+    }
+
+
+    public void StartHookDown()
+    {
+        TopRopeTr.DOScaleY(22f, 0.2f).OnComplete(() =>
+                        {
+                            GameRoot.Instance.StartCoroutine(ChangeHookState(FishingHookState.HookDown, 0.5f));
+                        });
     }
 
 
@@ -261,7 +323,7 @@ public class FishingHookComponent : MonoBehaviour
         }
         else
         {
-            if(FisshingHookObj.position.y <= -10f)
+            if (FisshingHookObj.position.y <= -10f)
             {
                 NoneAutoDowndeltime += Time.deltaTime;
                 if (NoneAutoDowndeltime >= 2f)
@@ -328,7 +390,7 @@ public class FishingHookComponent : MonoBehaviour
             CautchFish.ReturnSpawner();
 
 
-                
+
         }
 
     }
