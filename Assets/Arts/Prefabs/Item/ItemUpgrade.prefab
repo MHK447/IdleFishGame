@@ -407,15 +407,15 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: aea13975a8ac44b28873a89238f327e3, type: 3}
     - target: {fileID: 8358038099915696016, guid: df7fb87ced1aae944a9ec1af0b7a42f4, type: 3}
       propertyPath: m_Color.b
-      value: 0.8207547
+      value: 0.91580635
       objectReference: {fileID: 0}
     - target: {fileID: 8358038099915696016, guid: df7fb87ced1aae944a9ec1af0b7a42f4, type: 3}
       propertyPath: m_Color.g
-      value: 0.8207547
+      value: 0.9201673
       objectReference: {fileID: 0}
     - target: {fileID: 8358038099915696016, guid: df7fb87ced1aae944a9ec1af0b7a42f4, type: 3}
       propertyPath: m_Color.r
-      value: 0.8207547
+      value: 0.9245283
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -630,6 +630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentImageType: 2
   SetEventMode: 0
+  isAwake: 1
   keyColor: Btn_Green
   eventKeyColor: []
   eventCount: 0

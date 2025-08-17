@@ -103,6 +103,7 @@ SpriteAtlas:
     - 800fb5f3c211f45238f7c9f4e1eeeaa5: 21300000
     - 59d34724da57a475099f28d216d13066: 21300000
     - 99f3c334644c44a9181fcd4eed7a93bc: 21300000
+    - 59cd16342688c774b9736dd6ea20ceeb: 21300000
     - 2174bc4436dee8d4497e601bba82061a: 21300000
     - 73c1da6456f68434d975aa170a67769f: 21300000
     - 59cfb1c4407fc46739c3383a302f15cc: 21300000
@@ -190,6 +191,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 800fb5f3c211f45238f7c9f4e1eeeaa5, type: 3}
   - {fileID: 21300000, guid: 59d34724da57a475099f28d216d13066, type: 3}
   - {fileID: 21300000, guid: 99f3c334644c44a9181fcd4eed7a93bc, type: 3}
+  - {fileID: 21300000, guid: 59cd16342688c774b9736dd6ea20ceeb, type: 3}
   - {fileID: 21300000, guid: 2174bc4436dee8d4497e601bba82061a, type: 3}
   - {fileID: 21300000, guid: 73c1da6456f68434d975aa170a67769f, type: 3}
   - {fileID: 21300000, guid: 59cfb1c4407fc46739c3383a302f15cc, type: 3}
@@ -276,6 +278,7 @@ SpriteAtlas:
   - Pictoicon_Mail 1
   - Common_Frame_S0_R55
   - Pictoicon_Bag 1
+  - Common_Frame_S0_R9
   - Common_Icon_Goods_NoAds
   - Pictoicon_Help 1
   - Pictoicon_Home_1 1
